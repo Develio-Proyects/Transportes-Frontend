@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+:root{
+    --color-primary: #FFC500;
+    --color-secondary: #27272A;
+    --color-background: #F6F6F6;
+    --color-dark: #0C0C0C;
+    --color-success: #10B981;
+    --color-error: #EF4444;
+    --color-warning: #F59E0B;
+    --color-info: #3B82F6;
+    --color-gray: #CBD5DF;
+
+    --max-width: 1200px;
+}
+
+// Reset CSS
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+li{
+    list-style: none;
+}
+a{
+    color: unset;
+    text-decoration: none;
+}
+
+// Common styles
+body{
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.5;
+    font-family: 'Inter', sans-serif;
+}
+
+#start{
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: auto 1fr auto;
+}
+
+.expandedContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+::-webkit-scrollbar {
+    width: 12px; /* Ancho de la barra de scroll */
+}
+::-webkit-scrollbar-track { /* Estilo del "track" (fondo de la barra de scroll) */
+    background-color: #f1f1f1; /* Color de fondo */
+    border-radius: 6px; /* Bordes redondeados */
+}
+::-webkit-scrollbar-thumb { /* Estilo del "thumb" (el área que se arrastra) */
+    background-color: #888; /* Color del "thumb" */
+    border-radius: 6px; /* Bordes redondeados */
+}
+::-webkit-scrollbar-thumb:hover {/* Estilo del "thumb" cuando se pasa el mouse sobre él */
+    background-color: #555; /* Color del "thumb" al hacer hover */
+}
