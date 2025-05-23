@@ -1,0 +1,155 @@
+.header-container{
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    background-color: var(--color-secondary);
+    header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: var(--max-width);
+        height: 4rem;
+        padding: 1rem;
+
+        .logo-container{
+            display: flex;
+            align-items: center;
+            width: 8rem;
+            color: var(--color-primary);
+            .logo{
+                font-size: 2rem;
+                color: var(--color-background);
+                text-decoration: none;
+            }
+        }
+    
+        .menu-icon{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: end;
+            width: 2.5rem;
+            height: 100%;
+            cursor: pointer;
+            z-index: 1000;
+            .line{
+                display: block;
+                width: 100%;
+                height: 4px;
+                border-radius: 10px;
+                background-color: var(--color-background);
+                transition-property: width opacity transform;
+                transition-duration: .3s;
+                transition-timing-function: ease-in-out;
+            }
+            .line2{
+                margin-top: 5px;
+                width: 40%;
+            }
+            .activeLine1{
+                transform-origin: right top;
+                transform: rotate(-45deg);
+            }
+            .activeLine2{
+                width: 100%;
+                transform-origin: right bottom;
+                transform: rotate(45deg);
+                margin-top: 1.4rem;
+            }
+        }
+    
+        .nav-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100vw;
+            height: 100vh;
+            padding: 6rem 1rem 1rem;
+            background-color: var(--color-dark);
+            transition: transform .3s ease-in-out;
+            transform: translate(100%);
+
+            .perfil{
+                .perfil-link{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    .perfil-icon{
+                        font-size: 7rem;
+                        color: var(--color-gray);
+                        margin-bottom: 1rem;
+                    }
+                    .perfil-btn{
+                        border: none;
+                        background-color: transparent;
+                        font-size: 1rem;
+                        color: var(--color-primary);
+                    }
+                }
+            }
+
+            nav{
+                margin-top: 4rem;
+                ul{
+                    .nav-item{
+                        padding: .4rem 1rem;
+                        text-align: center;
+                        background-color: #ffffff1a;
+                        margin-bottom: 1rem;
+                        border-radius: 4px;
+                        .nav-link{
+                            color: var(--color-background);
+                        }
+                    }
+                }
+            }
+        }
+        .nav-open{
+            transform: translateX(0%);
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .header-container{
+        header{
+            .nav-container{
+                justify-content: center;
+                position: unset;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                background-color: transparent;
+                transform: translate(0);
+                nav{
+                    margin-top: 0;
+                    ul{
+                        display: flex;
+                        gap: 1.5rem;
+                        .nav-item{
+                            margin: 0;
+                            padding: 0;
+                            background-color: transparent;
+                            .nav-link{
+                                font-size: clamp(14px, 1vw, 16px);
+                            }
+                        }
+                    }
+                }
+            }
+            .perfil-btn{
+                font-size: 1rem;
+                padding: .4rem 1rem;
+                border: none;
+                border-radius: 4px;
+                background-color: var(--color-primary);
+                cursor: pointer;
+            }
+        }
+    }
+}
