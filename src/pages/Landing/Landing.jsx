@@ -1,12 +1,14 @@
 import ActionCardsSection from "./ActionCardsSection/ActionCardsSection"
-import HeroSection from "./Hero/HeroSection"
+import HeroSection from "./HeroSection/HeroSection"
+import HowItWorksSection from "./HowItWorksSection/HowItWorksSection"
+
 
 const Landing = () => {
     return (
         <main>
             <HeroSection />
             <ActionCardsSection />
-            <div>hola</div>
+            <HowItWorksSection />
         </main>
     )
 }

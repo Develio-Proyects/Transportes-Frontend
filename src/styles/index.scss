@@ -56,6 +56,14 @@ body{
     margin: 0 auto;
 }
 
+.text-d{
+    color: var(--color-secondary);
+}
+
+.text-w{
+    color: var(--color-background);
+}
+
 ::-webkit-scrollbar {
     width: 12px; /* Ancho de la barra de scroll */
 }
