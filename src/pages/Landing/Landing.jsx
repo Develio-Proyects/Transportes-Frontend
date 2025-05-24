@@ -1,6 +1,7 @@
 import ActionCardsSection from "./ActionCardsSection/ActionCardsSection"
 import HeroSection from "./HeroSection/HeroSection"
 import HowItWorksSection from "./HowItWorksSection/HowItWorksSection"
+import WhyChooseUsSection from "./WhyChooseUsSection/WhyChooseUsSection"
 
 
 const Landing = () => {
@@ -9,6 +10,7 @@ const Landing = () => {
             <HeroSection />
             <ActionCardsSection />
             <HowItWorksSection />
+            <WhyChooseUsSection />
         </main>
     )
 }
