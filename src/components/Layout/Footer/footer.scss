@@ -3,6 +3,7 @@
     justify-content: center;
     width: 100vw;
     background-color: var(--color-dark);
+    margin-top: 6rem;
     footer{
         display: grid;
         grid-template-columns: auto 2rem;
@@ -75,6 +76,7 @@
 @media screen and (min-width: 500px) {
     .footer-container{
         footer{
+            grid-template-columns: auto 6rem;
             .footer-links{
                 display: flex;
                 flex-direction: column;
@@ -95,6 +97,13 @@
                     }
                 }
             }
+            .footer-media{
+                ul{
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
         } 
     }
 }
@@ -103,11 +112,10 @@
     .footer-container{
         footer{
             display: grid;
-            grid-template-columns: 8rem auto 2rem;
+            grid-template-columns: 8rem auto 6rem;
             padding: 2rem 1rem 1rem;
             .footer-logo{
                 grid-column: 1/2;
-                align-items: start;
                 margin-bottom: 0;
             }
             
