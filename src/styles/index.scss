@@ -40,7 +40,7 @@ body{
 #start{
     display: grid;
     min-height: 100dvh;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 4rem auto auto;
 }
 
 .expandedContainer{
@@ -51,10 +51,6 @@ body{
 }
 
 .container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     max-width: var(--max-width);
     margin: 0 auto;

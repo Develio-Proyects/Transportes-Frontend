@@ -8,7 +8,7 @@ const HeroSection = () => {
                 <div className="hero-container">
                     <h1>Carga segura, Conexión Instantánea</h1>
                     <p>Unimos a quienes necesitan enviar con quienes saben transportar.</p>
-                    <Link to="/register" className="hero-button">
+                    <Link to="/signup" className="hero-button">
                         <button>Empezá a conectar</button>
                     </Link>
                 </div>
