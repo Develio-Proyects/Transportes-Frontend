@@ -40,11 +40,11 @@
                 border-radius: 10px;
                 background-color: var(--color-background);
                 transition-property: width opacity transform;
-                transition-duration: .3s;
+                transition-duration: .1s;
                 transition-timing-function: ease-in-out;
             }
             .line2{
-                margin-top: 5px;
+                margin-top: 6px;
                 width: 40%;
             }
             .activeLine1{
@@ -55,7 +55,7 @@
                 width: 100%;
                 transform-origin: right bottom;
                 transform: rotate(45deg);
-                margin-top: 1.4rem;
+                margin-top: 23px;
             }
         }
     
