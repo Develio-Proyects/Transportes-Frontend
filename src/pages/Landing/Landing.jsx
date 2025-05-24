@@ -1,6 +1,10 @@
+import HeroSection from "./Hero/HeroSection"
+
 const Landing = () => {
     return (
-        <div>Landing</div>
+        <main>
+            <HeroSection />
+        </main>
     )
 }
 
