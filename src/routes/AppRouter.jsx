@@ -16,7 +16,7 @@ import Usuarios from "../pages/Usuarios/Usuarios"
 import Documentos from "../pages/Documentos/Documentos"
 
 const AppRouter = () => {
-    const role = "empresa"
+    const role = "conductor"; 
 
     return (
         <Routes>

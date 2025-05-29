@@ -23,7 +23,7 @@ const Footer = () => {
                         <Link to={'/login'} className='footer-link'>Publicar carga</Link>
                     </li>
                     <li className="footer-item">
-                        <Link to={'/'} className='footer-link'>Pregutnas frecuentes</Link>
+                        <Link to={'/'} className='footer-link'>Preguntas frecuentes</Link>
                     </li>
                 </ul>
             </div>

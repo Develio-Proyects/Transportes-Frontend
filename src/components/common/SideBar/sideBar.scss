@@ -1,0 +1,98 @@
+.sideBar{
+    display: grid;
+    grid-template-columns: 1fr;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: var(--color-dark);
+    transition: transform .1s ease-in;
+    transform: translate(-100%);
+    
+    .sb-head{
+        display: flex;
+        justify-content: space-between;
+        height: 4rem;
+        padding: 1rem;
+        .sb-logo-container{
+            display: flex;
+            align-items: center;
+            color: var(--color-primary);
+        }
+
+        .toggle-btn{
+            color: var(--color-background);
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+    }
+
+    .sb-nav{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        padding: 1rem;
+
+        .sb-nav-list{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+
+            & > *:last-child{
+                margin-bottom: 0;
+            }
+        }
+
+        .lineSpace{
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            height: 2px;
+            margin: 2rem 0;
+            background-color: var(--color-secondary);
+        }
+    }
+    .nav-tail{
+        align-self: flex-end;
+
+        .sb-logout{
+            display: flex;
+            justify-content: center;
+            .sb-logout-link{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+                width: 100%;
+                margin-bottom: 1rem;
+                padding: 10px 16px;
+                border-radius: 5px;
+                color: var(--color-background);
+            }
+        }
+    }
+}
+.sb-open{
+    transform: translateX(0%);
+}
+
+@media (min-width: 768px) {
+    .sideBar{
+        position: unset;
+        width: 6rem;
+        transform: translate(0);
+        transition: width 0s ease-in;
+        .sb-nav{
+            
+        }
+    }
+    .sb-open{
+        width: 100%;
+    }
+}

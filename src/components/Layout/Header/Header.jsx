@@ -46,7 +46,7 @@ const Header = () => {
                                 <Link to={'/login'} className='nav-link'>Publicar carga</Link>
                             </li>
                             <li className="nav-item" onClick={closeMenu}>
-                                <Link to={'/'} className='nav-link'>Pregutnas frecuentes</Link>
+                                <Link to={'/'} className='nav-link'>Preguntas frecuentes</Link>
                             </li>
                         </ul>
                     </nav>
