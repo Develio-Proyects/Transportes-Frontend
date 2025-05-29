@@ -3,7 +3,7 @@ import SideBar from "../common/SideBar/SideBar"
 
 const UserLayout = () => {
     return (
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", flexDirection: "row" }}>
             <SideBar />
             <div style={{ flexGrow: 1, padding: "1rem" }}>
                 <Outlet />

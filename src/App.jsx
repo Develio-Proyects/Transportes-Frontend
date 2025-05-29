@@ -1,12 +1,15 @@
 import { BrowserRouter } from "react-router-dom"
 import AppRouter from "./routes/AppRouter"
 import './styles/index.scss'
+import { SideBarProvider } from "./context/SideBarContext/SideBarContext"
 
 function App() {
     return (
-        <BrowserRouter>
-            <AppRouter/>
-        </BrowserRouter>
+        <SideBarProvider>
+            <BrowserRouter>
+                <AppRouter/>
+            </BrowserRouter>
+        </SideBarProvider>
     )
 }
 
