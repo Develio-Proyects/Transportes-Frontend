@@ -10,9 +10,10 @@ import FolderIcon from '@mui/icons-material/Folder'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { Link } from 'react-router-dom'
 import SideBarBtn from '../SideBarBtn/SideBarBtn'
-import { useSideBar } from '../../../context/SideBarContext/SideBarContext'
+import { useSideBar } from '../../../context/SideBarContext'
 import { useIsMobile } from '../../../hooks/useIsMobile'
 import { useEffect, useRef } from 'react'
+import { logout } from '../../../api/services/authService'
 
 const SideBar = () => {
     const {isOpen, toggleSideBar, closeSidebar} = useSideBar()
@@ -77,10 +78,10 @@ const SideBar = () => {
                 <span className='lineSpace'></span>
 
                 <div className="sb-logout">
-                    <Link to="/logout" className="sb-logout-link">
+                    <button className="sb-logout-btn" onClick={logout}>
                         <LogoutIcon />
                         { isOpen && "Cerrar sesión" }
-                    </Link>
+                    </button>
                 </div>
             </div>
         </aside>

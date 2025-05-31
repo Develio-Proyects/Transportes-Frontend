@@ -1,5 +1,5 @@
 import MenuIcon from '@mui/icons-material/Menu'
-import { useSideBar } from '../../context/SideBarContext/SideBarContext'
+import { useSideBar } from '../../context/SideBarContext'
 import { useIsMobile } from '../../hooks/useIsMobile'
 
 const ViajesConductor = () => {
