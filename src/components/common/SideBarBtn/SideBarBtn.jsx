@@ -1,5 +1,5 @@
 import './SideBarBtn.scss'
-import { useSideBar } from '../../../context/SideBarContext/SideBarContext'
+import { useSideBar } from '../../../context/SideBarContext'
 import { NavLink } from "react-router-dom"
 
 const SideBarBtn = ({ to, icon, label, onClick }) => {
