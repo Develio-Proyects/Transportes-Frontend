@@ -27,11 +27,8 @@ const AppRouter = () => {
             <Route element={<Layout />}>
                 <Route path="/" element={<Landing />} />
                 <Route path="/viajes" element={<Viajes />} />
-                <Route path="*" element={<Landing />} />
-            </Route>
-
-            <Route element={<ProtectedRoutes allowedRoles={[ROLES.TRANSPORTE, ROLES.FLETERO, ROLES.ADMIN]} />}>
                 <Route path="/viajes/:id" element={<DetalleViaje />} />
+                <Route path="*" element={<Landing />} />
             </Route>
 
             <Route element={<ProtectedRoutes allowedRoles={[ROLES.FLETERO]} />}>
@@ -54,7 +51,7 @@ const AppRouter = () => {
             {/* Rutas exclusivas para Admin */}
             <Route element={<ProtectedRoutes allowedRoles={[ROLES.ADMIN]} />}>
                 <Route element={<UserLayout />}>
-                    <Route path="/perfil/historial" element={<HistorialAdmin />} />
+                    <Route path="/admin/historial" element={<HistorialAdmin />} />
                     <Route path="/admin/usuarios" element={<Usuarios />} />
                 </Route>
             </Route>
