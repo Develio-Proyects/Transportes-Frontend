@@ -20,12 +20,13 @@ const Login = () => {
 
     const { handleSubmit, handleChange, handleBlur, touched, values, errors, setSubmitting } = useFormik({
         initialValues: {
-            username: '',
+            email: '',
             password: ''
         },
         validationSchema: Yup.object().shape({
-            username: Yup.string()
-                .required('El nombre de usuario obligatorio'),
+            email: Yup.string()
+                .email('El correo electrónico no es válido')
+                .required('El correo electrónico es obligatorio'),
             password: Yup.string()
                 .required('La contraseña es obligatoria')
         }),
@@ -54,21 +55,21 @@ const Login = () => {
             <div className="auth-container">
                 <h2 className="auth-form-title text-d">Iniciar sesión</h2>
                 <form className="auth-form" onSubmit={handleSubmit}>
-                    <FormControl variant="filled" error={!!errors.username && touched.username}>
-                        <InputLabel htmlFor="filled-adornment-username">Usuario</InputLabel>
+                    <FormControl variant="filled" error={!!errors.email && touched.email}>
+                        <InputLabel htmlFor="filled-adornment-email">Email</InputLabel>
                         <FilledInput
                             type="text"
-                            name="username"
-                            label="username"
+                            name="email"
+                            label="email"
                             className='input-login'
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            value={values.username}
-                            error={!!errors.username && touched.username} 
-                            aria-describedby="username-helper-text"
+                            value={values.email}
+                            error={!!errors.email && touched.email} 
+                            aria-describedby="email-helper-text"
                         />
-                        <FormHelperText id="username-helper-text">
-                            {errors.username && touched.username && errors.username}
+                        <FormHelperText id="email-helper-text">
+                            {errors.email && touched.email && errors.email}
                         </FormHelperText>
                     </FormControl>
 
