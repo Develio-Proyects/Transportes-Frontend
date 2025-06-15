@@ -22,7 +22,7 @@ const ProtectedRoutes = ({ allowedRoles = [] }) => {
                     setIsTokenValid(true)
                     
                     if (!user) {
-                        setUser({role: "fletero"}) 
+                        setUser({role: "flota"}) 
                     }
 
                 } else {
