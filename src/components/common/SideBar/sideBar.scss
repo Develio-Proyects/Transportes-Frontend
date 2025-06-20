@@ -1,11 +1,12 @@
 .sideBar{
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
     height: 100vh;
     background-color: var(--color-dark);
     transition: transform .1s ease-in;
@@ -15,7 +16,8 @@
         display: flex;
         justify-content: space-between;
         height: 4rem;
-        padding: 1rem;
+        margin-bottom: 2rem;
+        padding: 1rem 2rem;
         .sb-logo-container{
             display: flex;
             align-items: center;
@@ -49,41 +51,74 @@
             }
         }
 
-        .lineSpace{
-            display: block;
-            width: 100%;
-            max-width: 300px;
-            height: 2px;
-            margin: 2rem 0;
-            background-color: var(--color-secondary);
-        }
     }
-    .nav-tail{
-        align-self: flex-end;
 
-        .sb-logout{
+    .user-control{
+        .user-options{
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            .sb-logout-btn{
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 1rem;
-                width: 100%;
-                margin-bottom: 1rem;
-                padding: 10px 16px;
-                font-size: 14px;
-                border: none;
-                border-radius: 5px;
-                color: var(--color-light);
-                background-color: transparent;
-                cursor: pointer;
+            margin: 0 2rem;
+            padding: 1rem;
+            border-radius: 5px;
+            background-color: var(--color-light);
 
-                & > * {
-                    font-size: 1.5rem;
+            .option{
+                padding: 5px 0;
+                border-bottom: 1px solid var(--color-light-gray);
+                cursor: pointer;
+                &:last-child{
+                    border-bottom: none;
                 }
             }
         }
+
+        .user-container{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            cursor: pointer;
+
+            .user-icon{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 5px;
+                border-radius: 5px;
+                background-color: var(--color-primary);
+                & > *{
+                    font-size: 2.5rem;
+                }
+            }
+
+            .user-info{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                .user-name{
+                    color: var(--color-light);
+                    font-size: 16px;
+                    user-select: none;
+                }
+
+                .user-rol{
+                    color: var(--color-light);
+                    font-size: 14px;
+                    user-select: none;
+                }
+            }
+        }
+    }
+    
+    .lineSpace{
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        height: 2px;
+        margin: 1rem 0;
+        background-color: var(--color-secondary);
     }
 }
 .sb-open{
@@ -93,7 +128,6 @@
 @media (min-width: 768px) {
     .sideBar{
         position: unset;
-        width: 6rem;
         transform: translate(0);
         transition: width 0s ease-in;
     }

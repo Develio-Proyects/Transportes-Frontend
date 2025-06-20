@@ -28,6 +28,7 @@ export const signup = async (credencials) => {
 
 export const logout = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem("user")
     window.location.href = '/login'
 }
 
