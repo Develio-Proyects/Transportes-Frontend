@@ -7,11 +7,13 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import { login } from '../../api/services/authService';
+import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
     const [status, setStatus] = useState(null)
+    const { createUser } = useAuth()
 
     const handleClickShowPassword = () => setShowPassword((show) => !show)
     const handleMouseDownPassword = (event) => {
@@ -37,7 +39,17 @@ const Login = () => {
                 const response = await login(values)
                 
                 if (response.status === 200) {
-                    navigate('/perfil/mis-viajes')
+                    createUser({rol: response.data.rol})
+                    
+                    switch (response.data.rol) {
+                        case 'ADMINISTRADOR':
+                            navigate('/admin/transportistas')
+                            break
+                        case 'FLOTA':
+                        case 'UNIPERSONAL':
+                            navigate('/perfil/mis-viajes')
+                            break
+                    }
                 } else {
                     setStatus('Usuario o contraseña incorrecta')
                 }

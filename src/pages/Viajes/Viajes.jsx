@@ -6,6 +6,7 @@ import ViajeCard from '../../components/common/ViajeCard/ViajeCard'
 import { useEffect, useState } from 'react'
 import { getViajes } from '../../api/services/viajesService'
 import { Pagination } from '@mui/material'
+import { useSideBar } from '../../context/SideBarContext'
 
 const LIMIT = 8
 
@@ -14,6 +15,7 @@ const Viajes = () => {
     const [viajes, setViajes] = useState([])
     const [page, setPage] = useState(1)
     const [totalViajes, setTotalViajes] = useState(0)
+    const {toggleSideBar} = useSideBar()
 
     const fetchViajes = async (pagina) => {
         if (viajesPorPagina[pagina]) {
@@ -45,6 +47,7 @@ const Viajes = () => {
     return (
         <main id='viajes' className="container">
             <h2>Viajes disponibles</h2>
+            <button onClick={toggleSideBar} style={{marginLeft: '90%'}}>Open</button>
             <div className="filterSortControls">
                 <IconButton Icon={FilterListIcon}>Ordenar por</IconButton>
                 <IconButton Icon={FilterAltIcon}>Filtrar</IconButton>

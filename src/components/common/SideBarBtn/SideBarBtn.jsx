@@ -2,18 +2,16 @@ import './SideBarBtn.scss'
 import { useSideBar } from '../../../context/SideBarContext'
 import { NavLink } from "react-router-dom"
 
-const SideBarBtn = ({ to, icon, label, onClick }) => {
-    const { isOpen } = useSideBar()
+const SideBarBtn = ({ to, label, onClick }) => {
     return (
         <NavLink 
             to={to}
             onClick={onClick}
             className={({ isActive }) => 
-                `sb-nav-link ${isActive ? "active" : ""} ${!isOpen ? "sb-nav-link-open" : ""}`
+                `sb-nav-link ${isActive ? "active" : ""}`
             }
         >
-            {icon}
-            {isOpen && label}
+            {label}
         </NavLink>
     )
 }

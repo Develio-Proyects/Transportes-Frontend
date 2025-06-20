@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { Navigate, Outlet } from "react-router-dom"
-import { validateToken } from "../api/services/authService"
+import { logout, validateToken } from "../api/services/authService"
 import { useAuth } from "../context/AuthContext"
 
 const ProtectedRoutes = ({ allowedRoles = [] }) => {
-    const { user, setUser } = useAuth()
+    const { user, createUser } = useAuth()
     const [isTokenValid, setIsTokenValid] = useState(null)
 
     useEffect(() => {
@@ -15,49 +15,43 @@ const ProtectedRoutes = ({ allowedRoles = [] }) => {
                 setIsTokenValid(false)
                 return
             }
-
+            
             try {
                 const response = await validateToken(token)
+                
                 if (response.data.isValid) {
-                    setIsTokenValid(true)
-                    
+                    // si user todavía no existe, lo creamos
                     if (!user) {
-                        setUser({role: "flota"}) 
+                        const storedUser = localStorage.getItem("user")
+                        if (storedUser) {
+                            createUser(JSON.parse(storedUser))
+                        }
                     }
-
+                    setIsTokenValid(true)
                 } else {
+                    logout()
                     setIsTokenValid(false)
-                    setUser(null) 
-                    localStorage.removeItem("token")
                 }
             } catch (error) {
+                logout()
                 setIsTokenValid(false)
-                setUser(null)
-                localStorage.removeItem("token")
             }
         }
-        
+
         checkToken()
-    }, [])
+    }, []) // solo al montar
 
-    // Mientras se valida el token, podrías mostrar un loader o nada
-    if (isTokenValid === null) return null
+    if (isTokenValid === null) return null // o loader
 
-    // Si el token es válido, verifica el rol
     if (isTokenValid) {
-        if (allowedRoles.length === 0) {
-            // Si no hay roles especificados, permite acceso
+        console.log(user, allowedRoles);
+        if (!user) return <Navigate to="/login" />
+        if (allowedRoles.length === 0 || allowedRoles.includes(user.rol)) {
             return <Outlet />
         }
-        
-        if (user && allowedRoles.includes(user.role)) {
-            return <Outlet />
-        }
-        // Usuario logueado pero rol no permitido, redirige o muestra "no autorizado"
         return <Navigate to="/unauthorized" />
     }
-    
-    // Token inválido: redirige a login
+
     return <Navigate to="/login" />
 }
 
