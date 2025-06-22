@@ -1,7 +1,7 @@
 import './sideBar.scss'
 import SideBarBtn from '../SideBarBtn/SideBarBtn'
 import { useSideBar } from '../../../context/SideBarContext'
-import { useIsMobile } from '../../../hooks/useIsMobile'
+import { useWindowResolution } from '../../../hooks/useWindowResolution'
 import { useEffect, useRef, useState } from 'react'
 import { logout } from '../../../api/services/authService'
 import { useAuth } from '../../../context/AuthContext'
@@ -12,9 +12,11 @@ const SideBar = () => {
     const { user } = useAuth()
     const userRoutes = user?.getRoutes() || [];
     const {isOpen, closeSidebar} = useSideBar()
-    const isMobile = useIsMobile()
+    const isMobile = useWindowResolution() < 768
     const [userOptions, setUserOptions] = useState(false)
     const sidebarRef = useRef();
+    const token = localStorage.getItem("token")
+    const isAuthenticated = !!user && !!token
 
     const handleNavClick = () => {
         if (isMobile) closeSidebar()
@@ -35,15 +37,12 @@ const SideBar = () => {
         return () => document.removeEventListener('mousedown', handleClickOutside)
     }, [isMobile, isOpen, closeSidebar])
     
-    console.log(user);
-    
-
     return (
         <aside ref={sidebarRef} className={"sideBar" + (isOpen ? " sb-open" : "")}>
-            <div className="sb-head" style={!isOpen ? { justifyContent: 'center' } : {}}>
+            <div className="sb-head">
                 <div className="sb-logo-container">
                     {/* <img src="/logo.png" alt="Logo" /> */}
-                    TT
+                    TRANSPORTA
                 </div>
                 {isMobile && 
                     <button style={{fontSize: '1.2rem',color: '#fff', backgroundColor: 'transparent', border: 'none'}} 
@@ -60,16 +59,18 @@ const SideBar = () => {
                 <span className='lineSpace'></span>
 
                 <ul className="sb-nav-list">
-                {
-                    userRoutes.map( ({path, label}, id) => {
-                        return <SideBarBtn key={id} to={path} label={label} onClick={handleNavClick}/>
-                    })
-                }
+               {isAuthenticated && (
+                <>
+                    <ul className="sb-nav-list">
+                    {userRoutes.map(({ path, label }, id) => (
+                        <SideBarBtn key={id} to={path} label={label} onClick={handleNavClick} />
+                    ))}
+                    </ul>
+                </>
+                )}
                 </ul>
 
-                {
-                    user && <span className='lineSpace'></span>
-                }
+                { isAuthenticated && <span className='lineSpace'></span> }
 
                 <SideBarBtn to={"/ayuda"} label="Ayuda" onClick={handleNavClick}/>
                 
@@ -88,7 +89,7 @@ const SideBar = () => {
                     </div>
                     <div className="user-info" >
                         {
-                            user ? (
+                            isAuthenticated ? (
                                 <>
                                 <span className='user-name'>{user.nombre}Herrera e hijos</span>
                                 <span className='user-rol'>{user.rol}</span>

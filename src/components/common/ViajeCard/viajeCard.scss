@@ -1,80 +1,137 @@
 .viaje-card{
     display: grid;
     width: 100%;
-    max-width: 285px;
-    background-color: #fff;
+    max-width: 350px;
+    max-height: 324px;
     padding: 1rem;
-    border: 1px solid var(--color-light-gray);
+    box-shadow: 0 5px 10px #00000034;
     border-radius: 5px;
+    background-color: #fff;
 
-    .published{
-        width: 100%;
-        font-size: 14px;
-        color: var(--color-gray);
-        padding-bottom: 4px;
-        border-bottom: 1px solid var(--color-light-gray);
-        margin-bottom: 1rem;
-    }
-
-    .from-to{
-        .viaje-card-item:first-child{
-            margin-bottom: 0;
-        }
-        .dashed-line{
-            display: block;
-            width: 0;
-            height: 1rem;
-            margin-left: 12px;
-            border: 1px dashed var(--color-gray);
-        }
-    }
-
-    .viaje-card-item{
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-bottom: 1rem;
-
-        .item-icon{
-            font-size: 1.7rem;
-        }
-
-        .item-text{
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        &:nth-child(4){
-            .item-text{
-                font-size: 22px;
-                font-weight: 500;
-            }
-        }
-    }
-
-    .viaje-bottom{
+    .viaje-card-header{
         display: flex;
         justify-content: space-between;
-        gap: .5rem;
+        gap: 1rem;
+        margin-bottom: 5px;
+        .viaje-published{
+            font-size: clamp(12px, 3vw, 14px);
+            color: var(--color-gray);
+        }
 
-        .applicants{
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
+        .mine{
+            font-size: clamp(10px, 3vw, 12px);
+            color: var(--color-primary);
+        }
+    }
 
-            .item-icon{
-                font-size: 1.2rem;
-                color: var(--color-gray);
+    .viaje-divider{
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: var(--color-light-gray);
+    }
+
+    .viaje-info{
+        margin: 1rem 0;
+        .viaje-locations{
+            position: relative;
+            .viaje-location{
+                display: flex;
+                align-items: center;
+                gap: .2rem;
+                margin-bottom: .5rem;
+
+                &:last-child{
+                    margin-bottom: 0;
+                }
+
+                .viaje-location-text{
+                    font-size: clamp(18px, 5vw, 22px);
+                    color: var(--color-secondary);
+                }
+
+                .viaje-icon{
+                    font-size: 1.2rem;
+                    color: var(--color-secondary);
+                }
+                .circle{
+                    font-size: .8rem;
+                    margin: 0 3px;
+                }
+
             }
-
-            .item-text{
-                color: var(--color-gray);
+            .viaje-dashed-line{
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: .55rem;
+                height: clamp(1rem, 4vw, 1.5rem);
+                transform: translate(0, -50%);
+                border-left: 1px dashed var(--color-secondary);
             }
         }
 
-        .viaje-card-btn{
-            font-size: 14px;
+        .viaje-details{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            background-color: #F0F0F0;
+
+            .viaje-datetime{
+                display: flex;
+                align-items: center;
+                gap: .2rem;
+
+                .viaje-icon{
+                    font-size: 1.2rem;
+                    color: var(--color-secondary);
+                }
+                .datetime{
+                    font-size: clamp(14px, 4vw, 16px);
+                    color: var(--color-secondary);
+                }
+            }
+
+            .viaje-price{
+                font-size: clamp(16px, 4vw, 18px);
+            }
+        }
+
+        .viaje-states{
+            display: flex;
+            gap: .5rem;
+            .state{
+                font-size: 10px;
+                padding: 5px 10px;
+                border-radius: 20px;
+                background-color: var(--color-terciary);
+            }
+        }
+    }
+
+    .viaje-footer{
+        display: flex;
+        justify-content: space-between;
+        gap: .2rem;
+
+        .viaje-postulantes{
+            display: flex;
+            align-items: center;
+            gap: .2rem;
+            font-size: clamp(14px, 4vw, 16px);
+            color: var(--color-gray);
+
+            .viaje-icon{
+                font-size: clamp(1rem, 4vw, 1.2rem);
+            }
+        }
+
+        .viaje-btn{
+            font-size: clamp(16px, 4vw, 18px);
             font-weight: 500;
             padding: 8px 10px;
             border-radius: 5px;
@@ -85,8 +142,8 @@
 }
 
 
-@media (min-width: 323px) {
+@media (min-width: 400px) {
     .viaje-card{
-        min-width: 285px;
+        min-width: 350px;
     }
 }

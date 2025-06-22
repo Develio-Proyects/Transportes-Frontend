@@ -1,0 +1,40 @@
+.menu-icon{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    width: 2.5rem;
+    height: 100%;
+    cursor: pointer;
+    z-index: 1000;
+    .line{
+        display: block;
+        width: 100%;
+        height: 4px;
+        border-radius: 10px;
+        transition-property: width opacity transform;
+        transition-duration: .1s;
+        transition-timing-function: ease-in-out;
+    }
+    .line2{
+        margin-top: 6px;
+        width: 40%;
+    }
+    .activeLine1{
+        transform-origin: right top;
+        transform: rotate(-45deg);
+    }
+    .activeLine2{
+        width: 100%;
+        transform-origin: right bottom;
+        transform: rotate(45deg);
+        margin-top: 23px;
+    }
+}
+
+.menu-icon[data-theme="dark"] .line {
+    background-color: var(--color-secondary);
+}
+.menu-icon[data-theme="light"] .line {
+    background-color: var(--color-light);
+}

@@ -1,11 +1,12 @@
+import './header.scss'
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import './header.scss'
-import { useIsMobile } from "../../../hooks/useIsMobile";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useWindowResolution } from '../../../hooks/useWindowResolution';
+import MenuButton from '../../common/SideBarButton/MenuButton';
 
 const Header = () => {
-    const isMobile = useIsMobile();
+    const isMobile = useWindowResolution() < 768
     const [menuWidgetOpen, setMenuWidgetOpen] = useState(false) 
 
     const handleWidget = () => { 
@@ -22,7 +23,7 @@ const Header = () => {
                 <div className="logo-container">
                     <Link to={'/'} onClick={closeMenu}>
                         {/* <img src={} alt="logo" className='logo-img'/> */}
-                        Tu Transporte
+                        TRANSPORTA
                     </Link>
                 </div>
                 <div className={menuWidgetOpen ? "nav-open nav-container": "nav-container"}>
@@ -51,12 +52,9 @@ const Header = () => {
                         </ul>
                     </nav>
                 </div>
-                {isMobile && 
-                    <div className="menu-icon" onClick={handleWidget}>
-                        <span className={menuWidgetOpen ? "line line1 activeLine1" : "line line1"}></span>
-                        <span className={menuWidgetOpen ? "line line2 activeLine2" : "line line2"}></span>
-                    </div>
-                }
+                
+                {isMobile && <MenuButton onMouseDown={handleWidget} isOpen={menuWidgetOpen} theme={"light"}/>}
+
                 {!isMobile && 
                     <Link to={'/login'} onClick={closeMenu} className="perfil-link">
                         <button className="perfil-btn">Ingresar</button>

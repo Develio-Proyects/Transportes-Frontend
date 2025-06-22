@@ -11,6 +11,7 @@
     background-color: var(--color-dark);
     transition: transform .1s ease-in;
     transform: translate(-100%);
+    z-index: 10;
     
     .sb-head{
         display: flex;
@@ -125,7 +126,7 @@
     transform: translateX(0%);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .sideBar{
         position: unset;
         transform: translate(0);
