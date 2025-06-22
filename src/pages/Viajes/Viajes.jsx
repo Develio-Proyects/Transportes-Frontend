@@ -3,65 +3,76 @@ import FilterListIcon from '@mui/icons-material/FilterList'
 import FilterAltIcon from '@mui/icons-material/FilterAlt'
 import IconButton from "../../components/common/IconButton/IconButton"
 import ViajeCard from '../../components/common/ViajeCard/ViajeCard'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getViajes } from '../../api/services/viajesService'
 import { Pagination } from '@mui/material'
 import { useSideBar } from '../../context/SideBarContext'
+import { useWindowResolution } from '../../hooks/useWindowResolution'
+import MenuButton from '../../components/common/SideBarButton/MenuButton'
 
-const LIMIT = 8
+const LIMIT = 9
 
 const Viajes = () => {
     const [viajesPorPagina, setViajesPorPagina] = useState({})
     const [viajes, setViajes] = useState([])
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(0)
     const [totalViajes, setTotalViajes] = useState(0)
-    const {toggleSideBar} = useSideBar()
+    const {toggleSideBar, isOpen} = useSideBar()
+    const containerRef = useRef()
+    const isDesktop = useWindowResolution() <= 1024
 
     const fetchViajes = async (pagina) => {
         if (viajesPorPagina[pagina]) {
             setViajes(viajesPorPagina[pagina])
             return
         }
-
-        const offset = (pagina - 1) * LIMIT
-        const response = await getViajes(LIMIT, offset)
+        const response = await getViajes(pagina, LIMIT)
 
         setViajesPorPagina(prev => ({
             ...prev,
-            [pagina]: response.data
+            [pagina]: response.data.content
         }))
 
-        setViajes(response.data)
-        setTotalViajes(response.total)
+        setViajes(response.data.content)
+        setTotalViajes(response.data.totalElements)
+    }
+
+    const handleChange = (_, value) => {
+        setPage(value - 1)
+        containerRef.current?.scrollTo({ top: 0 })
+    }
+
+    const handleToggle = (e) => {
+        e.stopPropagation()     
+        toggleSideBar()
     }
 
     useEffect(() => {
         fetchViajes(page)
     }, [page])
-
-    const handleChange = (_, value) => {
-        setPage(value)
-        window.scrollTo({ top: 0 })
-    }
-
+    
     return (
         <main id='viajes' className="container">
-            <h2>Viajes disponibles</h2>
-            <button onClick={toggleSideBar} style={{marginLeft: '90%'}}>Open</button>
+            <header className="page-header">
+                <h2>Viajes disponibles</h2>
+                { isDesktop && <MenuButton onMouseDown={handleToggle} isOpen={isOpen} theme="dark"/> }
+            </header>
+
             <div className="filterSortControls">
                 <IconButton Icon={FilterListIcon}>Ordenar por</IconButton>
                 <IconButton Icon={FilterAltIcon}>Filtrar</IconButton>
             </div>
-            <div className="viajes-container">
+            <div ref={containerRef} className="viajes-container">
                 {Array.isArray(viajes) &&
                     viajes.map(viaje => <ViajeCard key={viaje.id} viaje={viaje} />)}
             </div>
             <div className="pagination-container">
                 <Pagination
                     count={Math.ceil(totalViajes / LIMIT)}
-                    page={page}
+                    page={page + 1}
                     onChange={handleChange}
-                    size="large"
+                    sx={{margin: '1rem auto'}}
+                    size="medium"
                 />
             </div>
         </main>

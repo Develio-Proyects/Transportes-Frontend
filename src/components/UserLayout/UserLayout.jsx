@@ -3,9 +3,9 @@ import SideBar from "../common/SideBar/SideBar"
 
 const UserLayout = () => {
     return (
-        <div style={{ display: "flex", flexDirection: "row" }}>
+        <div style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
             <SideBar />
-            <div style={{ flexGrow: 1, padding: "1rem" }}>
+            <div style={{ flexGrow: 1 }}>
                 <Outlet />
             </div>
         </div>
