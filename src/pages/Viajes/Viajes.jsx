@@ -9,8 +9,10 @@ import { Pagination } from '@mui/material'
 import { useSideBar } from '../../context/SideBarContext'
 import { useWindowResolution } from '../../hooks/useWindowResolution'
 import MenuButton from '../../components/common/SideBarButton/MenuButton'
+import { useModalStore } from '../../store/modalStore'
 
 const LIMIT = 9
+const SCOPE = "viajes"
 
 const Viajes = () => {
     const [viajesPorPagina, setViajesPorPagina] = useState({})
@@ -20,6 +22,7 @@ const Viajes = () => {
     const {toggleSideBar, isOpen} = useSideBar()
     const containerRef = useRef()
     const isDesktop = useWindowResolution() <= 1024
+    const { openModal } = useModalStore()
 
     const fetchViajes = async (pagina) => {
         if (viajesPorPagina[pagina]) {
@@ -59,9 +62,14 @@ const Viajes = () => {
             </header>
 
             <div className="filterSortControls">
-                <IconButton Icon={FilterListIcon}>Ordenar por</IconButton>
-                <IconButton Icon={FilterAltIcon}>Filtrar</IconButton>
+                <IconButton Icon={FilterListIcon} onClick={() => openModal("sort", { scope: SCOPE })}>
+                    Ordenar por
+                </IconButton>
+                <IconButton Icon={FilterAltIcon} onClick={() => openModal("filter", { scope: SCOPE })}>
+                    Filtrar
+                </IconButton>
             </div>
+            
             <div ref={containerRef} className="viajes-container">
                 {Array.isArray(viajes) &&
                     viajes.map(viaje => <ViajeCard key={viaje.id} viaje={viaje} />)}

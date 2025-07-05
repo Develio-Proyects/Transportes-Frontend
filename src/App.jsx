@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom"
 import AppRouter from "./routes/AppRouter"
 import { SideBarProvider } from "./context/SideBarContext"
 import { AuthProvider } from "./context/AuthContext"
+import GenericModal from './components/common/Modals/GenericModal/GenericModal'
 
 function App() {
     return (
@@ -10,6 +11,7 @@ function App() {
             <SideBarProvider>
                 <BrowserRouter>
                     <AppRouter/>
+                    <GenericModal />
                 </BrowserRouter>
             </SideBarProvider>
         </AuthProvider>
