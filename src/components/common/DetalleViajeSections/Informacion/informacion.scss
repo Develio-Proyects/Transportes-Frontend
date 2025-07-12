@@ -1,0 +1,12 @@
+#informacion{
+    .i-type{
+        margin-bottom: 1rem;
+        .subtitle{
+            margin-bottom: 0;
+        }
+
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+}

@@ -19,8 +19,8 @@ const HowItWorksSection = () => {
                 <section className='howItWorksContainer'>
                     <div className="howItWorkIntro">
                         <span className='lineMark'></span>
-                        <h2 className='text-d'>Como funciona TuTransporte?</h2>
-                        <p className='text-d'>Facilitamos la logística al vincular empresas que necesitan enviar productos con conductores listos para transportarlos. Todo en una experiencia eficiente y segura.</p>
+                        <h2>Como funciona TuTransporte?</h2>
+                        <p>Facilitamos la logística al vincular empresas que necesitan enviar productos con conductores listos para transportarlos. Todo en una experiencia eficiente y segura.</p>
                     </div>
                     <div className="howItWorksInfo">
                         <Accordion className='howItWorksAccordion' expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -31,7 +31,7 @@ const HowItWorksSection = () => {
                             >
                                 <Typography component="span" className='text-d'><ApartmentIcon className='accordion-icon'/> Para empresas</Typography>
                             </AccordionSummary>
-                            <AccordionDetails className='text-d accordion-text'>
+                            <AccordionDetails className='accordion-text'>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                                 malesuada lacus ex, sit amet blandit leo lobortis eget.
                             </AccordionDetails>
@@ -42,9 +42,9 @@ const HowItWorksSection = () => {
                                 aria-controls="panel2-content"
                                 id="panel2-header"
                             >
-                                <Typography component="span" className='text-d'><LocalShippingIcon className='accordion-icon'/> Para conductores</Typography>
+                                <Typography component="span" className='text-d'><LocalShippingIcon className='accordion-icon'/>Para conductores</Typography>
                             </AccordionSummary>
-                            <AccordionDetails className='text-d accordion-text'>
+                            <AccordionDetails className='accordion-text'>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                                 malesuada lacus ex, sit amet blandit leo lobortis eget.
                             </AccordionDetails>
@@ -57,7 +57,7 @@ const HowItWorksSection = () => {
                             >
                                 <Typography component="span" className='text-d'><HttpsIcon className='accordion-icon'/> Pago seguro</Typography>
                             </AccordionSummary>
-                            <AccordionDetails className='text-d accordion-text'>
+                            <AccordionDetails className='accordion-text'>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                                 malesuada lacus ex, sit amet blandit leo lobortis eget.
                             </AccordionDetails>

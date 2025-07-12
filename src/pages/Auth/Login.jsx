@@ -65,7 +65,7 @@ const Login = () => {
     return (
         <div className="auth-wrapper">
             <div className="auth-container">
-                <h2 className="auth-form-title text-d">Iniciar sesión</h2>
+                <h2 className="auth-form-title">Iniciar sesión</h2>
                 <form className="auth-form" onSubmit={handleSubmit}>
                     <FormControl variant="filled" error={!!errors.email && touched.email}>
                         <InputLabel htmlFor="filled-adornment-email">Email</InputLabel>

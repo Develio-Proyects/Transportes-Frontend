@@ -1,0 +1,67 @@
+#ofertas{
+    max-height: fit-content;
+    overflow: hidden;
+
+    .oa-container{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0 1rem 0 0;
+        max-height: 244px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        .oferta{
+            display: grid;
+            grid-template-columns: 28px auto 100px;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--color-light-gray);
+
+            .number{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                font-weight: 600;
+                background-color: var(--color-light-gray);
+            }
+
+            &:first-child .number{
+                background-color: var(--color-primary);
+            }
+
+            &:last-child{
+                border-bottom: none;
+            }
+
+            .user{
+                font-size: 16px;
+                color: var(--color-secondary);
+            }
+
+            .oferta-btn{
+                justify-self: end;
+                width: 100px;
+                border: 1px solid var(--color-light-gray);
+                border-radius: 5px;
+                background-color: #fff;
+                transition: background .2s ease-in-out;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: var(--color-primary);
+                }
+            }
+        }
+
+        .no-offers{
+            font-size: 14px;
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--color-gray);
+        }
+    }
+}

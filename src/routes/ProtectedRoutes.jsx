@@ -44,7 +44,6 @@ const ProtectedRoutes = ({ allowedRoles = [] }) => {
     if (isTokenValid === null) return null // o loader
 
     if (isTokenValid) {
-        console.log(user, allowedRoles);
         if (!user) return <Navigate to="/login" />
         if (allowedRoles.length === 0 || allowedRoles.includes(user.rol)) {
             return <Outlet />
