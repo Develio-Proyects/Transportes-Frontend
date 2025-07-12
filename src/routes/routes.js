@@ -8,7 +8,6 @@ import Ayuda from "../pages/Ayuda/Ayuda"
 import MisViajes from "../pages/MisViajes/MisViajes"
 import MisDatos from "../pages/MisDatos/MisDatos"
 import Postulaciones from "../pages/Postulaciones/Postulaciones"
-import MiFlota from "../pages/MiFlota/MiFlota"
 import Transportistas from "../pages/Admin/Transportistas/Transportistas"
 import Pagos from "../pages/Admin/Pagos/Pagos"
 import Configuracion from "../pages/Admin/Configuracion/Configuracion"
@@ -81,12 +80,7 @@ export const privateRoutes = [
                 path: "/perfil/postulaciones", 
                 Element: Postulaciones,
                 label: "Postulaciones" 
-            },
-            { 
-                path: "/perfil/flota", 
-                Element: MiFlota,
-                label: "Mi flota" 
-            },
+            }
         ]
     },
     {

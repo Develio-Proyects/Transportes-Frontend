@@ -1,0 +1,67 @@
+#detalle{
+    .dv-header-time{
+        display: flex;
+        align-items: center;
+        gap: clamp(5px, 2vw, .5rem);
+        padding: 5px 8px;
+        border-radius: 15px;
+        border: 1px solid var(--color-light-gray);
+
+        & > *:first-child{
+            font-size: clamp(12px, 4vw, 20px);
+            color: var(--color-gray);
+        }
+        & > *:last-child{
+            font-size: clamp(8px, 3vw, 14px);
+            font-weight: 400;
+        }
+    }
+
+    .dv-date{
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        margin-bottom: 1rem;
+        
+        & > *:first-child{
+            font-size: 16px;
+            color: var(--color-gray);
+        }
+        & > *:last-child{
+            font-size: clamp(12px, 4vw, 16px);
+            font-weight: 600;
+            color: var(--color-gray);
+        }
+    }
+
+    .dv-route-container{
+        margin-bottom: 1rem;
+        .dv-route{
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            border-radius: 5px;
+            background-color: #F0F0F0;
+        }
+    }
+
+    .dv-rates{
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        .rate{
+            display: flex;
+            gap: .5rem;
+            font-size: clamp(16px, 5vw, 18px);
+            font-weight: 800;
+        }
+        .actual-rate{
+            .subtitle{
+                margin-bottom: 0;
+            }
+            span{
+                color: var(--color-primary);
+            }
+        }
+    }
+}

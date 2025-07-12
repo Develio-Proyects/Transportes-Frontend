@@ -1,0 +1,38 @@
+#oferta-viaje{
+    height: fit-content;
+    .oferta{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1rem;
+        width: 100%;
+
+        button{
+            width: 120px;
+            height: 40px;
+            color: black;
+            font-weight: 600;
+            background-color: var(--color-primary);
+        }
+
+        .input-price{
+            flex: 1;
+        }
+
+        .css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+            border-color: var(--color-primary);
+        }
+
+        .css-hvjq6j-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+            color: black;
+        }
+    }
+}
+
+@media (min-width: 1440px){
+    #oferta-viaje{
+        .oferta{
+            flex-direction: row;
+        }
+    }
+}

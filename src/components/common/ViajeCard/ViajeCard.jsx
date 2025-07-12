@@ -6,10 +6,6 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt'
 import { Link } from 'react-router-dom'
 
 const ViajeCard = ({ viaje }) => {
-    
-    const getTime = () =>{
-        return viaje.published < 24 ? `${viaje.published}hs` : `${Math.floor(viaje.published / 24)}d`;
-    }
 
     const formatedDate = (fechaStr) => {
         const fecha = new Date(fechaStr.replace('hs', '').trim().replace(' ', 'T'));
@@ -25,12 +21,12 @@ const ViajeCard = ({ viaje }) => {
     const fontSize = (title) => {
         return title.length  > 29 ? "clamp(14px, 4vw, 16px)" : "clamp(18px, 5vw, 22px)"
     }
-
+    
     return (
         <article className="viaje-card">
             <header className="viaje-card-header">
-                <span className="viaje-published">Publicado hace {getTime()}</span>
-                <span className="mine">Mi publicación</span>
+                <span className="viaje-published">{viaje.publicadoHace}</span>
+                {viaje.miPublicacion && <span className="mine">Mi publicación</span>}
             </header>
 
             <span className="viaje-divider"></span>
@@ -70,7 +66,7 @@ const ViajeCard = ({ viaje }) => {
                     <PeopleAltIcon className="viaje-icon" />
                     <span>{viaje.cantidadPostulaciones} {viaje.cantidadPostulaciones > 1 ? "postulantes" : "postulante"}</span>
                 </div>
-                <Link to={`/viaje/${viaje.id}`} className="viaje-btn">Ver detalle</Link>
+                <Link to={`/viajes/${viaje.id}`} state={{ esPropio: viaje.miPublicacion }} className="viaje-btn">Ver detalle</Link>
             </footer>
         </article>
     )

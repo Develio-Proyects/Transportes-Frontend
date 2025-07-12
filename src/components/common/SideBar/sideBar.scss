@@ -7,11 +7,11 @@
     left: 0;
     width: 100%;
     max-width: 280px;
-    height: 100vh;
+    height: 100dvh;
     background-color: var(--color-dark);
     transition: transform .1s ease-in;
     transform: translate(-100%);
-    z-index: 10;
+    z-index: 100;
     
     .sb-head{
         display: flex;

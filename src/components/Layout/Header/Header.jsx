@@ -53,7 +53,7 @@ const Header = () => {
                     </nav>
                 </div>
                 
-                {isMobile && <MenuButton onMouseDown={handleWidget} isOpen={menuWidgetOpen} theme={"light"}/>}
+                {isMobile && <MenuButton onMouseDownProp={handleWidget} isOpenProp={menuWidgetOpen} theme={"light"}/>}
 
                 {!isMobile && 
                     <Link to={'/login'} onClick={closeMenu} className="perfil-link">

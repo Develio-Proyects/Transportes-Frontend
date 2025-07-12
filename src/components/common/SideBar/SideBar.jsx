@@ -12,12 +12,12 @@ const SideBar = () => {
     const { user } = useAuth()
     const userRoutes = user?.getRoutes() || [];
     const {isOpen, closeSidebar} = useSideBar()
-    const isMobile = useWindowResolution() < 768
+    const isMobile = useWindowResolution() < 1024
     const [userOptions, setUserOptions] = useState(false)
     const sidebarRef = useRef();
     const token = localStorage.getItem("token")
     const isAuthenticated = !!user && !!token
-
+    
     const handleNavClick = () => {
         if (isMobile) closeSidebar()
     }

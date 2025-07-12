@@ -1,0 +1,62 @@
+#detalle-viaje{
+    padding-bottom: 2rem;
+    .sections-container{
+        display: grid;
+        grid-template-columns: 100%;
+        gap: 1rem;
+        #detalle{
+            order: 1;
+        }
+        #oferta-viaje{
+            order: 2;
+        }
+        #ofertas{
+            order: 3;
+        }
+        #informacion{
+            order: 10;
+        }
+    }
+
+}
+
+@media (min-width: 768px){
+    #detalle-viaje{
+        .sections-container{
+            grid-template-columns: 5fr 4fr;
+            grid-template-rows: repeat(3, auto);
+            section{
+                padding: 1.5rem;
+            }
+            #oferta-viaje{
+                order: 10;
+            }
+            #ofertas{
+                order: 2;
+            }
+            #informacion{
+                order: 3;
+            }
+        }
+    }
+
+    // #detalle-viaje{
+    //     .sections-container.esPropio{
+    //         grid-template-columns: 5fr 3fr;
+    //     }
+    // }
+}
+
+@media (min-width: 1200px){
+    #detalle-viaje{
+        .sections-container{
+            grid-template-columns: 5fr 2fr;
+        }
+    }
+    
+    #detalle-viaje{
+        .sections-container.propio{
+            grid-template-columns: 5fr 3fr;
+        }
+    }
+}
