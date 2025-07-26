@@ -7,11 +7,11 @@ import DetalleViaje from "../pages/DetalleViaje/DetalleViaje"
 import Ayuda from "../pages/Ayuda/Ayuda"
 import MisViajes from "../pages/MisViajes/MisViajes"
 import MisDatos from "../pages/MisDatos/MisDatos"
-import Postulaciones from "../pages/Postulaciones/Postulaciones"
 import Transportistas from "../pages/Admin/Transportistas/Transportistas"
 import Pagos from "../pages/Admin/Pagos/Pagos"
 import Configuracion from "../pages/Admin/Configuracion/Configuracion"
 import { ROLES } from "../api/models/roles"
+import MisPublicaicones from "../pages/MisPublicaciones/MisPublicaicones"
 
 // públicas sin layout
 export const authRoutes = [
@@ -77,9 +77,9 @@ export const privateRoutes = [
         roles: [ROLES.FLOTA],
         routes: [
             { 
-                path: "/perfil/postulaciones", 
-                Element: Postulaciones,
-                label: "Postulaciones" 
+                path: "/perfil/publicaiones", 
+                Element: MisPublicaicones,
+                label: "Publicaciones" 
             }
         ]
     },

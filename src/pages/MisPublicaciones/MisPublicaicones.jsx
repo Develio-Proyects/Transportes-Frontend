@@ -10,8 +10,8 @@ import MenuButton from '../../components/common/SideBarButton/MenuButton'
 
 const LIMIT = 9
 
-const MisViajes = () => {
-    const [viajesPorPagina, setViajesPorPagina] = useState({})
+const MisPublicaicones = () => {
+const [viajesPorPagina, setViajesPorPagina] = useState({})
     const [viajes, setViajes] = useState([])
     const [page, setPage] = useState(0)
     const [totalViajes, setTotalViajes] = useState(0)
@@ -44,11 +44,11 @@ const MisViajes = () => {
     }, [page])
     
     return (
-        <main id='mis-viajes' className="main expandedContainer">
+        <main id='mis-publicaiones' className="main expandedContainer">
             <div className="container">
                 <header className="page-header">
                     <div className="page-title">
-                        <h2>Mis viajes</h2>
+                        <h2>Mis publicaciones</h2>
                     </div>
                     { isDesktop && <MenuButton theme="dark"/> }
                 </header>
@@ -63,7 +63,7 @@ const MisViajes = () => {
                         }
                     </div>
                     ):(
-                        <p className="empty">No se encontraron viajes.</p>
+                        <p className="empty">No se encontraron publicaciones.</p>
                     )
                 }
             </div>
@@ -82,4 +82,4 @@ const MisViajes = () => {
     )
 }
 
-export default MisViajes
+export default MisPublicaicones
