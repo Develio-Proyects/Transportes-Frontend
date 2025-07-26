@@ -1,4 +1,3 @@
-import './viajes.scss'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import FilterAltIcon from '@mui/icons-material/FilterAlt'
 import IconButton from "../../components/common/IconButton/IconButton"
@@ -53,15 +52,20 @@ const Viajes = () => {
                     </div>
                     { isDesktop && <MenuButton theme="dark"/> }
                 </header>
-
                 <div className="filterSortControls">
                     <IconButton Icon={FilterListIcon}>Ordenar por</IconButton>
                     <IconButton Icon={FilterAltIcon}>Filtrar</IconButton>
                 </div>
-                <div ref={containerRef} className="cards-container">
-                    {Array.isArray(viajes) &&
-                        viajes.map(viaje => <ViajeCard key={viaje.id} viaje={viaje} />)}
-                </div>
+                {viajes.length > 0 ? (
+                    <div ref={containerRef} className="cards-container">
+                        {Array.isArray(viajes) && 
+                            viajes.map(viaje => <ViajeCard key={viaje.id} viaje={viaje} />)
+                        }
+                    </div>
+                    ):(
+                        <p className="empty">No se encontraron viajes.</p>
+                    )
+                }
             </div>
             {Math.ceil(totalViajes) > LIMIT &&
                 <div className="pagination-container">

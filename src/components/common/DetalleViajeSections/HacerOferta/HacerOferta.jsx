@@ -13,7 +13,14 @@ const HacerOferta = ({viaje}) => {
             oferta: Yup.number()
             .typeError('Debe ser un número')
             .positive('El precio debe ser mayor a 0')
-            .max(viaje?.ofertaMasBaja, `El precio debe ser menor o igual a ${viaje?.ofertaMasBaja}`)
+            .when([], {
+                is: () => viaje?.ofertaMasBaja != null,
+                then: (schema) =>
+                    schema.max(
+                    viaje.ofertaMasBaja,
+                    `El precio debe ser menor o igual a ${viaje.ofertaMasBaja}`
+                    ),
+            })
             .required('El precio es obligatorio')
         })
     })

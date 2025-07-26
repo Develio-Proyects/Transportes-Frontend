@@ -11,8 +11,10 @@
     .viaje-card-header{
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 1rem;
         margin-bottom: 5px;
+        
         .viaje-published{
             font-size: clamp(10px, 3vw, 12px);
             color: var(--color-gray);
@@ -21,6 +23,13 @@
         .mine{
             font-size: clamp(10px, 3vw, 12px);
             color: var(--color-primary);
+        }
+
+        .state{
+            font-size: clamp(10px, 3vw, 12px);
+            padding: 2px 6px;
+            border-radius: 5px;
+            height: auto;
         }
     }
 

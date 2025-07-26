@@ -39,9 +39,9 @@ const Login = () => {
                 const response = await login(values)
                 
                 if (response.status === 200) {
-                    createUser({rol: response.data.rol})
+                    createUser({rol: response.data.role})
                     
-                    switch (response.data.rol) {
+                    switch (response.data.role) {
                         case 'ADMINISTRADOR':
                             navigate('/admin/transportistas')
                             break

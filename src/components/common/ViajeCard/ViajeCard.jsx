@@ -4,6 +4,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt'
 import { Link } from 'react-router-dom'
+import { ESTADOS, getStateFromText } from '../../../api/models/estado';
 
 const ViajeCard = ({ viaje }) => {
 
@@ -22,11 +23,22 @@ const ViajeCard = ({ viaje }) => {
         return title.length  > 29 ? "clamp(14px, 4vw, 16px)" : "clamp(18px, 5vw, 22px)"
     }
     
+    const estadoKey = getStateFromText(viaje.state)
+    const estadoData = estadoKey ? ESTADOS[estadoKey] : null
+
     return (
         <article className="viaje-card">
             <header className="viaje-card-header">
-                <span className="viaje-published">{viaje.publicadoHace}</span>
-                {viaje.miPublicacion && <span className="mine">Mi publicación</span>}
+                <span className="viaje-published">{viaje.postedSince}</span>
+                {viaje.myPost && <span className="mine">Mi publicación</span>}
+                {estadoData && (
+                    <span
+                        className="state"
+                        style={{ backgroundColor: estadoData.color }}
+                    >
+                        {estadoData.text}
+                    </span>
+                )}
             </header>
 
             <span className="viaje-divider"></span>
@@ -36,23 +48,22 @@ const ViajeCard = ({ viaje }) => {
                     <div className="viaje-location">
                         <CircleIcon className="viaje-icon circle" />
                         <span className="viaje-location-text" 
-                            style={{fontSize: fontSize(viaje.origen)}}>{viaje.origen}</span>
+                            style={{fontSize: fontSize(viaje.origin)}}>{viaje.origin}</span>
                     </div>
-                    {/* <span className="viaje-dashed-line" /> */}
                     <div className="viaje-location">
                         <LocationOnIcon className="viaje-icon" />
                         <span className="viaje-location-text" 
-                            style={{fontSize: fontSize(viaje.destino)}}>{viaje.destino}</span>
+                            style={{fontSize: fontSize(viaje.destination)}}>{viaje.destination}</span>
                     </div>
                 </section>
 
                 <section className="viaje-details">
                     <div className="viaje-datetime">
                         <CalendarMonthIcon className="viaje-icon" />
-                        <span className='datetime'>{formatedDate(viaje.fechaSalida)}</span>
+                        <span className='datetime'>{formatedDate(viaje.departureDate)}</span>
                     </div>
                     <div className="viaje-price">
-                        ${viaje.precioBase}
+                        ${viaje.basePrice}
                     </div>
                 </section>
 
@@ -64,9 +75,9 @@ const ViajeCard = ({ viaje }) => {
             <footer className="viaje-footer">
                 <div className="viaje-postulantes">
                     <PeopleAltIcon className="viaje-icon" />
-                    <span>{viaje.cantidadPostulaciones} {viaje.cantidadPostulaciones > 1 ? "postulantes" : "postulante"}</span>
+                    <span>{viaje.offersCount} {viaje.offersCount > 1 ? "postulantes" : "postulante"}</span>
                 </div>
-                <Link to={`/viajes/${viaje.id}`} state={{ esPropio: viaje.miPublicacion }} className="viaje-btn">Ver detalle</Link>
+                <Link to={`/viajes/${viaje.id}`} state={{ esPropio: viaje.myPost }} className="viaje-btn">Ver detalle</Link>
             </footer>
         </article>
     )

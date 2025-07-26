@@ -1,6 +1,8 @@
 #ofertas{
     max-height: fit-content;
+    min-height: 365px;
     overflow: hidden;
+    padding-right: 10px;
 
     .oa-container{
         display: flex;
@@ -13,8 +15,9 @@
 
         .oferta{
             display: grid;
-            grid-template-columns: 28px auto 100px;
-            gap: 1rem;
+            grid-template-columns: 22px auto 100px;
+            align-items: center;
+            gap: .5rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid var(--color-light-gray);
 
@@ -22,8 +25,9 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 28px;
-                height: 28px;
+                width: 22px;
+                height: 22px;
+                font-size: 12px;
                 border-radius: 50%;
                 font-weight: 600;
                 background-color: var(--color-light-gray);
@@ -38,15 +42,17 @@
             }
 
             .user{
-                font-size: 16px;
+                font-size: clamp(12px, 3vw, 16px);
                 color: var(--color-secondary);
             }
 
             .oferta-btn{
                 justify-self: end;
                 width: 100px;
+                padding: 5px 8px;
                 border: 1px solid var(--color-light-gray);
                 border-radius: 5px;
+                font-size: clamp(12px, 3vw, 14px);
                 background-color: #fff;
                 transition: background .2s ease-in-out;
                 cursor: pointer;
@@ -62,6 +68,19 @@
             text-align: center;
             margin-top: 1rem;
             color: var(--color-gray);
+        }
+    }
+}
+
+@media (min-width: 768px){
+    #ofertas{
+        .oa-container{
+            .oferta{
+                gap: 1rem;
+                .user{
+                    font-size: clamp(12px, 1vw, 16px);
+                }
+            }
         }
     }
 }

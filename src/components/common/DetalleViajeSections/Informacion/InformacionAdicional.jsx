@@ -21,9 +21,9 @@ const InformacionAdicional = ({viaje}) => {
             <div className="i-type">
                 <h3 className='subtitle'>Dimensiones:</h3>
                 <div className="dimensiones">
-                    Alto: {viaje?.dimensiones.alto}m <br/>
-                    Largo: {viaje?.dimensiones.largo}m <br/>
-                    Ancho: {viaje?.dimensiones.ancho}m
+                    Alto: {viaje?.dimensions.high}m <br/>
+                    Largo: {viaje?.dimensions.width}m <br/>
+                    Ancho: {viaje?.dimensions.long}m
                 </div>
             </div>
         </section>
