@@ -12,11 +12,11 @@ const InformacionAdicional = ({viaje}) => {
             </div>
             <div className="i-type">
                 <h3 className='subtitle'>Tipo de carga:</h3>
-                <span>{viaje?.tipoDeCarga}</span>
+                <span>{viaje?.cargoType}</span>
             </div>
             <div className="i-type">
                 <h3 className='subtitle'>Peso:</h3>
-                <span>{viaje?.peso}kg</span>
+                <span>{viaje?.weight}kg</span>
             </div>
             <div className="i-type">
                 <h3 className='subtitle'>Dimensiones:</h3>

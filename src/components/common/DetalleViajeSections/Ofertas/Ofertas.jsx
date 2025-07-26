@@ -12,11 +12,11 @@ const Ofertas = ({viaje, esPropio}) => {
                 </div>
             </div>
             <div className="oa-container">
-                {viaje && viaje.postulantes.length > 0 ? (
-                    viaje.postulantes.map((p, i) => (
+                {viaje && viaje.offers.length > 0 ? (
+                    viaje.offers.map((p, i) => (
                         <div className="oferta" key={i}>
                             <div className="number">{i + 1}</div>
-                            <span className="user">{p.nombre}</span>
+                            <span className="user">{p.name}</span>
                             {esPropio && <button className="oferta-btn">Seleccionar</button>}
                         </div>
                     ))

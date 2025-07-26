@@ -14,11 +14,11 @@ const HacerOferta = ({viaje}) => {
             .typeError('Debe ser un número')
             .positive('El precio debe ser mayor a 0')
             .when([], {
-                is: () => viaje?.ofertaMasBaja != null,
+                is: () => viaje?.lowerOffer != null,
                 then: (schema) =>
                     schema.max(
-                    viaje.ofertaMasBaja,
-                    `El precio debe ser menor o igual a ${viaje.ofertaMasBaja}`
+                    viaje.lowerOffer,
+                    `El precio debe ser menor o igual a ${viaje.lowerOffer}`
                     ),
             })
             .required('El precio es obligatorio')

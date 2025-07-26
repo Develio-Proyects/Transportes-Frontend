@@ -36,3 +36,14 @@ export const getMisViajes = async (page, size) => {
         return error
     }
 }
+
+export const getMisPublicaicones = async (page, size) => {
+    const token = localStorage.getItem("token")
+    try {
+        return await axios.get(`${API_URL}/user-posted-trips?page=${page}&size=${size}`, {
+            headers: { Authorization: `Bearer ${token}`}
+        })
+    } catch (error) {
+        return error
+    }
+}
