@@ -39,7 +39,12 @@ const Login = () => {
                 const response = await login(values)
                 
                 if (response.status === 200) {
-                    createUser({rol: response.data.role})
+                    createUser({
+                        id: response.data.userId,
+                        rol: response.data.role,
+                        name: response.data.name,
+                        email: response.data.email,
+                    })
                     
                     switch (response.data.role) {
                         case 'ADMINISTRADOR':

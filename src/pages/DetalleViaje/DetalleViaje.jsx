@@ -1,15 +1,15 @@
 import './detalleViaje.scss'
-import '../../components/common/DetalleViajeSections/detalleViajeSections.scss'
+import './DetalleViajeSections/detalleViajeSections.scss'
 import { useEffect, useState } from "react"
 import { Link, useLocation, useParams } from "react-router-dom"
 import { getDetalleViaje } from "../../api/services/viajesService"
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import MenuButton from '../../components/common/SideBarButton/MenuButton'
 import { useWindowResolution } from '../../hooks/useWindowResolution'
-import Detalle from '../../components/common/DetalleViajeSections/Detalle/Detalle'
-import Ofertas from '../../components/common/DetalleViajeSections/Ofertas/Ofertas'
-import InformacionAdicional from '../../components/common/DetalleViajeSections/Informacion/InformacionAdicional'
-import HacerOferta from '../../components/common/DetalleViajeSections/HacerOferta/HacerOferta'
+import Detalle from './DetalleViajeSections/Detalle/Detalle'
+import Ofertas from './DetalleViajeSections/Ofertas/Ofertas'
+import InformacionAdicional from './DetalleViajeSections/Informacion/InformacionAdicional'
+import HacerOferta from './DetalleViajeSections/HacerOferta/HacerOferta'
 
 const DetalleViaje = () => {
     const { id } = useParams()

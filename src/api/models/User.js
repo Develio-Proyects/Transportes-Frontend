@@ -1,8 +1,11 @@
 import { privateRoutes } from "../../routes/routes"
 
 export class User {
-    constructor({rol}){
-        this.rol = rol
+    constructor({id, rol, name, email}){
+        this.id = id,
+        this.rol = rol,
+        this.name = name,
+        this.email = email
     }
 
     getRoutes() {
