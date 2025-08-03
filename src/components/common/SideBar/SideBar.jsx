@@ -91,8 +91,8 @@ const SideBar = () => {
                         {
                             isAuthenticated ? (
                                 <>
-                                <span className='user-name'>{user.nombre}Herrera e hijos</span>
-                                <span className='user-rol'>{user.rol}</span>
+                                <span className='user-name'>{user?.name}</span>
+                                <span className='user-rol'>{user?.rol}</span>
                                 </>
                             ) : (
                                 <Link to="/login" className='user-name'>Ingresar</Link>

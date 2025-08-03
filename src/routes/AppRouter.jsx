@@ -1,4 +1,3 @@
-// src/routes/AppRouter.jsx
 import { Route, Routes } from "react-router-dom"
 import Layout from "../components/Layout/Layout"
 import UserLayout from "../components/UserLayout/UserLayout"

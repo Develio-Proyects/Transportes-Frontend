@@ -129,6 +129,7 @@
 @media (min-width: 1024px) {
     .sideBar{
         position: unset;
+        min-width: 280px;
         transform: translate(0);
         transition: width 0s ease-in;
     }
