@@ -48,7 +48,7 @@ const Login = () => {
                     
                     switch (response.data.role) {
                         case 'ADMINISTRADOR':
-                            navigate('/admin/transportistas')
+                            navigate('/admin/usuarios')
                             break
                         case 'FLOTA':
                         case 'UNIPERSONAL':
