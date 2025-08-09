@@ -29,7 +29,7 @@ const HowItWorksSection = () => {
                                 aria-controls="panel1-content"
                                 id="panel1-header"
                             >
-                                <Typography component="span" className='text-d'><ApartmentIcon className='accordion-icon'/> Para empresas</Typography>
+                                <Typography component="span" className='text-d'><ApartmentIcon className='accordion-icon'/>Para empresas</Typography>
                             </AccordionSummary>
                             <AccordionDetails className='accordion-text'>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -55,7 +55,7 @@ const HowItWorksSection = () => {
                                 aria-controls="panel3-content"
                                 id="panel3-header"
                             >
-                                <Typography component="span" className='text-d'><HttpsIcon className='accordion-icon'/> Pago seguro</Typography>
+                                <Typography component="span" className='text-d'><HttpsIcon className='accordion-icon'/>Pago seguro</Typography>
                             </AccordionSummary>
                             <AccordionDetails className='accordion-text'>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
