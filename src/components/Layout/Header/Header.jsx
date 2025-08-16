@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useWindowResolution } from '../../../hooks/useWindowResolution';
 import MenuButton from '../../common/SideBarButton/MenuButton';
+import PrimaryButton from '../../common/PrimaryButton/PrimaryButton';
 
 const Header = () => {
     const isMobile = useWindowResolution() < 768
@@ -31,7 +32,7 @@ const Header = () => {
                         <div className="perfil">
                             <Link to={'/login'} onClick={closeMenu} className="perfil-link">
                                 <AccountCircleIcon className="perfil-icon" /> 
-                                <button className="perfil-btn">Ingresar</button>
+                                <PrimaryButton>Ingresar</PrimaryButton>
                             </Link>
                         </div>
                     }
@@ -57,7 +58,7 @@ const Header = () => {
 
                 {!isMobile && 
                     <Link to={'/login'} onClick={closeMenu} className="perfil-link">
-                        <button className="perfil-btn">Ingresar</button>
+                        <PrimaryButton>Ingresar</PrimaryButton>
                     </Link>
                 }
             </header>

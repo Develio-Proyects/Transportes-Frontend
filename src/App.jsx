@@ -3,16 +3,19 @@ import { BrowserRouter } from "react-router-dom"
 import AppRouter from "./routes/AppRouter"
 import { SideBarProvider } from "./context/SideBarContext"
 import { AuthProvider } from "./context/AuthContext"
+import { ModalProvider } from './context/ModalContext'
 
 function App() {
     return (
-        <AuthProvider>
-            <SideBarProvider>
-                <BrowserRouter>
-                    <AppRouter/>
-                </BrowserRouter>
-            </SideBarProvider>
-        </AuthProvider>
+        <ModalProvider>
+            <AuthProvider>
+                <SideBarProvider>
+                    <BrowserRouter>
+                        <AppRouter/>
+                    </BrowserRouter>
+                </SideBarProvider>
+            </AuthProvider>
+        </ModalProvider>
     )
 }
 

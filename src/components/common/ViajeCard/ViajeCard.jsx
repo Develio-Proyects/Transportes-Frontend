@@ -5,6 +5,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt'
 import { Link } from 'react-router-dom'
 import { ESTADOS, getStateFromText } from '../../../api/models/estado';
+import PrimaryButton from '../PrimaryButton/PrimaryButton';
 
 const ViajeCard = ({ viaje }) => {
 
@@ -77,7 +78,11 @@ const ViajeCard = ({ viaje }) => {
                     <PeopleAltIcon className="viaje-icon" />
                     <span>{viaje.offersCount} {viaje.offersCount > 1 ? "postulantes" : "postulante"}</span>
                 </div>
-                <Link to={`/viajes/${viaje.id}`} state={{ esPropio: viaje.myPost }} className="viaje-btn">Ver detalle</Link>
+                <Link to={`/viajes/${viaje.id}`} state={{ esPropio: viaje.myPost }} >
+                    <PrimaryButton>
+                        Ver detalle
+                    </PrimaryButton>
+                </Link>
             </footer>
         </article>
     )

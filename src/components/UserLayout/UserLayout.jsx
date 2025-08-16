@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom"
 import SideBar from "../common/SideBar/SideBar"
+import { ModalContainer } from "../common/Modals/ModalContainer"
 
 const UserLayout = () => {
     return (
@@ -12,6 +13,7 @@ const UserLayout = () => {
             <div style={{ flexGrow: 1 }}>
                 <Outlet />
             </div>
+            <ModalContainer />
         </div>
     )
 }

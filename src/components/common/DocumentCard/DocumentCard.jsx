@@ -1,7 +1,10 @@
+import { useModal } from '../../../context/ModalContext'
 import './documentCard.scss'
 import { Button } from '@mui/material'
 
 const DocumentCard = ({document}) => {
+    const {openModal} = useModal()
+
     return (
         <article className='documentCard'>
             <div className="docData">
@@ -11,7 +14,7 @@ const DocumentCard = ({document}) => {
             </div>
             <div className="docActions">
                 <Button variant='contained' className='docBtn'>Editar</Button>
-                <Button variant='contained' className='docBtn'>Ver</Button>
+                <Button variant='contained' className='docBtn' onClick={()=>openModal("documentImageModal", {img: document.fileLink})}>Ver</Button>
             </div>
         </article>
     )
