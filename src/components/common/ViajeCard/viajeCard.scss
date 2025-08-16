@@ -4,7 +4,8 @@
     max-width: 350px;
     max-height: 324px;
     padding: 1rem;
-    box-shadow: 0 5px 10px #00000034;
+    border: 1px solid var(--color-light-gray);
+    // box-shadow: 0 5px 10px #00000034;
     border-radius: 5px;
     background-color: #fff;
 
@@ -137,15 +138,6 @@
             .viaje-icon{
                 font-size: clamp(1rem, 4vw, 1.2rem);
             }
-        }
-
-        .viaje-btn{
-            font-size: clamp(16px, 4vw, 18px);
-            font-weight: 500;
-            padding: 8px 10px;
-            border-radius: 5px;
-            background-color: var(--color-primary);
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
         }
     }
 }

@@ -1,0 +1,38 @@
+.modal-container{
+    width: calc(100vw - 2rem);
+    max-width: 600px;
+    max-height: 81vh;
+    padding: 3rem 1rem;
+    overflow-y: scroll;
+
+    .modal-title{
+        font-size: clamp(18px, 5vw, 22px);
+        font-weight: 600;
+        color: var(--color-secondary);
+        margin-bottom: 1rem;
+    }
+
+    .modal-form{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        //Clases de MUI
+        .css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+            border-color: var(--color-primary);
+        }
+        .css-113d811-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+            color: var(--color-secondary);
+        }
+    }
+
+    .primary-btn{
+        margin-top: 1rem;
+    }
+}
+
+@media (min-width: 425px){
+    .modal-container{
+        padding: 3rem 2rem;
+    }
+}

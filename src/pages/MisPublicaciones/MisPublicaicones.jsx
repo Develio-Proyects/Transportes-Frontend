@@ -4,9 +4,11 @@ import IconButton from "../../components/common/IconButton/IconButton"
 import ViajeCard from '../../components/common/ViajeCard/ViajeCard'
 import { useEffect, useRef, useState } from 'react'
 import { getMisViajes } from '../../api/services/viajesService'
-import { Pagination } from '@mui/material'
+import { Button, Pagination } from '@mui/material'
 import { useWindowResolution } from '../../hooks/useWindowResolution'
 import MenuButton from '../../components/common/SideBarButton/MenuButton'
+import { useModal } from '../../context/ModalContext'
+import PrimaryButton from '../../components/common/PrimaryButton/PrimaryButton'
 
 const LIMIT = 9
 
@@ -17,9 +19,11 @@ const [viajesPorPagina, setViajesPorPagina] = useState({})
     const [totalViajes, setTotalViajes] = useState(0)
     const containerRef = useRef()
     const isDesktop = useWindowResolution() < 1024
+    const {openModal} = useModal()
+    const [reloadFlag, setReloadFlag] = useState(false);
 
-    const fetchMisViaje = async (pagina) => {
-        if (viajesPorPagina[pagina]) {
+    const fetchMisPublicaciones = async (pagina, force = false) => {
+        if (viajesPorPagina[pagina] && !force) {
             setViajes(viajesPorPagina[pagina])
             return
         }
@@ -32,6 +36,8 @@ const [viajesPorPagina, setViajesPorPagina] = useState({})
 
         setViajes(response.data.content)
         setTotalViajes(response.data.totalElements)
+        
+        if (force) setReloadFlag(false)
     }
 
     const handleChange = (_, value) => {
@@ -40,8 +46,8 @@ const [viajesPorPagina, setViajesPorPagina] = useState({})
     }
 
     useEffect(() => {
-        fetchMisViaje(page)
-    }, [page])
+        fetchMisPublicaciones(page, reloadFlag)
+    }, [page, reloadFlag])
     
     return (
         <main id='mis-publicaiones' className="main expandedContainer">
@@ -52,6 +58,13 @@ const [viajesPorPagina, setViajesPorPagina] = useState({})
                     </div>
                     { isDesktop && <MenuButton theme="dark"/> }
                 </header>
+                
+                <PrimaryButton 
+                    style={{marginBottom: "1rem"}}
+                    onClick={()=>openModal("createTripModal", {onTripCreated: () => setReloadFlag(f => !f)})}>
+                    Crear publicación
+                </PrimaryButton>
+
                 <div className="filterSortControls">
                     <IconButton Icon={FilterListIcon}>Ordenar por</IconButton>
                     <IconButton Icon={FilterAltIcon}>Filtrar</IconButton>
