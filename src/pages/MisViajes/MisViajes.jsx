@@ -59,7 +59,7 @@ const MisViajes = () => {
                 {viajes.length > 0 ? (
                     <div ref={containerRef} className="cards-container">
                         {Array.isArray(viajes) && 
-                            viajes.map(viaje => <ViajeCard key={viaje.id} viaje={viaje} />)
+                            viajes.map(viaje => <ViajeCard key={viaje.id} viaje={viaje} from='/perfil/mis-viajes'/>)
                         }
                     </div>
                     ):(

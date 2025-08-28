@@ -22,7 +22,6 @@ const AddButton = ({name}) => {
                 maxWidth: '160px',
                 height: '36px',
                 textTransform: 'capitalize',
-                boxShadow: 'none',
                 borderRadius: '5px',
                 backgroundColor: 'var(--color-primary)'
             }}

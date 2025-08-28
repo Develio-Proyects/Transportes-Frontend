@@ -37,11 +37,36 @@ export const getMisViajes = async (page, size) => {
     }
 }
 
-export const getMisPublicaicones = async (page, size) => {
+export const getMisPublicaciones = async (page, size) => {
     const token = localStorage.getItem("token")
     try {
         return await axios.get(`${API_URL}/user-posted-trips?page=${page}&size=${size}`, {
             headers: { Authorization: `Bearer ${token}`}
+        })
+    } catch (error) {
+        return error
+    }
+}
+
+export const getOfferQuote = async (offerId) => {
+    const token = localStorage.getItem("token")
+    try {
+        return await axios.get(`${API_URL}/offer-quote/` + offerId, 
+            token && {
+                headers: { Authorization: `Bearer ${token}` }
+        })
+    } catch (error) {
+        return error
+    }
+}
+
+export const sendOffer = async (idTrip, mount) => {
+    const token = localStorage.getItem("token")
+    try {
+        return await axios.post(`${API_URL}/offer/` + idTrip +"?mount=" + mount, 
+            {},
+            token && {
+                headers: { Authorization: `Bearer ${token}` }
         })
     } catch (error) {
         return error

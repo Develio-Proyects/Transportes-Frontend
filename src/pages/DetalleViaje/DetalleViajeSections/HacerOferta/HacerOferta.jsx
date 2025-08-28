@@ -3,26 +3,39 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer'
 import { Button, FormControl, FormHelperText, TextField } from "@mui/material"
 import { useFormik } from "formik"
 import * as Yup from 'yup'
+import { sendOffer } from '../../../../api/services/viajesService'
 
-const HacerOferta = ({viaje}) => {
+const HacerOferta = ({viaje, id, onOfertaHecha}) => {
     const { handleSubmit, handleChange, handleBlur, touched, values, errors, setSubmitting } = useFormik({
         initialValues: {
             oferta: ""
         },
         validationSchema: Yup.object().shape({
             oferta: Yup.number()
-            .typeError('Debe ser un número')
-            .positive('El precio debe ser mayor a 0')
-            .when([], {
-                is: () => viaje?.lowerOffer != null,
-                then: (schema) =>
-                    schema.max(
-                    viaje.lowerOffer,
-                    `El precio debe ser menor o igual a ${viaje.lowerOffer}`
-                    ),
-            })
-            .required('El precio es obligatorio')
-        })
+              .typeError('Debe ser un número')
+                .positive('El precio debe ser mayor a 0')
+                .required('El precio es obligatorio')
+                .test(
+                    'menor-que-lowerOffer',
+                    'El precio debe ser menor a la oferta más baja',
+                    function (value) {
+                        if (viaje?.lowerOffer == null) return true // no valida si no existe lowerOffer
+                        if (value < viaje.lowerOffer) return true
+
+                        return this.createError({
+                        message: `El precio debe ser menor a ${viaje.lowerOffer}`
+                        })
+                    }
+                )
+        }),
+        onSubmit: async (values, actions) => {
+            const response = await sendOffer(id, values.oferta)
+            if(response.status === 200){
+                onOfertaHecha()
+            }
+            actions.resetForm
+        }
+
     })
 
     return (

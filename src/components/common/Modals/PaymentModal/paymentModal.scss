@@ -1,0 +1,55 @@
+.paymentModal{
+    width: calc(100vw - 2rem);
+    max-width: 420px;
+    max-height: 500px;
+    padding: 3rem 1rem 2rem;
+
+    .modal-header{
+        margin-bottom: 2rem;
+        .modal-title{
+            font-size: clamp(18px, 5vw, 22px);
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: .5rem;
+        }
+    }
+    .modal-text{
+        font-size: clamp(14px, 4vw, 16px);
+        color: var(--color-secondary);
+    }
+
+    .modal-content{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+        .modal-content-title{
+            font-size: clamp(14px, 6vw, 18px);
+            font-weight: 800;
+            color: var(--color-secondary);
+        }
+        .monto{
+            font-size: clamp(22px, 6vw, 24px);
+            font-weight: 800;
+            margin-bottom: .5rem;
+        }
+    }
+
+    .modal-controls{
+        display: flex;
+        justify-content: end;
+        gap: 1rem;
+
+        .cancelBtn{
+            background-color: var(--color-background);
+            border-radius: 5px;
+            border: 1px solid var(--color-light-gray);
+            box-shadow: none;
+            color: var(--color-secondary);
+            text-transform: capitalize;
+            font-weight: 600;
+              &:hover {
+                box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+            }
+        }
+    }
+}

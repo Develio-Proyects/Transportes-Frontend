@@ -3,10 +3,12 @@ import CloseIcon from "@mui/icons-material/Close"
 import { useModal } from "../../../context/ModalContext"
 import DocumentImageModal from "./DocumentImageModal/DocumentImageModal"
 import CreateTripModal from "./CreateTripModal/CreateTripModal"
+import PaymentModal from "./PaymentModal/PaymentModal"
 
 const MODAL_COMPONENTS = {
     documentImageModal: DocumentImageModal,
-    createTripModal: CreateTripModal
+    createTripModal: CreateTripModal,
+    paymentModal: PaymentModal
 }
 
 export const ModalContainer = () => {

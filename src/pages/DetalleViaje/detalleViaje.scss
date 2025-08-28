@@ -14,22 +14,22 @@
             order: 3;
         }
         #informacion{
-            order: 10;
+            order: 4;
+        }
+        #chat{
+            order: 5;
         }
     }
 
 }
 
-@media (min-width: 768px){
+@media (min-width: 1440px){
     #detalle-viaje{
         .sections-container{
-            grid-template-columns: 5fr 4fr;
-            grid-template-rows: repeat(3, auto);
-            section{
-                padding: 1.5rem;
-            }
+            grid-template-columns: 5fr 2fr;
+    
             #oferta-viaje{
-                order: 10;
+                order: 4;
             }
             #ofertas{
                 order: 2;
@@ -37,24 +37,12 @@
             #informacion{
                 order: 3;
             }
+            #chat{
+                order: 2;
+                grid-row: 1/3;
+                grid-column: 2/3;
+            }
         }
-    }
-
-    // #detalle-viaje{
-    //     .sections-container.esPropio{
-    //         grid-template-columns: 5fr 3fr;
-    //     }
-    // }
-}
-
-@media (min-width: 1200px){
-    #detalle-viaje{
-        .sections-container{
-            grid-template-columns: 5fr 2fr;
-        }
-    }
-    
-    #detalle-viaje{
         .sections-container.propio{
             grid-template-columns: 5fr 3fr;
         }
