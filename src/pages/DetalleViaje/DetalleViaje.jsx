@@ -10,18 +10,23 @@ import Detalle from './DetalleViajeSections/Detalle/Detalle'
 import Ofertas from './DetalleViajeSections/Ofertas/Ofertas'
 import InformacionAdicional from './DetalleViajeSections/Informacion/InformacionAdicional'
 import HacerOferta from './DetalleViajeSections/HacerOferta/HacerOferta'
+import Chat from './DetalleViajeSections/Chat/Chat'
 
 const DetalleViaje = () => {
     const { id } = useParams()
-    const esPropio = useLocation().state?.esPropio ?? false
+    const location = useLocation();
+    const esPropio = location.state?.esPropio === true || location.state.from === "/perfil/publicaiones"
+    const from = useLocation().state?.from ?? false
     const [viaje, setViaje] = useState(null)
+    const [asignado, setAsignado] = useState(false)
     const isDesktop = useWindowResolution() < 1024
-    
+
     const fetchDetalleViaje = async () => {
         const response = await getDetalleViaje(id)
         
-        if(response.status === 200){
+        if (response.status === 200) {
             setViaje(response.data)
+            setAsignado(response.data.state === "Asignado")
         }
     }
 
@@ -34,7 +39,7 @@ const DetalleViaje = () => {
             <div className="container">
                 <header className="page-header">
                     <div className='page-title'>
-                        <Link to="/viajes"><KeyboardBackspaceIcon /></Link>
+                        <Link to={from}><KeyboardBackspaceIcon /></Link>
                         <h2>Subasta del viaje</h2>
                     </div>
                     { isDesktop && <MenuButton theme="dark"/> }
@@ -42,9 +47,17 @@ const DetalleViaje = () => {
 
                 <div className={`sections-container ${esPropio && "propio"}`}>
                     <Detalle viaje={viaje}/>
-                    <Ofertas viaje={viaje} esPropio={esPropio}/>
+                    
+                    {asignado ? (
+                        <Chat id={id}/>
+                    ) : (
+                        <>
+                            <Ofertas viaje={viaje} esPropio={esPropio}/>
+                            {!esPropio && <HacerOferta viaje={viaje} id={id} onOfertaHecha={fetchDetalleViaje}/>}
+                        </>
+                    )}
+                    
                     <InformacionAdicional viaje={viaje} />
-                    {!esPropio && <HacerOferta viaje={viaje} />}
                 </div>
             </div>
         </main>

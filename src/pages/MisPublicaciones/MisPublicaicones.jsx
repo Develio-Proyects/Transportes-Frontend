@@ -3,7 +3,7 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt'
 import IconButton from "../../components/common/IconButton/IconButton"
 import ViajeCard from '../../components/common/ViajeCard/ViajeCard'
 import { useEffect, useRef, useState } from 'react'
-import { getMisViajes } from '../../api/services/viajesService'
+import { getMisPublicaciones } from '../../api/services/viajesService'
 import { Button, Pagination } from '@mui/material'
 import { useWindowResolution } from '../../hooks/useWindowResolution'
 import MenuButton from '../../components/common/SideBarButton/MenuButton'
@@ -27,7 +27,7 @@ const [viajesPorPagina, setViajesPorPagina] = useState({})
             setViajes(viajesPorPagina[pagina])
             return
         }
-        const response = await getMisViajes(pagina, LIMIT)
+        const response = await getMisPublicaciones(pagina, LIMIT)
         
         setViajesPorPagina(prev => ({
             ...prev,
@@ -72,7 +72,7 @@ const [viajesPorPagina, setViajesPorPagina] = useState({})
                 {viajes.length > 0 ? (
                     <div ref={containerRef} className="cards-container">
                         {Array.isArray(viajes) && 
-                            viajes.map(viaje => <ViajeCard key={viaje.id} viaje={viaje} />)
+                            viajes.map(viaje => <ViajeCard key={viaje.id} viaje={viaje} from='/perfil/publicaiones'/>)
                         }
                     </div>
                     ):(

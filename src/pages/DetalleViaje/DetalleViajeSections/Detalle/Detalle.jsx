@@ -1,7 +1,6 @@
 import './detalle.scss'
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import LocationOnIcon from '@mui/icons-material/LocationOn'
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 
 const Detalle = ({viaje}) => {
     
@@ -17,10 +16,6 @@ const Detalle = ({viaje}) => {
                 <div className="dv-s-header-title">
                     <LocationOnIcon className='icon'/>
                     <h2>Detalle viaje</h2>
-                </div>
-                <div className="dv-header-time">
-                    <AccessTimeIcon />
-                    <span>1d 12hs 44m </span>
                 </div>
             </div>
             <div className="dv-date">

@@ -46,7 +46,7 @@ const CreateTripModal = ({ onTripCreated }) => {
     })
 
     return (
-        <div className="modal-container">
+        <div className="createTripModal">
             <h2 className='modal-title'>Crear publición</h2>
             <form onSubmit={handleSubmit} className="modal-form">
                 <TextField

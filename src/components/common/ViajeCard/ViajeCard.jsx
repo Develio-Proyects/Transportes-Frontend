@@ -1,23 +1,23 @@
 import './viajeCard.scss'
-import CircleIcon from '@mui/icons-material/Circle';
+import CircleIcon from '@mui/icons-material/Circle'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt'
 import { Link } from 'react-router-dom'
-import { ESTADOS, getStateFromText } from '../../../api/models/estado';
-import PrimaryButton from '../PrimaryButton/PrimaryButton';
+import { ESTADOS, getStateFromText } from '../../../api/models/estado'
+import PrimaryButton from '../PrimaryButton/PrimaryButton'
 
-const ViajeCard = ({ viaje }) => {
+const ViajeCard = ({ viaje, from = "/viajes" }) => {
 
     const formatedDate = (fechaStr) => {
-        const fecha = new Date(fechaStr.replace('hs', '').trim().replace(' ', 'T'));
-        if (isNaN(fecha)) return 'Fecha inválida';
+        const fecha = new Date(fechaStr.replace('hs', '').trim().replace(' ', 'T'))
+        if (isNaN(fecha)) return 'Fecha inválida'
 
-        const dia = fecha.getDate().toString().padStart(2, '0');
-        const mes = fecha.toLocaleString('es-AR', { month: 'short' });
+        const dia = fecha.getDate().toString().padStart(2, '0')
+        const mes = fecha.toLocaleString('es-AR', { month: 'short' })
         const año = fecha.getFullYear();
 
-        return `${dia} ${mes.charAt(0).toUpperCase() + mes.slice(1)} ${año}`;
+        return `${dia} ${mes.charAt(0).toUpperCase() + mes.slice(1)} ${año}`
     }
 
     const fontSize = (title) => {
@@ -78,7 +78,10 @@ const ViajeCard = ({ viaje }) => {
                     <PeopleAltIcon className="viaje-icon" />
                     <span>{viaje.offersCount} {viaje.offersCount > 1 ? "postulantes" : "postulante"}</span>
                 </div>
-                <Link to={`/viajes/${viaje.id}`} state={{ esPropio: viaje.myPost }} >
+                <Link 
+                    to={`/viajes/${viaje.id}`} 
+                    state={{ esPropio: viaje.myPost, from }} 
+                >
                     <PrimaryButton>
                         Ver detalle
                     </PrimaryButton>

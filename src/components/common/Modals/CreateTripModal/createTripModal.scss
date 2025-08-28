@@ -1,4 +1,4 @@
-.modal-container{
+.createTripModal{
     width: calc(100vw - 2rem);
     max-width: 600px;
     max-height: 81vh;
@@ -32,7 +32,7 @@
 }
 
 @media (min-width: 425px){
-    .modal-container{
+    .createTripModal{
         padding: 3rem 2rem;
     }
 }
