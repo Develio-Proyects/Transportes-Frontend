@@ -4,9 +4,12 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import PrimaryButton from '../../PrimaryButton/PrimaryButton'
 import { useModal } from '../../../../context/ModalContext'
+import { createTruck, editTruck } from '../../../../api/services/truckService'
+import { useEffect } from 'react'
 
-const ModalTruck = () => {
+const ModalTruck = ({id, vehicles, refresh}) => {
     const {closeModal} = useModal()
+
     const { handleSubmit, handleBlur, touched, values, errors, setFieldValue } = useFormik({
         initialValues: {
             brand: "",
@@ -25,8 +28,13 @@ const ModalTruck = () => {
         }),
         onSubmit: async (values, actions) => {
             values.patent = values.patent.replace(/-/g, "")
-
-            
+            if(id != null){
+                await editTruck(id, values)
+            }else{
+                await createTruck(values)
+            }
+            refresh()
+            closeModal()
         }
     })
 
@@ -52,6 +60,29 @@ const ModalTruck = () => {
 
         setFieldValue("patent", value.trim());
     }
+
+    const formatPatent = (patent) => {
+        if (!patent) return ""
+        patent = patent.toUpperCase()
+        if (/^[A-Z]{3}\d{3}$/.test(patent)) {
+          return `${patent.slice(0,3)}-${patent.slice(3)}`
+        } else if (/^[A-Z]{2}\d{3}[A-Z]{2}$/.test(patent)) {
+          return `${patent.slice(0,2)}-${patent.slice(2,5)}-${patent.slice(5)}`
+        }
+        return patent
+      }
+
+    useEffect(()=>{
+        if (id != null) {
+            const foundVehicle = vehicles.find(v => v.id === id)
+            if (foundVehicle) {
+                setFieldValue("brand", foundVehicle.brand || "")
+                setFieldValue("model", foundVehicle.model || "")
+                setFieldValue("patent", formatPatent(foundVehicle.patent) || "")
+            }
+        }
+    }, [])
+
 
     return (
         <div className="modalTruck">
