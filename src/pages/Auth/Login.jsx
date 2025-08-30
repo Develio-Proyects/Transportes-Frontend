@@ -100,7 +100,7 @@ const Login = () => {
                     </FormControl>
 
                     {status && <span className='error'>{status}</span>}
-                    <Button type={'submit'} className="login-btn" size={"large"} variant='contained'>Ingresar</Button>
+                    <Button type={'submit'} className="auth-btn" size={"large"} variant='contained'>Ingresar</Button>
                 </form>
                 
                 <span className="auth-link">

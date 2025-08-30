@@ -89,7 +89,7 @@
             .auth-form{
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                gap: 1rem;
+                column-gap: 1rem;
         
                 > .tipoPerfil {
                     grid-column: 1 / -1;

@@ -2,9 +2,11 @@ import { useEffect, useState } from "react"
 import { Navigate, Outlet } from "react-router-dom"
 import { logout, validateToken } from "../api/services/authService"
 import { useAuth } from "../context/AuthContext"
+import { useLoginProcess } from "../hooks/useLoginProcess"
 
 const ProtectedRoutes = ({ allowedRoles = [] }) => {
-    const { user, createUser } = useAuth()
+    const { user } = useAuth()
+    const { createUser } = useLoginProcess()
     const [isTokenValid, setIsTokenValid] = useState(null)
 
     useEffect(() => {

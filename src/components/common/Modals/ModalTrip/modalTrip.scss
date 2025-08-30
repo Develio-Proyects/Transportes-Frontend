@@ -1,7 +1,7 @@
 .modalTrip{
     width: calc(100vw - 2rem);
     max-width: 600px;
-    max-height: 81vh;
+    max-height: 80vh;
     padding: 3rem 1rem;
     overflow-y: scroll;
 
@@ -9,7 +9,7 @@
         font-size: clamp(18px, 5vw, 22px);
         font-weight: 600;
         color: var(--color-secondary);
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
     }
 
     .modal-form{
@@ -24,6 +24,9 @@
         .css-113d811-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
             color: var(--color-secondary);
         }
+        .css-zsp0bh-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+            border-color: var(--color-primary);
+        }
     }
 
     .primary-btn{
@@ -34,5 +37,11 @@
 @media (min-width: 425px){
     .modalTrip{
         padding: 3rem 2rem;
+    }
+}
+
+@media (min-width: 1200px){
+    .modalTrip{
+        max-height: 90vh;
     }
 }

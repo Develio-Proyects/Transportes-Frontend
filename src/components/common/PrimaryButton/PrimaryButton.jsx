@@ -1,8 +1,9 @@
 import { Button } from "@mui/material"
 
-const PrimaryButton = ({children, onClick, style, size}) => {
+const PrimaryButton = ({children, onClick, style, size, type}) => {
     return (
         <Button 
+            type={type}
             size={size}
             className="primary-btn"
             variant="contained"
