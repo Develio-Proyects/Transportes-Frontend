@@ -2,13 +2,14 @@ import AddIcon from '@mui/icons-material/Add';
 import { useWindowResolution } from '../../../hooks/useWindowResolution';
 import { Button } from '@mui/material';
 
-const AddButton = ({name}) => {
+const AddButton = ({name, onClick}) => {
     const isMobile = useWindowResolution() < 600
 
     return (
         <Button 
             className='addButton'
             variant='contained'
+            onClick={onClick}
             sx={{
                 width: {
                     xs: '20px', 

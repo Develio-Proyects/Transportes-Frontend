@@ -14,7 +14,7 @@ const DocumentCard = ({document}) => {
             </div>
             <div className="docActions">
                 <Button variant='contained' className='docBtn'>Editar</Button>
-                <Button variant='contained' className='docBtn' onClick={()=>openModal("documentImageModal", {img: document.fileLink})}>Ver</Button>
+                <Button variant='contained' className='docBtn' onClick={()=>openModal("modalDocumentImage", {img: document.fileLink})}>Ver</Button>
             </div>
         </article>
     )
