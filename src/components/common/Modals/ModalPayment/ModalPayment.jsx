@@ -1,11 +1,11 @@
-import './paymentModal.scss'
+import './modalPayment.scss'
 import { Button } from '@mui/material'
 import PrimaryButton from '../../PrimaryButton/PrimaryButton'
 import { useEffect, useState } from 'react'
 import { getOfferQuote } from '../../../../api/services/viajesService'
 import { payTrip } from '../../../../api/services/paymentService'
 
-const PaymentModal = ({idOffer}) => {
+const ModalPayment = ({idOffer}) => {
     const [price, setPrice] = useState(null)
     
     const handlePay = async () => {
@@ -31,7 +31,7 @@ const PaymentModal = ({idOffer}) => {
     }, [idOffer])
 
     return (
-        <div className="paymentModal">
+        <div className="modalPayment">
             <header className="modal-header">
                 <h2 className="modal-title">Procesar Pago</h2>
                 <p className="modal-text">Para confirmar al fletero y acceder al chat, se requiere el pago del servicio.</p>
@@ -51,4 +51,4 @@ const PaymentModal = ({idOffer}) => {
     )
 }
 
-export default PaymentModal
+export default ModalPayment

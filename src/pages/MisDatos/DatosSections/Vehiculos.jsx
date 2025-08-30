@@ -3,11 +3,13 @@ import 'swiper/css/navigation'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import { useEffect, useState } from 'react'
-import { getTrucks } from '../../../api/services/profileDataService'
 import VehicleCard from '../../../components/common/VehicleCard/VehicleCard'
 import AddButton from '../../../components/common/AddButton/AddButton'
+import { useModal } from '../../../context/ModalContext'
+import { getTrucks } from '../../../api/services/truckService'
 
 const Vehiculos = () => {
+    const {openModal} = useModal()
     const [vehicles, setVehicles] = useState([])
     
     const getInfo = async () => {
@@ -25,7 +27,10 @@ const Vehiculos = () => {
         <section className="data-section">
             <header className="data-header">
                 <h2 className='data-title'>Vehículos registrados</h2>
-                <AddButton name={"Vehículo"}/>
+                <AddButton 
+                    name={"Vehículo"} 
+                    onClick={()=> openModal("modalTruck", {vehicles: vehicles, refresh: ()=> getInfo()})}
+                />
                 <p className='data-subtitle'>Gestiona los vehículos asociados a tu cuenta.</p>
             </header>
             <div className="slider-container">
@@ -48,11 +53,11 @@ const Vehiculos = () => {
                         },
                     }}
                 >
-                {vehicles.map((vec) => (
-                    <SwiperSlide key={vec.id}>
-                        <VehicleCard vechicle={vec} />
-                    </SwiperSlide>
-                ))}
+                    {vehicles.map((vec) => (
+                        <SwiperSlide key={vec.id}>
+                            <VehicleCard vehicle={vec} />
+                        </SwiperSlide>
+                    ))}
                 </Swiper>
             </div>
         </section>
