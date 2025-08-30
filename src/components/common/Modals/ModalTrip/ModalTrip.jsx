@@ -1,13 +1,13 @@
-import './createTripModal.scss'
+import './modalTrip.scss'
 import { useModal } from "../../../../context/ModalContext"
-import { Box, Button, MenuItem, TextField } from "@mui/material"
+import { Box, MenuItem, TextField } from "@mui/material"
 import { useFormik } from 'formik'
 import * as Yup from "yup"
 import PrimaryButton from '../../PrimaryButton/PrimaryButton'
 
 const cargoTypes = ["Congelado", "Liquido", "Solido"]
 
-const CreateTripModal = ({ onTripCreated }) => {
+const ModalTrip = ({ onTripCreated }) => {
     const { closeModal } = useModal()
 
     const { handleSubmit, handleChange, handleBlur, touched, values, errors, setSubmitting } = useFormik({
@@ -46,7 +46,7 @@ const CreateTripModal = ({ onTripCreated }) => {
     })
 
     return (
-        <div className="createTripModal">
+        <div className="modalTrip">
             <h2 className='modal-title'>Crear publición</h2>
             <form onSubmit={handleSubmit} className="modal-form">
                 <TextField
@@ -165,4 +165,4 @@ const CreateTripModal = ({ onTripCreated }) => {
     )
 }
 
-export default CreateTripModal
+export default ModalTrip

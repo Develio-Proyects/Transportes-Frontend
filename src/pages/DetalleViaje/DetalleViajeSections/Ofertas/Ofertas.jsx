@@ -19,7 +19,7 @@ const Ofertas = ({viaje, esPropio}) => {
                         <div className={esPropio ? "oferta own" : "oferta"} key={i}>
                             <div className="number">{i + 1}</div>
                             <span className="user">{p.name}</span>
-                            {esPropio && <button className="oferta-btn" onClick={()=> openModal("paymentModal", {idOffer: p.id})}>Seleccionar</button>}
+                            {esPropio && <button className="oferta-btn" onClick={()=> openModal("modalPayment", {idOffer: p.id})}>Seleccionar</button>}
                         </div>
                     ))
                 ) : viaje ? (

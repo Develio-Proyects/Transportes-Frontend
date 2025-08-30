@@ -1,6 +1,6 @@
 import { Box } from "@mui/material"
 
-const DocumentImageModal = ({ img }) => {
+const ModalDocumentImage = ({ img }) => {
     return (
         <Box
             component="img"
@@ -19,4 +19,4 @@ const DocumentImageModal = ({ img }) => {
     )
 }
 
-export default DocumentImageModal
+export default ModalDocumentImage

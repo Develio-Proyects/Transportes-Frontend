@@ -1,14 +1,16 @@
 import { Box, Modal, IconButton } from "@mui/material"
 import CloseIcon from "@mui/icons-material/Close"
 import { useModal } from "../../../context/ModalContext"
-import DocumentImageModal from "./DocumentImageModal/DocumentImageModal"
-import CreateTripModal from "./CreateTripModal/CreateTripModal"
-import PaymentModal from "./PaymentModal/PaymentModal"
+import ModalPayment from "./ModalPayment/ModalPayment"
+import ModalDocumentImage from "./ModalDocumentImage/ModalDocumentImage"
+import ModalTrip from "./ModalTrip/ModalTrip"
+import ModalTruck from "./ModalTruck/ModalTruck"
 
 const MODAL_COMPONENTS = {
-    documentImageModal: DocumentImageModal,
-    createTripModal: CreateTripModal,
-    paymentModal: PaymentModal
+    modalDocumentImage: ModalDocumentImage,
+    modalPayment: ModalPayment,
+    modalTrip: ModalTrip,
+    modalTruck: ModalTruck
 }
 
 export const ModalContainer = () => {

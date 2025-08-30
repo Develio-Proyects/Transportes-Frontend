@@ -4,16 +4,14 @@ import { useFormik } from 'formik'
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
-import { login } from '../../api/services/authService';
-import { useAuth } from '../../context/AuthContext';
+import { useLoginProcess } from '../../hooks/useLoginProcess';
 
 const Login = () => {
-    const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
     const [status, setStatus] = useState(null)
-    const { createUser } = useAuth()
+    const { loginProcess } = useLoginProcess()
 
     const handleClickShowPassword = () => setShowPassword((show) => !show)
     const handleMouseDownPassword = (event) => {
@@ -36,28 +34,11 @@ const Login = () => {
             setSubmitting(true)
             setStatus(null)
             try {
-                const response = await login(values)
-                
-                if (response.status === 200) {
-                    createUser({
-                        id: response.data.userId,
-                        rol: response.data.role,
-                        name: response.data.name,
-                        email: response.data.email,
-                    })
-                    
-                    switch (response.data.role) {
-                        case 'ADMINISTRADOR':
-                            navigate('/admin/usuarios')
-                            break
-                        case 'FLOTA':
-                        case 'UNIPERSONAL':
-                            navigate('/perfil/mis-viajes')
-                            break
-                    }
-                } else {
+                const response = loginProcess(values)
+                if(response.status !== 200){
                     setStatus('Usuario o contraseña incorrecta')
                 }
+                
             } catch (e) {
                 setStatus('Error en la autenticación -' + e.message)
             } finally {
@@ -72,13 +53,12 @@ const Login = () => {
             <div className="auth-container">
                 <h2 className="auth-form-title">Iniciar sesión</h2>
                 <form className="auth-form" onSubmit={handleSubmit}>
-                    <FormControl variant="filled" error={!!errors.email && touched.email}>
+                    <FormControl className='auth-input' variant="filled" error={!!errors.email && touched.email}>
                         <InputLabel htmlFor="filled-adornment-email">Email</InputLabel>
                         <FilledInput
                             type="text"
                             name="email"
                             label="email"
-                            className='input-login'
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.email}
@@ -90,13 +70,12 @@ const Login = () => {
                         </FormHelperText>
                     </FormControl>
 
-                    <FormControl variant="filled" error={!!errors.password && touched.password}>
+                    <FormControl className='auth-input' variant="filled" error={!!errors.password && touched.password}>
                         <InputLabel htmlFor="filled-adornment-password">Contraseña</InputLabel>
                         <FilledInput
                             type={showPassword ? 'text' : 'password'}
                             name="password"
                             label="Password"
-                            className='input-login'
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.password}
@@ -104,15 +83,15 @@ const Login = () => {
                             id="filled-adornment-password"
                             aria-describedby="password-helper-text"
                             endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                >
-                                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                                </IconButton>
-                            </InputAdornment>
+                                <InputAdornment position="end">
+                                    <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    >
+                                    {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                                    </IconButton>
+                                </InputAdornment>
                             }
                         />
                         <FormHelperText id="password-helper-text">
@@ -120,7 +99,7 @@ const Login = () => {
                         </FormHelperText>
                     </FormControl>
 
-                    {status && <div style={{color: "var(--red)", margin: ".5rem 0 1rem"}}>{status}</div>}
+                    {status && <span className='error'>{status}</span>}
                     <Button type={'submit'} className="login-btn" size={"large"} variant='contained'>Ingresar</Button>
                 </form>
                 
@@ -128,6 +107,8 @@ const Login = () => {
                     ¿No tienes cuenta?&nbsp;
                     <Link to="/signup" className="auth-link">Regístrate</Link>
                 </span>
+
+                <Link to="/" className="comeBack-link">Volver al inicio</Link>
             </div>
         </div>
     )

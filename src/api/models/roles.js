@@ -3,3 +3,8 @@ export const ROLES = {
     FLOTA: "FLOTA",
     UNIPERSONAL: "UNIPERSONAL"
 }
+
+export const ROLESSIGNIN = {
+    UNIPERSONAL: "SOLO_CARRIER",
+    FLOTA: "MULTI_CARRIER"
+}

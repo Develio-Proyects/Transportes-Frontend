@@ -15,18 +15,6 @@ export const login = async (credencials) => {
     }
 }
 
-export const signup = async (credencials) => {
-    try {
-        const response = await axios.post(`${API_URL}/signup`, credencials)
-        if(response.data.token){
-            localStorage.setItem('token', response.data.token)
-        }
-        return response
-    } catch (error) {
-        return error
-    }
-}
-
 export const logout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem("user")

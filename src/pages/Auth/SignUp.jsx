@@ -1,20 +1,21 @@
 import './auth.scss'
-import { Button, FilledInput, FormControl, FormHelperText, IconButton, InputAdornment, InputLabel } from '@mui/material'
+import { Button, FilledInput, FormControl, FormControlLabel, FormHelperText, FormLabel, IconButton, InputAdornment, InputLabel, RadioGroup } from '@mui/material'
 import { useFormik } from 'formik'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import Radio from '@mui/material/Radio';
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { signup } from '../../api/services/authService'
+import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
-import { ROLES } from '../../api/models/roles'
+import { ROLESSIGNIN } from '../../api/models/roles'
+import { signup } from '../../api/services/userService'
+import { useLoginProcess } from '../../hooks/useLoginProcess'
 
 const SignUp = () => {
-    const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const [status, setStatus] = useState(null)
-    const [tipoPerfil, setTipoPerfil] = useState(null)
+    const {loginProcess} = useLoginProcess()
 
     const handleClickShowPassword = () => setShowPassword((show) => !show)
     const handleMouseDownPassword = (event) => {
@@ -26,29 +27,28 @@ const SignUp = () => {
         event.preventDefault()
     }
 
-    const {
-        handleSubmit,
-        handleChange,
-        handleBlur,
-        touched,
-        values,
-        errors,
-        setSubmitting
-    } = useFormik({
+    const { handleSubmit, handleChange, handleBlur, touched, values, errors, setSubmitting } = 
+    useFormik({
         initialValues: {
-            tipoPerfil: '',
-            username: '',
+            role: '',
+            name: '',
+            lastname: '',
+            documentNumber: '',
             email: '',
             password: '',
             confirmPassword: ''
         },
         validationSchema: Yup.object().shape({
-            tipoPerfil: Yup.string().required('Debes seleccionar un tipo de perfil'),
-            username: Yup.string().required('El nombre de usuario obligatorio'),
+            role: Yup.string().required('Debe seleccionar un tipo de perfil'),
+            name: Yup.string().required('Nombre obligatorio'),
+            lastname: Yup.string().required('Apellido obligatorio'),
             email: Yup.string()
-                .email('El correo electrónico no es válido')
-                .required('El correo electrónico es obligatorio'),
-            password: Yup.string().required('La contraseña es obligatoria'),
+                .email('El email no es válido')
+                .required('Email obligatorio'),
+            documentNumber: Yup.string()
+                .required("Documento requerido")
+                .matches(/^\d{8}$/, "Documento inválido"),
+            password: Yup.string().required('Contraseña es obligatoria'),
             confirmPassword: Yup.string()
                 .oneOf([Yup.ref('password'), null], 'Las contraseñas deben coincidir')
                 .required('Campo obligatorio')
@@ -57,9 +57,16 @@ const SignUp = () => {
             setSubmitting(true)
             setStatus(null)
             try {
-                const response = await signup(values)
+                const dataToSend = { ...values, documentNumber: Number(values.documentNumber) }
+                delete dataToSend.confirmPassword
+
+                const response = await signup(dataToSend)
+                
                 if (response.status === 200) {
-                    navigate('/perfil')
+                    loginProcess({
+                        email: values.email,
+                        password: values.password
+                    })
                 } else {
                     setStatus('Algún campo es incorrecto')
                 }
@@ -74,49 +81,102 @@ const SignUp = () => {
 
     return (
         <div className="auth-wrapper">
-            <div className="auth-container">
+            <div className="auth-container signin">
                 <h2 className="auth-form-title">Registrarse</h2>
-                <div className="type-profile-select">
-                    <button 
-                        type="button"
-                        className={"profile-btn" + (values.tipoPerfil === ROLES.FLETERO ? ' active' : '') + (errors.tipoPerfil && touched.tipoPerfil ? ' error' : '')}
-                        onClick={() => handleChange({ target: { name: 'tipoPerfil', value: ROLES.FLETERO } })}
-                    >
-                        Fletero
-                    </button>
-
-                    <button 
-                        type="button"
-                        className={"profile-btn" + (values.tipoPerfil === ROLES.TRANSPORTE ? ' active' : '') + (errors.tipoPerfil && touched.tipoPerfil ? ' error' : '')} 
-                        onClick={() => handleChange({ target: { name: 'tipoPerfil', value: ROLES.TRANSPORTE } })}
-                    >
-                        Transporte
-                    </button>
-
-                    {errors.tipoPerfil && touched.tipoPerfil && (
-                        <div className="type-profile-error">{errors.tipoPerfil}</div>
-                    )}
-                </div>
                 <form className="auth-form" onSubmit={handleSubmit}>
-                    <FormControl variant="filled" error={!!errors.username && touched.username}>
-                        <InputLabel htmlFor="filled-adornment-username">Nombre</InputLabel>
-                        <FilledInput
-                            type="text"
-                            name="username"
-                            label="username"
-                            className="input-login"
+                    <FormControl fullWidth className='tipoPerfil' error={!!errors.role && touched.role}>
+                        <FormLabel id="tipo-perfil-label">Tipo de perfíl</FormLabel>
+                        <RadioGroup
+                            row
+                            aria-labelledby="tipo-perfil-label"
+                            name="role"  
+                            value={values.role}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            value={values.username}
-                            error={!!errors.username && touched.username}
-                            aria-describedby="username-helper-text"
-                        />
-                        <FormHelperText id="username-helper-text">
-                            {errors.username && touched.username && errors.username}
+                        >
+                            <FormControlLabel value={ROLESSIGNIN.UNIPERSONAL} control={<Radio />} label="Unipersonal" />
+                            <FormControlLabel value={ROLESSIGNIN.FLOTA} control={<Radio />} label="Flota" />
+                        </RadioGroup>
+                        <FormHelperText>
+                            {errors.role && touched.role && errors.role}
                         </FormHelperText>
                     </FormControl>
 
-                    <FormControl variant="filled" error={!!errors.email && touched.email}>
+                    <FormControl 
+                        className='auth-input' 
+                        fullWidth 
+                        variant="filled" 
+                        error={!!errors.name && touched.name}
+                    >
+                        <InputLabel htmlFor="filled-adornment-name">Nombre</InputLabel>
+                        <FilledInput
+                            type="text"
+                            name="name"
+                            label="name"
+                            className="input-login"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.name}
+                            error={!!errors.name && touched.name}
+                            aria-describedby="name-helper-text"
+                        />
+                        <FormHelperText id="name-helper-text">
+                            {errors.name && touched.name && errors.name}
+                        </FormHelperText>
+                    </FormControl>
+
+                    <FormControl 
+                        className='auth-input' 
+                        fullWidth 
+                        variant="filled" 
+                        error={!!errors.lastname && touched.lastname}
+                    >
+                        <InputLabel htmlFor="filled-adornment-lastname">Apellido</InputLabel>
+                        <FilledInput
+                            type="text"
+                            name="lastname"
+                            label="lastname"
+                            className="input-login"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.lastname}
+                            error={!!errors.lastname && touched.lastname}
+                            aria-describedby="lastname-helper-text"
+                        />
+                        <FormHelperText id="lastname-helper-text">
+                            {errors.lastname && touched.lastname && errors.lastname}
+                        </FormHelperText>
+                    </FormControl>
+
+                    <FormControl 
+                        className='auth-input' 
+                        fullWidth 
+                        variant="filled" 
+                        error={!!errors.documentNumber && touched.documentNumber}
+                    >
+                        <InputLabel htmlFor="filled-adornment-documentNumber">Documento</InputLabel>
+                        <FilledInput
+                            type="text"
+                            name="documentNumber"
+                            label="documentNumber"
+                            className="input-login"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.documentNumber}
+                            error={!!errors.documentNumber && touched.documentNumber}
+                            aria-describedby="documentNumber-helper-text"
+                        />
+                        <FormHelperText id="documentNumber-helper-text">
+                            {errors.documentNumber && touched.documentNumber && errors.documentNumber}
+                        </FormHelperText>
+                    </FormControl>
+
+                    <FormControl 
+                        className='auth-input' 
+                        fullWidth 
+                        variant="filled" 
+                        error={!!errors.email && touched.email}
+                    >
                         <InputLabel htmlFor="filled-adornment-email">Email</InputLabel>
                         <FilledInput
                             type="text"
@@ -134,7 +194,12 @@ const SignUp = () => {
                         </FormHelperText>
                     </FormControl>
 
-                    <FormControl variant="filled" error={!!errors.password && touched.password}>
+                    <FormControl 
+                        className='auth-input' 
+                        fullWidth 
+                        variant="filled" 
+                        error={!!errors.password && touched.password}
+                    >
                         <InputLabel htmlFor="filled-adornment-password">Contraseña</InputLabel>
                         <FilledInput
                             type={showPassword ? 'text' : 'password'}
@@ -166,6 +231,8 @@ const SignUp = () => {
 
                     <FormControl
                         variant="filled"
+                        className='auth-input' 
+                        fullWidth
                         error={!!errors.confirmPassword && touched.confirmPassword}
                     >
                         <InputLabel htmlFor="filled-adornment-confirm-password">
@@ -204,7 +271,7 @@ const SignUp = () => {
                     {status && (
                         <div style={{ color: 'var(--red)', margin: '.5rem 0 1rem' }}>{status}</div>
                     )}
-                    <Button type="submit" className="login-btn" size="large" variant="contained">
+                    <Button type="submit" className="auth-btn" size="large" variant="contained">
                         Ingresar
                     </Button>
                 </form>
@@ -215,6 +282,8 @@ const SignUp = () => {
                         Iniciar sesión
                     </Link>
                 </span>
+
+                <Link to="/" className="comeBack-link">Volver al inicio</Link>
             </div>
         </div>
     )
