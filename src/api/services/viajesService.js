@@ -1,6 +1,7 @@
 import axios from "axios";
+import {BASE_API_URL} from "../../../config.js";
 
-const API_URL = 'http://localhost:8080/api/trip'
+const API_URL = BASE_API_URL + '/api/trip'
 
 export const getViajes = async (page, size) => {
     const token = localStorage.getItem("token")
