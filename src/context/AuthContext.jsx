@@ -14,14 +14,8 @@ export const AuthProvider = ({ children }) => {
         }
     }, [])
 
-    const createUser = (data) => {
-        const newUser = new User(data)
-        setUser(newUser)
-        localStorage.setItem("user", JSON.stringify(data))
-    }
-
     return (
-        <AuthContext.Provider value={{ user, setUser, createUser }}>
+        <AuthContext.Provider value={{ user, setUser }}>
             {children}
         </AuthContext.Provider>
     )
