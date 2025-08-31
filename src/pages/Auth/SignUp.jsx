@@ -82,7 +82,7 @@ const SignUp = () => {
     return (
         <div className="auth-wrapper">
             <div className="auth-container signin">
-                <h2 className="auth-form-title">Registrarse</h2>
+                <h2 className="auth-form-title">Crear cuenta</h2>
                 <form className="auth-form" onSubmit={handleSubmit}>
                     <FormControl fullWidth className='tipoPerfil' error={!!errors.role && touched.role}>
                         <FormLabel id="tipo-perfil-label">Tipo de perfíl</FormLabel>
@@ -272,7 +272,7 @@ const SignUp = () => {
                         <div style={{ color: 'var(--red)', margin: '.5rem 0 1rem' }}>{status}</div>
                     )}
                     <Button type="submit" className="auth-btn" size="large" variant="contained">
-                        Ingresar
+                        Registrarse
                     </Button>
                 </form>
 

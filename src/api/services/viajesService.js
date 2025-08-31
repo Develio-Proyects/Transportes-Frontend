@@ -15,6 +15,32 @@ export const getViajes = async (page, size) => {
     }
 }
 
+export const createTrip = async (values) => {
+    const token = localStorage.getItem("token")
+    try {
+        return await axios.post(`${API_URL}`, 
+            {
+                origin: values.origin,
+                destination: values.destination,
+                departureDate: values.departureDate,
+                basePrice: values.basePrice,
+                cargoType: values.cargoType,
+                weight: values.weight,
+                dimensions: {
+                  width: values.dimensions.width,
+                  high: values.dimensions.high,
+                  long: values.dimensions.long
+                },
+                observations: values.observations
+            },
+            token && {
+                headers: { Authorization: `Bearer ${token}` }
+        })
+    } catch (error) {
+        return error
+    }
+}
+
 export const getDetalleViaje = async (id) => {
     const token = localStorage.getItem("token")
     try {

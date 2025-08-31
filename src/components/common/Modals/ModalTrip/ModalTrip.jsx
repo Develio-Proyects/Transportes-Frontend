@@ -4,8 +4,10 @@ import { Box, MenuItem, TextField } from "@mui/material"
 import { useFormik } from 'formik'
 import * as Yup from "yup"
 import PrimaryButton from '../../PrimaryButton/PrimaryButton'
+import { createTrip } from '../../../../api/services/viajesService'
+import { getBackName, TIPO_CARGA } from '../../../../api/models/tipoCarga'
 
-const cargoTypes = ["Congelado", "Liquido", "Solido"]
+const cargoTypes = Object.values(TIPO_CARGA).map(tipo => tipo.frontName)
 
 const ModalTrip = ({ onTripCreated }) => {
     const { closeModal } = useModal()
@@ -16,7 +18,7 @@ const ModalTrip = ({ onTripCreated }) => {
             destination: "",
             departureDate: "",
             basePrice: "",
-            cargoType: "Congelado",
+            cargoType: cargoTypes[0],
             weight: "",
               dimensions: {
                 width: 0,
@@ -28,7 +30,13 @@ const ModalTrip = ({ onTripCreated }) => {
         validationSchema: Yup.object().shape({
             origin: Yup.string().required("Origen requerido"),
             destination: Yup.string().required("Destino requerido"),
-            departureDate: Yup.date().required("Fecha requerida"),
+            departureDate: Yup.date()
+                .required("Fecha requerida")
+                .min(new Date(), "La fecha no puede ser anterior a hoy")
+                .max(
+                    new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
+                    "La fecha no puede superar 1 año desde hoy"
+                ),
             basePrice: Yup.number().min(0).required("Precio requerido"),
             cargoType: Yup.string().required("Tipo requerido"),
             weight: Yup.number().min(0).required("Peso requerido"),
@@ -40,7 +48,24 @@ const ModalTrip = ({ onTripCreated }) => {
             observations: Yup.string()
         }),
         onSubmit: async (values, actions) => {
-            onTripCreated()
+            const payload = {
+                origin: values.origin,
+                destination: values.destination,
+                departureDate: new Date(values.departureDate).toISOString(),
+                basePrice: Number(values.basePrice),
+                cargoType: getBackName(values.cargoType),
+                weight: Number(values.weight),
+                dimensions: {
+                  width: Number(values.dimensions.width),
+                  high: Number(values.dimensions.high),
+                  long: Number(values.dimensions.long)
+                },
+                observations: values.observations
+            }
+            const response = await createTrip(payload)
+            if(response.status === 200){
+                onTripCreated()
+            }
             closeModal()
         }
     })
@@ -70,6 +95,7 @@ const ModalTrip = ({ onTripCreated }) => {
                     fullWidth
                 />
                 <TextField
+                    type='date'
                     label="Fecha de salida"
                     name="departureDate"
                     value={values.departureDate}
@@ -78,6 +104,9 @@ const ModalTrip = ({ onTripCreated }) => {
                     error={touched.departureDate && errors.departureDate}
                     helperText={touched.departureDate && errors.departureDate}
                     fullWidth
+                    slotProps={{
+                        inputLabel: { shrink: true }
+                    }}
                 />
                 <TextField
                     label="Precio base"
@@ -105,7 +134,7 @@ const ModalTrip = ({ onTripCreated }) => {
                     ))}
                 </TextField>
                 <TextField
-                    label="Peso"
+                    label="Peso (kg)"
                     name="weight"
                     type="number"
                     value={values.weight}
@@ -116,7 +145,7 @@ const ModalTrip = ({ onTripCreated }) => {
                 />
                 <Box sx={{ display: "flex", gap: { xs: 1, sm: 2 } }}>
                     <TextField
-                        label="Ancho"
+                        label="Ancho (m)"
                         name="dimensions.width"
                         type='number'
                         value={values.dimensions?.width}
@@ -126,7 +155,7 @@ const ModalTrip = ({ onTripCreated }) => {
                         helperText={touched.dimensions?.width && errors.dimensions?.width}
                     />
                     <TextField
-                        label="Alto"
+                        label="Alto (m)"
                         name="dimensions.high"
                         type='number'
                         value={values.dimensions?.high}
@@ -136,7 +165,7 @@ const ModalTrip = ({ onTripCreated }) => {
                         helperText={touched.dimensions?.high && errors.dimensions?.high}
                     />
                     <TextField
-                        label="Largo"
+                        label="Largo (m)"
                         name="dimensions.long"
                         value={values.dimensions?.long}
                         onChange={handleChange}
