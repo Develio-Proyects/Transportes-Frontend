@@ -1,7 +1,6 @@
-import axios from "axios";
-import {BASE_API_URL} from "../../../config.js";
+import axios from "axios"
 
-const API_URL_DOCUMENT = BASE_API_URL + '/api/employee'
+const API_URL_DOCUMENT = import.meta.env.VITE_API_URL + '/api/employee'
 
 export const getEmployees = async () => {
     const token = localStorage.getItem("token")

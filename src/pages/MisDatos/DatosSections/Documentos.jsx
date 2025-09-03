@@ -33,7 +33,7 @@ const Documentos = ({user, employees}) => {
                 <p className='data-subtitle'>Gestiona tus documentos personales y verifica su estado.</p>
             </header>
             <div className="slider-container">
-                {documents.length === 0 ? (
+                {documents?.length === 0 ? (
                     <p className="empty-message">
                         <ErrorOutlineIcon /> 
                         No hay documentos cargados todavía.
