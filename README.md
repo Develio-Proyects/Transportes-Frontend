@@ -3,13 +3,9 @@
 Aplicación web para conectar empresas con transportistas.  
 Frontend desarrollado en **React** usando **Vite** y **Material UI**.
 
-## 🚀 Instalación
+## Environment
 
-Clonar el repositorio:
-
-```bash
-git clone https://github.com/Develio-Proyects/Transportes-Frontend.git
-```
+VITE_API_URL
 
 # Docker
 Comandos para generar la imagen que utiliza el server
