@@ -89,12 +89,12 @@ const Ayuda = () => {
                             <span className="data"><strong>Instagram:</strong> @transportarg</span>
                         </div>
                     </section>
-                    <section className="tutorials">
+                    {/* <section className="tutorials">
                         <h2 className="ayuda-title">Videos tutoriales</h2>
                         <div className="tutorials-container">
                             
                         </div>
-                    </section>
+                    </section> */}
                 </div>
             </div>
         </main>

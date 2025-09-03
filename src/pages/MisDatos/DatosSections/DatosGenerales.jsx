@@ -9,7 +9,7 @@ const DatosGenerales = ({user}) => {
                 <h2 className='data-title'>Datos generales</h2>
             </header>
             <div className="profile-data">
-                <EditButton />
+                {/* <EditButton /> */}
                 <div className="user-img">
                     <AccountCircleIcon className="user-icon"/>
                 </div>
