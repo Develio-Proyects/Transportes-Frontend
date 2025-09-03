@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = 'http://localhost:8080/api/truck'
+const API_URL = import.meta.env.API_URL + '/api/truck'
 
 export const getTrucks = async () => {
     const token = localStorage.getItem("token")
