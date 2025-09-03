@@ -20,6 +20,7 @@
         .expires{
             font-size: 14px;
             color: var(--color-gray);
+                        visibility: hidden;
         }
         .status{
             font-size: 14px;
@@ -27,6 +28,7 @@
             padding: 5px 8px;
             border-radius: 5px;
             height: 32px;
+                        visibility: hidden;
             &.vigente{
                 background-color: var(--color-success);
             }

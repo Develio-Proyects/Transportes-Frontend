@@ -5,12 +5,14 @@ import ModalPayment from "./ModalPayment/ModalPayment"
 import ModalDocumentImage from "./ModalDocumentImage/ModalDocumentImage"
 import ModalTrip from "./ModalTrip/ModalTrip"
 import ModalTruck from "./ModalTruck/ModalTruck"
+import ModalDocument from "./ModalDocument/ModalDocument"
 
 const MODAL_COMPONENTS = {
     modalDocumentImage: ModalDocumentImage,
     modalPayment: ModalPayment,
     modalTrip: ModalTrip,
-    modalTruck: ModalTruck
+    modalTruck: ModalTruck,
+    modalDocument: ModalDocument
 }
 
 export const ModalContainer = () => {

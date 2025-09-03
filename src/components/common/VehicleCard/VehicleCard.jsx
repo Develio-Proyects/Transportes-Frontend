@@ -2,7 +2,7 @@ import { useModal } from '../../../context/ModalContext'
 import './vechicleCard.scss'
 import { Button } from "@mui/material"
 
-const VehicleCard = ({vehicle}) => {
+const VehicleCard = ({vehicle, refresh}) => {
     const {openModal} = useModal()
     
     return (
@@ -17,7 +17,7 @@ const VehicleCard = ({vehicle}) => {
                 <Button 
                     variant='contained' 
                     className='vecBtn'
-                    onClick={()=> openModal("modalTruck", {id: vehicle.id ,vehicles: [vehicle]})}
+                    onClick={()=> openModal("modalTruck", {id: vehicle.id ,vehicles: [vehicle], refresh: refresh})}
                 >
                     Editar
                 </Button>

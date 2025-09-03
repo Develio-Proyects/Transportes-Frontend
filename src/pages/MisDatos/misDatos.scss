@@ -70,6 +70,13 @@
                 display: flex;
             }
         }
+        .empty-message{
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: 16px;
+            color: var(--color-dark);
+        }
     }
 }
 
