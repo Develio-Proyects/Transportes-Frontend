@@ -1,7 +1,6 @@
 import axios from 'axios'
-import {BASE_API_URL} from "../../../config.js";
 
-const API_URL = BASE_API_URL + '/api/chat'
+const API_URL = import.meta.env.VITE_API_URL + '/api/chat'
 
 export const getChats = async (id) => {
     const token = localStorage.getItem("token")
