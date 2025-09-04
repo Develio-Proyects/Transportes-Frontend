@@ -38,7 +38,7 @@ const Vehiculos = () => {
                 {
                     vehicles.length === 0? (
                         <p className="empty-message">
-                            <ErrorOutlineIcon /> 
+                            <ErrorOutlineIcon className='icon'/> 
                             No hay vehículos cargados todavía.
                         </p>
                     ) : (

@@ -1,5 +1,5 @@
 export const ESTADOS = {
-  SUBASTA:   { text: "En subasta",  color: "#f06fe5ff" },
+  SUBASTA:   { text: "En subasta",  color: "#ea8db1ff" },
   ACORDADO:  { text: "Asignado",    color: "#10b981" },
   CANCELADO: { text: "Cancelado",   color: "#EF4444" },
   CURSO:     { text: "En curso",    color: "#78BBFA" },
