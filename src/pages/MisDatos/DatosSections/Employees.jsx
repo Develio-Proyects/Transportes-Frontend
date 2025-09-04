@@ -21,7 +21,7 @@ const Employees = ({employees, refresh}) => {
             <div className="slider-container">
                 {employees?.length === 0 ? (
                     <p className="empty-message">
-                        <ErrorOutlineIcon /> 
+                        <ErrorOutlineIcon className='icon'/> 
                         No hay empleados cargados todavía.
                     </p>
                 ) : (
