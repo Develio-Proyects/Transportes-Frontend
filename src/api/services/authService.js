@@ -36,7 +36,8 @@ export const validateToken = async (token) => {
 
 export const updatePassword = async (credentials) => {
     try {
-        const response = await axios.put(`${API_URL}/update-password`, credentials, {
+        const response = await axios.put(`${API_URL}/update-password`, 
+            credentials, {
             headers: {
                 'Content-Type': 'application/json', 
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -44,6 +45,12 @@ export const updatePassword = async (credentials) => {
         });
         return response
     } catch (error) {
-        return error
+        if (error.response) {
+            throw error.response;
+        } else if (error.request) {
+            throw { status: 500, data: { message: 'Error de conexión' } };
+        } else {
+            throw { status: 500, data: { message: 'Error inesperado' } };
+        }
     }
 }

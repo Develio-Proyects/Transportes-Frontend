@@ -5,14 +5,16 @@ import { Navigation } from 'swiper/modules'
 import AddButton from '../../../components/common/AddButton/AddButton'
 import EmployeeCard from '../../../components/common/EmployeeCard/EmployeeCard'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import { useModal } from '../../../context/ModalContext'
 
-const Employees = ({employees}) => {
+const Employees = ({employees, refresh}) => {
+    const {openModal} = useModal()
 
     return (
         <section className="data-section">
             <header className="data-header">
                 <h2 className="data-title">Empleados</h2>
-                <AddButton name={"Empleado"} />
+                <AddButton name={"Empleado"} onClick={() => openModal("modalEmployee", {refresh: refresh})}/>
                 <p className="data-subtitle">Administra y organiza tu flota.</p>
             </header>
 

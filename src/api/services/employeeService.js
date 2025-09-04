@@ -14,7 +14,7 @@ export const getEmployees = async () => {
     }
 }
 
-export const createEmployees = async (values) => {
+export const createEmployee = async (values) => {
     const token = localStorage.getItem("token")
     try {
         return await axios.post(`${API_URL_DOCUMENT}`, 
@@ -27,7 +27,7 @@ export const createEmployees = async (values) => {
     }
 }
 
-export const editEmployees = async (id, values) => {
+export const editEmployee = async (id, values) => {
     const token = localStorage.getItem("token")
     try {
         return await axios.post(`${API_URL_DOCUMENT}/${id}`, 

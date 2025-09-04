@@ -40,7 +40,7 @@ const MisDatos = () => {
                 <DatosGenerales user={user}/>
                 <Documentos user={user} employees={employees}/>
                 <Vehiculos />
-                { user?.rol === ROLES.FLOTA && <Employees employees={employees}/> }
+                { user?.rol === ROLES.FLOTA && <Employees employees={employees} refresh={()=>getInfo()}/> }
             </div>
         </main>
     )
