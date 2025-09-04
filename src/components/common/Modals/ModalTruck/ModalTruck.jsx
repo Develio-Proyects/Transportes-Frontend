@@ -9,7 +9,7 @@ import { useEffect } from 'react'
 
 const ModalTruck = ({id, vehicles, refresh}) => {
     const {closeModal} = useModal()
-
+    
     const { handleSubmit, handleBlur, touched, values, errors, setFieldValue } = useFormik({
         initialValues: {
             brand: "",
@@ -20,15 +20,15 @@ const ModalTruck = ({id, vehicles, refresh}) => {
             brand: Yup.string().required("Marca requerida"),
             model: Yup.string().required("Modelo requerido"),
             patent: Yup.string()
-                .matches(
-                    /^([A-Z]{3}-\d{3}|[A-Z]{2}-\d{3}-[A-Z]{2})$/,
-                    "Formato inválido. Ej: ABC-123 o AB-123-CD"
-                )
-                .required("Patente requerida"),
+            .matches(
+                /^([A-Z]{3}-\d{3}|[A-Z]{2}-\d{3}-[A-Z]{2})$/,
+                "Formato inválido. Ej: ABC-123 o AB-123-CD"
+            )
+            .required("Patente requerida"),
         }),
         onSubmit: async (values, actions) => {
             values.patent = values.patent.replace(/-/g, "")
-            if(id != null){
+            if(id !== undefined){
                 await editTruck(id, values)
             }else{
                 await createTruck(values)
@@ -73,7 +73,7 @@ const ModalTruck = ({id, vehicles, refresh}) => {
       }
 
     useEffect(()=>{
-        if (id != null) {
+        if (id !== undefined) {
             const foundVehicle = vehicles.find(v => v.id === id)
             if (foundVehicle) {
                 setFieldValue("brand", foundVehicle.brand || "")
@@ -87,7 +87,7 @@ const ModalTruck = ({id, vehicles, refresh}) => {
     return (
         <div className="modalTruck">
             <header className="modal-header">
-                <h2 className="modal-title">Agregar vehículo</h2>
+                <h2 className="modal-title">{id != null ? "Editar vehículo" : "Agregar vehículo"}</h2>
             </header>
             <div className="modal-content">
                 <form className="modal-form">
@@ -128,7 +128,7 @@ const ModalTruck = ({id, vehicles, refresh}) => {
                     Cancelar
                 </Button>
                 <PrimaryButton onClick={handleSubmit}>
-                    Agregar
+                    {id != null ? "Editar" : "Agregar"}
                 </PrimaryButton>
             </div>
         </div>

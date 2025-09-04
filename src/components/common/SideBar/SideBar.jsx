@@ -7,9 +7,11 @@ import { logout } from '../../../api/services/authService'
 import { useAuth } from '../../../context/AuthContext'
 import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom'
+import { useModal } from '../../../context/ModalContext'
 
 const SideBar = () => {
     const { user } = useAuth()
+    const {openModal} = useModal()
     const userRoutes = user?.getRoutes() || [];
     const {isOpen, closeSidebar} = useSideBar()
     const isMobile = useWindowResolution() < 1024
@@ -53,7 +55,7 @@ const SideBar = () => {
         <aside ref={sidebarRef} className={"sideBar" + (isOpen ? " sb-open" : "")}>
             <div className="sb-head">
                 <div className="sb-logo-container">
-                    {/* <img src="/logo.png" alt="Logo" /> */}
+                    <img src="../../../public/logo.png" alt="Logo" />
                     TRANSPORTA
                 </div>
                 {isMobile && 
@@ -91,7 +93,7 @@ const SideBar = () => {
                 {
                     userOptions && 
                     <div className="user-options">
-                        <span className='option'>Cambiar contraseña</span>
+                        <span className='option' onClick={()=> openModal("modalPassword")}>Cambiar contraseña</span>
                         <span className='option' onClick={logout}>Cerrar sesión</span>
                     </div>
                 }

@@ -8,7 +8,6 @@ import Message from '../../../../components/common/Message/Message'
 import ChatIcon from '@mui/icons-material/Chat';
 import { useAuth } from '../../../../context/AuthContext'
 import { getChats } from '../../../../api/services/chatService'
-import {BASE_API_URL} from "../../../../../config.js";
 
 const Chat = ({ id }) => {
     const [mensaje, setMensaje] = useState("")
@@ -26,7 +25,7 @@ const Chat = ({ id }) => {
     }
 
     useEffect(() => {
-        const socket = new SockJS(BASE_API_URL + "/ws-chat", null, {
+        const socket = new SockJS(import.meta.env.VITE_API_URL + "/ws-chat", null, {
             withCredentials: true,
         })
 
