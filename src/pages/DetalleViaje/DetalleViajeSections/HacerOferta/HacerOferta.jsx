@@ -19,11 +19,21 @@ const HacerOferta = ({viaje, id, onOfertaHecha}) => {
                     'menor-que-lowerOffer',
                     'El precio debe ser menor a la oferta más baja',
                     function (value) {
-                        if (viaje?.lowerOffer == null) return true // no valida si no existe lowerOffer
-                        if (value < viaje.lowerOffer) return true
+                        if (!value) return true
+
+                        let limite = null
+
+                        if (viaje?.lowerOffer != null) {
+                            limite = viaje.lowerOffer
+                        } else if (viaje?.initialPrice != null) {
+                            limite = viaje.initialPrice
+                        }
+
+                        if (limite == null) return true
+                        if (value < limite) return true
 
                         return this.createError({
-                        message: `El precio debe ser menor a ${viaje.lowerOffer}`
+                            message: `El precio debe ser menor a ${limite}`
                         })
                     }
                 )
@@ -33,7 +43,7 @@ const HacerOferta = ({viaje, id, onOfertaHecha}) => {
             if(response.status === 200){
                 onOfertaHecha()
             }
-            actions.resetForm
+            actions.resetForm()
         }
 
     })
