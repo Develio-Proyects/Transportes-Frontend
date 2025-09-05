@@ -55,7 +55,7 @@ const SideBar = () => {
         <aside ref={sidebarRef} className={"sideBar" + (isOpen ? " sb-open" : "")}>
             <div className="sb-head">
                 <div className="sb-logo-container">
-                    <img src="../../../public/logo.png" alt="Logo" />
+                    <img src="/logo.png" alt="Logo" />
                     TRANSPORTA
                 </div>
                 {isMobile && 

@@ -98,3 +98,16 @@ export const sendOffer = async (idTrip, mount) => {
         return error
     }
 }
+
+export const changeTripStatus = async (id, state) => {
+    const token = localStorage.getItem("token")
+    try {
+        return await axios.post(`${API_URL}/change-state/${id}?state=${state}`, 
+            {},
+            token && {
+                headers: { Authorization: `Bearer ${token}` }
+        })
+    } catch (error) {
+        return error
+    }
+}
