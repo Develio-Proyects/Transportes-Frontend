@@ -1,9 +1,9 @@
 export const ESTADOS = {
-    OPEN:      { text: "En subasta",  color: "#f06fe5ff" },
+    OPEN:      { text: "En subasta",  color: "#ec83e4ff" },
     ASSIGNED:  { text: "Asignado",    color: "#10b981"   },
-    PROGRESS:  { text: "En progreso", color: "#EF4444"   },
-    CANCELED:  { text: "Cancelado",   color: "#78BBFA"   },
-    FINALIZED: { text: "Finalizado",  color: "#10b910ff" }
+    PROGRESS:  { text: "En progreso", color: "#3e94e4ff"   },
+    CANCELED:  { text: "Cancelado",   color: "#EF4444"   },
+    FINALIZED: { text: "Finalizado",  color: "#2e7d32" }
 }
 
 const TRANSICIONES = {
@@ -20,6 +20,10 @@ export const getStateFromText = (text) => {
 
 export const getTextFromState = (stateKey) => {
     return ESTADOS[stateKey]?.text || null;
+}
+
+export const getEstadoKeyFromText = (text) => {
+    return Object.entries(ESTADOS).find(([key, value]) => value.text === text)?.[0] ?? null
 }
 
 export const getNextState = (currentText) => {

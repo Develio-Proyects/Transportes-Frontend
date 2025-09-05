@@ -52,7 +52,7 @@ const DetalleViaje = () => {
                     {!enSubasta ? (
                         <>
                             <Chat id={id}/>
-                            {esPropio && <TripStatusChanger viaje={viaje}/>}
+                            {esPropio && <TripStatusChanger id={id} viaje={viaje} refresh={() => fetchDetalleViaje()}/>}
                         </>
                     ) : (
                         <>
