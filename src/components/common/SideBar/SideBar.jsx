@@ -16,7 +16,8 @@ const SideBar = () => {
     const {isOpen, closeSidebar} = useSideBar()
     const isMobile = useWindowResolution() < 1024
     const [userOptions, setUserOptions] = useState(false)
-    const sidebarRef = useRef();
+    const sidebarRef = useRef()
+    const userRef = useRef()
     const token = localStorage.getItem("token")
     const isAuthenticated = !!user && !!token
     
@@ -38,6 +39,17 @@ const SideBar = () => {
         document.addEventListener('mousedown', handleClickOutside)
         return () => document.removeEventListener('mousedown', handleClickOutside)
     }, [isMobile, isOpen, closeSidebar])
+
+    useEffect(() => {
+        const handleClickOutsideUser = (event) => {
+            if (userOptions && userRef.current && !userRef.current.contains(event.target)) {
+                setUserOptions(false)
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutsideUser)
+        return () => document.removeEventListener('mousedown', handleClickOutsideUser)
+    }, [userOptions])
     
     return (
         <aside ref={sidebarRef} className={"sideBar" + (isOpen ? " sb-open" : "")}>
@@ -77,7 +89,7 @@ const SideBar = () => {
                 <SideBarBtn to={"/ayuda"} label="Ayuda" onClick={handleNavClick}/>
                 
             </nav>
-            <div className='user-control' onClick={handleUserOptions}>
+            <div ref={userRef} className='user-control' onClick={handleUserOptions}>
                 {
                     userOptions && 
                     <div className="user-options">

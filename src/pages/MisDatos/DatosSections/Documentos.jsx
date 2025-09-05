@@ -35,7 +35,7 @@ const Documentos = ({user, employees}) => {
             <div className="slider-container">
                 {documents?.length === 0 ? (
                     <p className="empty-message">
-                        <ErrorOutlineIcon /> 
+                        <ErrorOutlineIcon className='icon'/> 
                         No hay documentos cargados todavía.
                     </p>
                 ) : (

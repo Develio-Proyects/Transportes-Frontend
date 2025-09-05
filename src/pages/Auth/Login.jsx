@@ -34,7 +34,7 @@ const Login = () => {
             setSubmitting(true)
             setStatus(null)
             try {
-                const response = loginProcess(values)
+                const response = await loginProcess(values)
                 if(response.status !== 200){
                     setStatus('Usuario o contraseña incorrecta')
                 }

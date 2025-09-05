@@ -8,7 +8,7 @@ import { ESTADOS, getStateFromText } from '../../../api/models/estado'
 import PrimaryButton from '../PrimaryButton/PrimaryButton'
 
 const ViajeCard = ({ viaje, from = "/viajes" }) => {
-
+    
     const formatedDate = (fechaStr) => {
         const fecha = new Date(fechaStr.replace('hs', '').trim().replace(' ', 'T'))
         if (isNaN(fecha)) return 'Fecha inválida'
