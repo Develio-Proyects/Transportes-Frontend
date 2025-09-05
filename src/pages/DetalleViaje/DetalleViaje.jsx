@@ -11,6 +11,7 @@ import Ofertas from './DetalleViajeSections/Ofertas/Ofertas'
 import InformacionAdicional from './DetalleViajeSections/Informacion/InformacionAdicional'
 import HacerOferta from './DetalleViajeSections/HacerOferta/HacerOferta'
 import Chat from './DetalleViajeSections/Chat/Chat'
+import TripStatusChanger from './DetalleViajeSections/TripStatusChanger/TripStatusChanger'
 
 const DetalleViaje = () => {
     const { id } = useParams()
@@ -18,7 +19,7 @@ const DetalleViaje = () => {
     const esPropio = location.state?.esPropio === true || location.state.from === "/perfil/publicaiones"
     const from = useLocation().state?.from ?? false
     const [viaje, setViaje] = useState(null)
-    const [asignado, setAsignado] = useState(false)
+    const [enSubasta, setEnSubasta] = useState(false)
     const isDesktop = useWindowResolution() < 1024
 
     const fetchDetalleViaje = async () => {
@@ -26,7 +27,7 @@ const DetalleViaje = () => {
         
         if (response.status === 200) {
             setViaje(response.data)
-            setAsignado(response.data.state === "Asignado")
+            setEnSubasta(response.data.state === "En subasta")
         }
     }
 
@@ -48,8 +49,11 @@ const DetalleViaje = () => {
                 <div className={`sections-container ${esPropio && "propio"}`}>
                     <Detalle viaje={viaje}/>
                     
-                    {asignado ? (
-                        <Chat id={id}/>
+                    {!enSubasta ? (
+                        <>
+                            <Chat id={id}/>
+                            {esPropio && <TripStatusChanger viaje={viaje}/>}
+                        </>
                     ) : (
                         <>
                             <Ofertas viaje={viaje} esPropio={esPropio}/>

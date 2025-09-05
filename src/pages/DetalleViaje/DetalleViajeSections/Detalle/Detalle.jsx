@@ -26,7 +26,7 @@ const Detalle = ({viaje}) => {
                 <h3 className='subtitle'>Ruta</h3>
                 <div className="dv-route">
                     <span>Origen: {viaje?.origin}</span>
-                    <span>Origen: {viaje?.destination}</span>
+                    <span>Destino: {viaje?.destination}</span>
                 </div>
             </div>
             <div className="dv-rates">
