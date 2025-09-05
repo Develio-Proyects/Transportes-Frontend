@@ -30,7 +30,7 @@ const TripStatusChanger = ({id, viaje, refresh}) => {
             <div className="statusAction">
                 {!isFinished ? (
                     <>
-                        <Button variant='contained' className='state' onClick={() => changeState(viaje?.state)} style={{backgroundColor: getColor()}}>
+                        <Button variant='contained' className='state' onClick={() => changeState()} style={{backgroundColor: getColor()}}>
                             <span className='state'>{getNextState(viaje?.state)}</span>
                         </Button>
                         <Button variant='contained' sx={{fontWeight: 600}} color='error' onClick={() => changeState("Cancelado")}>Cancelar</Button>
