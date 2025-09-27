@@ -49,7 +49,7 @@
         .sections-container.propio{
             grid-template-columns: 5fr 3fr;
 
-            #detalle{
+            #detalle, #ofertas{
                 grid-row: 1/3;
             }
             #statusChanger{

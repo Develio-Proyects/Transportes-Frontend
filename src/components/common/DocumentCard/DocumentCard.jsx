@@ -4,13 +4,18 @@ import { Button } from '@mui/material'
 
 const DocumentCard = ({document, employees, refresh}) => {
     const {openModal} = useModal()
+    console.log(document);
     
     return (
         <article className='documentCard'>
             <div className="docData">
                 <h3 className="docTitle">{document.documentName}</h3>
-                <span className="status vigente">Vigente</span>
-                <span className="expires">19 Junio de 2026</span>
+                {document?.name &&
+                    <div className="data-empleado">
+                        <span className="name">{document.name}</span>
+                        <span className="lastname">{document.lastname}</span>
+                    </div>
+                }
             </div>
             <div className="docActions">
                 <Button 

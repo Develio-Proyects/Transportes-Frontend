@@ -1,7 +1,7 @@
 .modalTrip{
     width: calc(100vw - 2rem);
     max-width: 600px;
-    max-height: 80vh;
+    max-height: 90vh;
     padding: 3rem 1rem;
     overflow-y: scroll;
 
@@ -18,14 +18,14 @@
         gap: 1rem;
 
         //Clases de MUI
-        .css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+        .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
             border-color: var(--color-primary);
         }
-        .css-113d811-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+        .MuiInputLabel-root.Mui-focused {
             color: var(--color-secondary);
         }
-        .css-zsp0bh-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
-            border-color: var(--color-primary);
+        .MuiButton-root {
+            background-color: var(--color-primary);
         }
     }
 
