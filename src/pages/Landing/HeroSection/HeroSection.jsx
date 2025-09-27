@@ -7,7 +7,7 @@ const HeroSection = () => {
         <section id='hero'>
             <div className="container">
                 <div className="hero-container">
-                    <h1>Carga segura, Conexión Instantánea</h1>
+                    <h1>Carga segura, Conexión instantánea</h1>
                     <p>Unimos a quienes necesitan enviar con quienes saben transportar.</p>
                     <Link to="/signup">
                         <PrimaryButton>

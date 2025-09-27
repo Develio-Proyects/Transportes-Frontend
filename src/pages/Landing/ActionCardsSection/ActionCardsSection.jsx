@@ -16,8 +16,8 @@ const ActionCardsSection = () => {
                 </div>
 
                 <div className="action-card action-card-2">
-                    <h2>Encontrá Viajes Ideales</h2>
-                    <p>Buscar viajes que se ajusten a tu tipo de camión y disponibilidad. Oportunidades al alcance de un clic.</p>
+                    <h2>Encontrá viajes ideales</h2>
+                    <p>Buscar viajes que se ajusten a tu tipo de camión y disponibilidad. Oportunidades al alcance de un click.</p>
                     <Link to="/viajes" className="action-button">
                         Buscar
                         <ArrowRightAltIcon className='arrow' />

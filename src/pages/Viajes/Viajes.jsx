@@ -30,8 +30,8 @@ const Viajes = () => {
             [pagina]: response.data.content
         }))
 
-        setViajes(response.data.content)
-        setTotalViajes(response.data.totalElements)
+        setViajes(response.data?.content)
+        setTotalViajes(response.data?.totalElements)
     }
 
     const handleChange = (_, value) => {
