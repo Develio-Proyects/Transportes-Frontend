@@ -25,17 +25,6 @@ const Ofertas = ({viaje, esPropio}) => {
                 ) : viaje ? (
                     <span className='no-offers'>Aún no se hicieron ofertas</span>
                 ) : null}
-                {viaje && viaje.offers.length > 0 ? (
-                    viaje.offers.map((p, i) => (
-                        <div className={esPropio ? "oferta own" : "oferta"} key={i}>
-                            <div className="number">{i + 1}</div>
-                            <span className="user">{p.name}</span>
-                            {esPropio && <button className="oferta-btn" onClick={()=> openModal("modalPayment", {idOffer: p.id})}>Seleccionar</button>}
-                        </div>
-                    ))
-                ) : viaje ? (
-                    <span className='no-offers'>Aún no se hicieron ofertas</span>
-                ) : null}
             </div>
         </section>
     )
