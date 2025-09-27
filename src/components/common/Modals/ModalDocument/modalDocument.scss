@@ -1,7 +1,7 @@
 .modalDocument{
     width: calc(100vw - 2rem);
     max-width: 350px;
-    max-height: 700px;
+    max-height: 90vh;
     padding: 3rem 1rem;
     overflow-y: scroll;
 
@@ -28,16 +28,25 @@
             }
 
             //Clases de MUI
-            .css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+            // .css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+            //     border-color: var(--color-primary);
+            // }
+            // .css-113d811-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+            //     color: var(--color-secondary);
+            // }
+            // .css-zsp0bh-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+            //     border-color: var(--color-primary);
+            // }
+            // .css-1k9hkw1-MuiButtonBase-root-MuiButton-root{
+            //     background-color: var(--color-primary);
+            // }
+            .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
                 border-color: var(--color-primary);
             }
-            .css-113d811-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+            .MuiInputLabel-root.Mui-focused {
                 color: var(--color-secondary);
             }
-            .css-zsp0bh-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
-                border-color: var(--color-primary);
-            }
-            .css-1k9hkw1-MuiButtonBase-root-MuiButton-root{
+            .MuiButton-root {
                 background-color: var(--color-primary);
             }
         }

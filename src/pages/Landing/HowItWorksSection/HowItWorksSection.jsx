@@ -31,7 +31,7 @@ const HowItWorksSection = () => {
                             >
                                 <Typography component="span" className='text-d'><ApartmentIcon className='accordion-icon'/>Para flota de transportes</Typography>
                             </AccordionSummary>
-                            <AccordionDetails className='accordion-text'>
+                            <AccordionDetails className='accordion-text' TransitionProps={{ unmountOnExit: false }}>
                                 Permite gestionar su flota de vehículos y conductores, crear viajes con sus detalles, seleccionar transportistas para los viajes publicados y postularse a viajes creados por otras flotas.
                             </AccordionDetails>
                         </Accordion>
@@ -43,7 +43,7 @@ const HowItWorksSection = () => {
                             >
                                 <Typography component="span" className='text-d'><LocalShippingIcon className='accordion-icon'/>Para transportistas</Typography>
                             </AccordionSummary>
-                            <AccordionDetails className='accordion-text'>
+                            <AccordionDetails className='accordion-text' TransitionProps={{ unmountOnExit: false }}>
                                 Permite registrar y administrar su vehículo, postularse a viajes creados por flotas y realizar el seguimiento de cada operación hasta su finalización.
                             </AccordionDetails>
                         </Accordion>

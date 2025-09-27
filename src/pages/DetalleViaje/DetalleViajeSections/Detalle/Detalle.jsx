@@ -15,7 +15,7 @@ const Detalle = ({viaje}) => {
             <div className="dv-s-header">
                 <div className="dv-s-header-title">
                     <LocationOnIcon className='icon'/>
-                    <h2>Detalle viaje</h2>
+                    <h2>Características</h2>
                 </div>
             </div>
             <div className="dv-date">

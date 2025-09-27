@@ -41,7 +41,7 @@ const DetalleViaje = () => {
                 <header className="page-header">
                     <div className='page-title'>
                         <Link to={from}><KeyboardBackspaceIcon /></Link>
-                        <h2>Subasta del viaje</h2>
+                        <h2>Detalle de viaje</h2>
                     </div>
                     { isDesktop && <MenuButton theme="dark"/> }
                 </header>
@@ -49,7 +49,7 @@ const DetalleViaje = () => {
                 <div className={`sections-container ${esPropio && "propio"}`}>
                     <Detalle viaje={viaje}/>
                     
-                    {!enSubasta ? (
+                    {viaje && !enSubasta ? (
                         <>
                             <Chat id={id}/>
                             {esPropio && <TripStatusChanger id={id} viaje={viaje} refresh={() => fetchDetalleViaje()}/>}

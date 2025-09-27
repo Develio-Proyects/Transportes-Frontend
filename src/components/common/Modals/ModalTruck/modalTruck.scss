@@ -1,7 +1,7 @@
 .modalTruck{
     width: calc(100vw - 2rem);
     max-width: 450px;
-    max-height: 500px;
+    max-height: 90vh;
     padding: 3rem 1rem;
     overflow-y: scroll;
 
@@ -19,17 +19,13 @@
             flex-direction: column;
             gap: 1rem;
 
-            //Clases de MUI
-            .css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+            .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
                 border-color: var(--color-primary);
             }
-            .css-113d811-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+            .MuiInputLabel-root.Mui-focused {
                 color: var(--color-secondary);
             }
-            .css-zsp0bh-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
-                border-color: var(--color-primary);
-            }
-            .css-1k9hkw1-MuiButtonBase-root-MuiButton-root{
+            .MuiButton-root {
                 background-color: var(--color-primary);
             }
         }
