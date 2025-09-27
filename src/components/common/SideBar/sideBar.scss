@@ -20,12 +20,16 @@
         margin-bottom: 2rem;
         padding: 1rem 2rem;
         .sb-logo-container{
-            display: flex;
-            align-items: center;
-            color: var(--color-primary);
-            gap: 1rem;
-            img{
-                width: 2rem;
+            a{
+                display: flex;
+                align-items: center;
+                color: #fff;
+                font-family: "Ubuntu", sans-serif;
+                font-size: 22px;
+                gap: 1rem;
+                img{
+                    width: 2rem;
+                }
             }
         }
 

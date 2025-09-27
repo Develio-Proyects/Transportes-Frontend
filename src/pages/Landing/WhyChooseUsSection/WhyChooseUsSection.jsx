@@ -11,32 +11,21 @@ const WhyChooseUsSection = () => {
                             <img src="/whyEmpresa.jpg" alt="" />
                         </div>
                         <div className="whyChooseUsText">
-                            <h2>Por qué elegirnos como empresa</h2>
+                            <h2>Por qué elegirnos como Flota</h2>
                             <ul>
                                 <li>
                                     <span className='lineMark'></span>
-                                    Compará precios y elegí la mejor oferta.
+                                    Gestiona vehículos y conductores en un solo lugar.
                                 </li>
                                 <li>
                                     <span className='lineMark'></span>
-                                    Accedé a perfiles con historial y reputación.
+                                    Crea, asigna y hace seguimiento de los viajes.
                                 </li>
                                 <li>
                                     <span className='lineMark'></span>
-                                    Publicá un viaje y recibí propuestas al instante.
-                                </li>
-                                <li>
-                                    <span className='lineMark'></span>
-                                    Encontrá transportes en todo el país.
-                                </li>
-                                <li>
-                                    <span className='lineMark'></span>
-                                    Gestioná todos tus envíos desde un solo lugar.
+                                    Postúlate a viajes de otras flotas y aprovecha mejor la flota.
                                 </li>
                             </ul>
-                            <Link to="/signUp">
-                                Empezá ahora
-                            </Link>
                         </div>
                     </section>
                     <section className="whyChooseUsSection">
@@ -44,30 +33,21 @@ const WhyChooseUsSection = () => {
                             <img src="/whyConductor.jpg" alt="" />
                         </div>
                         <div className="whyChooseUsText">
-                            <h2>Por qué elegirnos como conductor</h2>
+                            <h2>Por qué elegirnos como Transportista</h2>
                             <ul>
                                 <li>
                                     <span className='lineMark'></span>
-                                    Accedé a múltiples viajes todos los días.
+                                    Administra su vehículo y disponibilidad.
                                 </li>
                                 <li>
                                     <span className='lineMark'></span>
-                                    Proponé tu precio y negociá directo.
+                                    Postúlate a viajes publicados por flotas.
                                 </li>
                                 <li>
                                     <span className='lineMark'></span>
-                                    Mejorá tu perfil y conseguí más trabajo.
-                                </li>
-                                <li>
-                                    <span className='lineMark'></span>
-                                    Elegí viajes según tu zona y disponibilidad.
-                                </li>
-                                <li>
-                                    <span className='lineMark'></span>
-                                    Conectá con empresas sin intermediarios.
+                                    Controla y sigue el estado de cada viaje hasta su finalización.
                                 </li>
                             </ul>
-                            <Link to="/signUp">Sumate Hoy</Link>
                         </div>
                     </section>
                 </section>

@@ -8,6 +8,14 @@ export class User {
         this.email = email
     }
 
+    getDashboardURL(){
+        if (this.rol === 'ADMINISTRADOR') {
+            return '/admin/usuarios'
+        }else{
+            return '/perfil/mis-viajes'
+        }
+    }
+
     getRoutes() {
         return privateRoutes
             .filter(route => route.roles.includes(this.rol))

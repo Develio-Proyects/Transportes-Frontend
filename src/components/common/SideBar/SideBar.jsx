@@ -55,8 +55,10 @@ const SideBar = () => {
         <aside ref={sidebarRef} className={"sideBar" + (isOpen ? " sb-open" : "")}>
             <div className="sb-head">
                 <div className="sb-logo-container">
-                    <img src="/logo.png" alt="Logo" />
-                    TRANSPORTA
+                    <Link to="/">
+                        <img src="/logo.png" alt="Logo" />
+                        Transporta
+                    </Link>
                 </div>
                 {isMobile && 
                     <button style={{fontSize: '1.2rem',color: '#fff', backgroundColor: 'transparent', border: 'none'}} 

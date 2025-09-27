@@ -8,8 +8,10 @@ const Footer = () => {
     <div className='footer-container'>
         <footer>
             <div className="footer-logo">
-                {/* <img src={} alt="logo" className='logo-img'/> */}
-                Transporta
+                <Link to={'/'}>
+                        <img src="/logo.png" alt="Logo" />
+                        Transporta
+                </Link>
             </div>
             <div className="footer-links">
                 <ul>
@@ -20,14 +22,11 @@ const Footer = () => {
                         <Link to={'/viajes'} className='footer-link'>Buscar viajes</Link>
                     </li>
                     <li className="footer-item">
-                        <Link to={'/login'} className='footer-link'>Publicar carga</Link>
-                    </li>
-                    <li className="footer-item">
-                        <Link to={'/'} className='footer-link'>Preguntas frecuentes</Link>
+                        <Link to={'/ayuda'} className='footer-link'>Preguntas frecuentes</Link>
                     </li>
                 </ul>
             </div>
-            <div className="footer-media">
+            {/* <div className="footer-media">
                 <ul>
                     <li className="media-item">
                         <a href="https://www.facebook.com/" target="_blank" className='media-link'>
@@ -40,7 +39,7 @@ const Footer = () => {
                         </a>
                     </li>
                 </ul>
-            </div>
+            </div> */}
             <span className="develio">Desarrollado por&nbsp;<a href='https://develio.dev' target='_blank'>Develio</a></span>
         </footer>
     </div>

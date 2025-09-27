@@ -14,14 +14,16 @@
         padding: 1rem;
 
         .logo-container{
-            display: flex;
-            align-items: center;
-            width: 8rem;
-            color: var(--color-primary);
-            .logo{
-                font-size: 2rem;
-                color: var(--color-light);
-                text-decoration: none;
+            a{
+                display: flex;
+                align-items: center;
+                color: #fff;
+                font-family: "Ubuntu", sans-serif;
+                font-size: 22px;
+                gap: 1rem;
+                img{
+                    width: 2rem;
+                }
             }
         }
     

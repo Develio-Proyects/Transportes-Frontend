@@ -19,8 +19,8 @@ const HowItWorksSection = () => {
                 <section className='howItWorksContainer'>
                     <div className="howItWorkIntro">
                         <span className='lineMark'></span>
-                        <h2>Como funciona TuTransporte?</h2>
-                        <p>Facilitamos la logística al vincular empresas que necesitan enviar productos con conductores listos para transportarlos. Todo en una experiencia eficiente y segura.</p>
+                        <h2>¿Cómo funciona Transporta?</h2>
+                        <p>Facilitamos la logística al vincular flotas de vehículos que necesitan enviar productos con conductores listos para transportarlos. Todo en una experiencia eficiente y segura.</p>
                     </div>
                     <div className="howItWorksInfo">
                         <Accordion className='howItWorksAccordion' expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -29,11 +29,10 @@ const HowItWorksSection = () => {
                                 aria-controls="panel1-content"
                                 id="panel1-header"
                             >
-                                <Typography component="span" className='text-d'><ApartmentIcon className='accordion-icon'/>Para empresas</Typography>
+                                <Typography component="span" className='text-d'><ApartmentIcon className='accordion-icon'/>Para flota de transportes</Typography>
                             </AccordionSummary>
                             <AccordionDetails className='accordion-text'>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                malesuada lacus ex, sit amet blandit leo lobortis eget.
+                                Permite gestionar su flota de vehículos y conductores, crear viajes con sus detalles, seleccionar transportistas para los viajes publicados y postularse a viajes creados por otras flotas.
                             </AccordionDetails>
                         </Accordion>
                         <Accordion className='howItWorksAccordion' expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
@@ -42,14 +41,13 @@ const HowItWorksSection = () => {
                                 aria-controls="panel2-content"
                                 id="panel2-header"
                             >
-                                <Typography component="span" className='text-d'><LocalShippingIcon className='accordion-icon'/>Para conductores</Typography>
+                                <Typography component="span" className='text-d'><LocalShippingIcon className='accordion-icon'/>Para transportistas</Typography>
                             </AccordionSummary>
                             <AccordionDetails className='accordion-text'>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                malesuada lacus ex, sit amet blandit leo lobortis eget.
+                                Permite registrar y administrar su vehículo, postularse a viajes creados por flotas y realizar el seguimiento de cada operación hasta su finalización.
                             </AccordionDetails>
                         </Accordion>
-                        <Accordion className='howItWorksAccordion' expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+                        {/* <Accordion className='howItWorksAccordion' expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel3-content"
@@ -61,7 +59,7 @@ const HowItWorksSection = () => {
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                                 malesuada lacus ex, sit amet blandit leo lobortis eget.
                             </AccordionDetails>
-                        </Accordion>
+                        </Accordion> */}
                     </div>
                 </section>
             </div>
