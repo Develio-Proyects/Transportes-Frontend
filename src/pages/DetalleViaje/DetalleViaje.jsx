@@ -49,7 +49,7 @@ const DetalleViaje = () => {
                 <div className={`sections-container ${esPropio && "propio"}`}>
                     <Detalle viaje={viaje}/>
                     
-                    {!enSubasta ? (
+                    {viaje && !enSubasta ? (
                         <>
                             <Chat id={id}/>
                             {esPropio && <TripStatusChanger id={id} viaje={viaje} refresh={() => fetchDetalleViaje()}/>}
