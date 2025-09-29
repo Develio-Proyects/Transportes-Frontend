@@ -89,12 +89,19 @@ const Ayuda = () => {
                             <span className="data"><strong>Instagram:</strong> @transportarg</span>
                         </div>
                     </section>
-                    {/* <section className="tutorials">
+                    <section className="tutorials">
                         <h2 className="ayuda-title">Videos tutoriales</h2>
                         <div className="tutorials-container">
-                            
+                            <iframe 
+                                className='tutorial-video'
+                                src="https://www.youtube.com/embed/8pE1wWHQqbM" 
+                                title="Tutorial" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                                </iframe>
                         </div>
-                    </section> */}
+                    </section>
                 </div>
             </div>
         </main>

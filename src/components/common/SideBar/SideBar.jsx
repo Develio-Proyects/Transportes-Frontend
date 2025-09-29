@@ -8,6 +8,8 @@ import { useAuth } from '../../../context/AuthContext'
 import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom'
 import { useModal } from '../../../context/ModalContext'
+import { IconButton } from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close';
 
 const SideBar = () => {
     const { user } = useAuth()
@@ -26,7 +28,7 @@ const SideBar = () => {
     }
 
     const handleUserOptions = () => {
-        setUserOptions(!userOptions)
+        if(isAuthenticated) setUserOptions(!userOptions)
     }
 
     useEffect(() => {
@@ -60,9 +62,10 @@ const SideBar = () => {
                         Transporta
                     </Link>
                 </div>
-                {isMobile && 
-                    <button style={{fontSize: '1.2rem',color: '#fff', backgroundColor: 'transparent', border: 'none'}} 
-                    onClick={closeSidebar}>x</button>
+                {isMobile &&
+                    <IconButton className='cross' onClick={closeSidebar}>
+                        <CloseIcon />
+                    </IconButton>
                 }
             </div>
 
@@ -88,7 +91,9 @@ const SideBar = () => {
 
                 { isAuthenticated && <span className='lineSpace'></span> }
 
-                <SideBarBtn to={"/ayuda"} label="Ayuda" onClick={handleNavClick}/>
+                <ul className="sb-nav-list">
+                    <SideBarBtn to={"/ayuda"} label="Ayuda" onClick={handleNavClick}/>
+                </ul>
                 
             </nav>
             <div ref={userRef} className='user-control' onClick={handleUserOptions}>

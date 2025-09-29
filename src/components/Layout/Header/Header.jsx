@@ -33,9 +33,9 @@ const Header = () => {
                 <div className={menuWidgetOpen ? "nav-open nav-container": "nav-container"}>
                     {isMobile && 
                         <div className="perfil">
-                            <Link to={'/login'} onClick={closeMenu} className="perfil-link">
+                            <Link to={user != null ? user?.getDashboardURL() : '/login'} onClick={closeMenu} className="perfil-link">
                                 <AccountCircleIcon className="perfil-icon" /> 
-                                <PrimaryButton>Ingresar</PrimaryButton>
+                                <PrimaryButton>{user != null ? "Mi perfíl" : "Ingresar"}</PrimaryButton>
                             </Link>
                         </div>
                     }

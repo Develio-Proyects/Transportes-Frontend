@@ -6,7 +6,6 @@
     top: 0;
     left: 0;
     width: 100%;
-    max-width: 280px;
     height: 100dvh;
     background-color: var(--color-dark);
     transition: transform .1s ease-in;
@@ -18,7 +17,7 @@
         justify-content: space-between;
         height: 4rem;
         margin-bottom: 2rem;
-        padding: 1rem 2rem;
+        padding: 1rem;
         .sb-logo-container{
             a{
                 display: flex;
@@ -31,6 +30,10 @@
                     width: 2rem;
                 }
             }
+        }
+
+        .cross{
+            color: #fff;
         }
 
         .toggle-btn{
@@ -52,7 +55,7 @@
         .sb-nav-list{
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: start;
             width: 100%;
 
             & > *:last-child{
@@ -132,6 +135,16 @@
 }
 .sb-open{
     transform: translateX(0%);
+}
+
+@media (min-width: 350px) {
+    .sideBar{
+        max-width: 280px;
+
+        .cross{
+            display: none;
+        }
+    }
 }
 
 @media (min-width: 1024px) {
