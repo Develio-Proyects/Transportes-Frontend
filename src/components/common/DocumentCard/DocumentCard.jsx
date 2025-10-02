@@ -4,7 +4,6 @@ import { Button } from '@mui/material'
 
 const DocumentCard = ({document, employees, refresh}) => {
     const {openModal} = useModal()
-    console.log(document);
     
     return (
         <article className='documentCard'>

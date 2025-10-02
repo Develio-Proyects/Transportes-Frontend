@@ -1,17 +1,27 @@
 import './modalPayment.scss'
-import { Button } from '@mui/material'
+import { Button, CircularProgress  } from '@mui/material'
 import PrimaryButton from '../../PrimaryButton/PrimaryButton'
 import { useEffect, useState } from 'react'
 import { getOfferQuote } from '../../../../api/services/viajesService'
 import { payTrip } from '../../../../api/services/paymentService'
+import { useModal } from '../../../../context/ModalContext'
 
 const ModalPayment = ({idOffer}) => {
+    const {closeModal} = useModal()
     const [price, setPrice] = useState(null)
+    const [loading, setLoading] = useState(false)
     
     const handlePay = async () => {
-        const response = await payTrip(idOffer)
-        if(response.status === 200){
-            window.open(response.data.init_point, "_blank")
+        try {
+            setLoading(true)
+            const response = await payTrip(idOffer)
+            if(response.status === 200){
+                window.open(response.data.init_point, "_blank")
+            }
+        } catch (err) {
+            console.error("Error en el pago:", err)
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -42,9 +52,9 @@ const ModalPayment = ({idOffer}) => {
                 <span className="modal-text">Tarifa de servicio por conexión con el transportista</span>
             </section>
             <div className="modal-controls">
-                <Button variant='contained' className='cancelBtn'>Cancelar</Button>
+                <Button variant='contained' className='cancelBtn' onClick={closeModal}>Cancelar</Button>
                 <PrimaryButton onClick={()=> handlePay()}>
-                    Pagar ahora
+                    {loading ? <CircularProgress size={20} color="inherit" /> : "Pagar ahora"}
                 </PrimaryButton>
             </div>
         </div>
