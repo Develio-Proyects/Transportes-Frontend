@@ -65,14 +65,14 @@ const [viajesPorPagina, setViajesPorPagina] = useState({})
                     Crear publicación
                 </PrimaryButton>
 
-                <div className="filterSortControls">
+                {/* <div className="filterSortControls">
                     <IconButton Icon={FilterListIcon}>Ordenar por</IconButton>
                     <IconButton Icon={FilterAltIcon}>Filtrar</IconButton>
-                </div>
+                </div> */}
                 {viajes.length > 0 ? (
                     <div ref={containerRef} className="cards-container">
                         {Array.isArray(viajes) && 
-                            viajes.map(viaje => <ViajeCard key={viaje.id} viaje={viaje} from='/perfil/publicaiones'/>)
+                            viajes.map(viaje => <ViajeCard key={viaje.id} viaje={viaje} from='/perfil/publicaciones'/>)
                         }
                     </div>
                     ):(

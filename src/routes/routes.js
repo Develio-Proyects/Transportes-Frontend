@@ -77,7 +77,7 @@ export const privateRoutes = [
         roles: [ROLES.FLOTA],
         routes: [
             { 
-                path: "/perfil/publicaiones", 
+                path: "/perfil/publicaciones", 
                 Element: MisPublicaicones,
                 label: "Publicaciones" 
             }

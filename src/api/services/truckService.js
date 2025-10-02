@@ -10,7 +10,13 @@ export const getTrucks = async () => {
                 headers: { Authorization: `Bearer ${token}` }
         })
     } catch (error) {
-        return error
+        if (error.response) {
+            throw error.response;
+        } else if (error.request) {
+            throw { status: 500, data: { message: 'Error de conexión' } };
+        } else {
+            throw { status: 500, data: { message: 'Error inesperado' } };
+        }
     }
 }
 
@@ -29,10 +35,15 @@ export const createTruck = async (data) => {
 				headers: token ? { Authorization: `Bearer ${token}` } : {},
 			}
 		)
-  
       	return response.data
     } catch (error) {
-        return error.response || error
+        if (error.response) {
+            throw error.response;
+        } else if (error.request) {
+            throw { status: 500, data: { message: 'Error de conexión' } };
+        } else {
+            throw { status: 500, data: { message: 'Error inesperado' } };
+        }
     }
 }
 
@@ -51,9 +62,14 @@ export const editTruck = async (id, data) => {
 				headers: token ? { Authorization: `Bearer ${token}` } : {},
 			}
 		)
-  
       	return response.data
     } catch (error) {
-        return error.response || error
+        if (error.response) {
+            throw error.response;
+        } else if (error.request) {
+            throw { status: 500, data: { message: 'Error de conexión' } };
+        } else {
+            throw { status: 500, data: { message: 'Error inesperado' } };
+        }
     }
 }

@@ -10,7 +10,13 @@ export const getViajes = async (page, size) => {
                 headers: { Authorization: `Bearer ${token}` }
         })
     } catch (error) {
-        return error
+        if (error.response) {
+            throw error.response
+        } else if (error.request) {
+            throw { status: 500, data: { message: 'Error de conexión' } }
+        } else {
+            throw { status: 500, data: { message: 'Error inesperado' } }
+        }
     }
 }
 
@@ -26,9 +32,9 @@ export const createTrip = async (values) => {
                 cargoType: values.cargoType,
                 weight: values.weight,
                 dimensions: {
-                  width: values.dimensions.width,
-                  high: values.dimensions.high,
-                  long: values.dimensions.long
+                    width: values.dimensions.width,
+                    high: values.dimensions.high,
+                    long: values.dimensions.long
                 },
                 observations: values.observations
             },
@@ -36,7 +42,13 @@ export const createTrip = async (values) => {
                 headers: { Authorization: `Bearer ${token}` }
         })
     } catch (error) {
-        return error
+        if (error.response) {
+            throw error.response;
+        } else if (error.request) {
+            throw { status: 500, data: { message: 'Error de conexión' } }
+        } else {
+            throw { status: 500, data: { message: 'Error inesperado' } }
+        }
     }
 }
 
@@ -48,7 +60,13 @@ export const getDetalleViaje = async (id) => {
                 headers: { Authorization: `Bearer ${token}` }
         })
     } catch (error) {
-        return error
+        if (error.response) {
+            return error.response;
+        } else if (error.request) {
+            return { status: 500, data: { message: 'Error de conexión' } }
+        } else {
+            return { status: 500, data: { message: 'Error inesperado' } }
+        }
     }
 }
 
@@ -59,7 +77,13 @@ export const getMisViajes = async (page, size) => {
             headers: { Authorization: `Bearer ${token}`}
         })
     } catch (error) {
-        return error
+        if (error.response) {
+            throw error.response;
+        } else if (error.request) {
+            throw { status: 500, data: { message: 'Error de conexión' } }
+        } else {
+            throw { status: 500, data: { message: 'Error inesperado' } }
+        }
     }
 }
 
@@ -70,7 +94,13 @@ export const getMisPublicaciones = async (page, size) => {
             headers: { Authorization: `Bearer ${token}`}
         })
     } catch (error) {
-        return error
+        if (error.response) {
+            throw error.response;
+        } else if (error.request) {
+            throw { status: 500, data: { message: 'Error de conexión' } }
+        } else {
+            throw { status: 500, data: { message: 'Error inesperado' } }
+        }
     }
 }
 
@@ -82,7 +112,13 @@ export const getOfferQuote = async (offerId) => {
                 headers: { Authorization: `Bearer ${token}` }
         })
     } catch (error) {
-        return error
+        if (error.response) {
+            throw error.response;
+        } else if (error.request) {
+            throw { status: 500, data: { message: 'Error de conexión' } }
+        } else {
+            throw { status: 500, data: { message: 'Error inesperado' } }
+        }
     }
 }
 
@@ -95,7 +131,13 @@ export const sendOffer = async (idTrip, mount) => {
                 headers: { Authorization: `Bearer ${token}` }
         })
     } catch (error) {
-        return error
+        if (error.response) {
+            throw error.response;
+        } else if (error.request) {
+            throw { status: 500, data: { message: 'Error de conexión' } }
+        } else {
+            throw { status: 500, data: { message: 'Error inesperado' } }
+        }
     }
 }
 
@@ -108,6 +150,12 @@ export const changeTripStatus = async (id, state) => {
                 headers: { Authorization: `Bearer ${token}` }
         })
     } catch (error) {
-        return error
+        if (error.response) {
+            throw error.response;
+        } else if (error.request) {
+            throw { status: 500, data: { message: 'Error de conexión' } }
+        } else {
+            throw { status: 500, data: { message: 'Error inesperado' } }
+        }
     }
 }

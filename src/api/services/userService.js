@@ -11,6 +11,12 @@ export const signup = async (credencials) => {
         }
         return response
     } catch (error) {
-        return error
+        if (error.response) {
+            throw error.response;
+        } else if (error.request) {
+            throw { status: 500, data: { message: 'Error de conexión' } };
+        } else {
+            throw { status: 500, data: { message: 'Error inesperado' } };
+        }
     }
 }

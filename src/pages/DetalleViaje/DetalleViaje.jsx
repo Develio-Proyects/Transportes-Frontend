@@ -1,7 +1,7 @@
 import './detalleViaje.scss'
 import './DetalleViajeSections/detalleViajeSections.scss'
 import { useEffect, useState } from "react"
-import { Link, useLocation, useParams } from "react-router-dom"
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom"
 import { getDetalleViaje } from "../../api/services/viajesService"
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import MenuButton from '../../components/common/SideBarButton/MenuButton'
@@ -15,9 +15,14 @@ import TripStatusChanger from './DetalleViajeSections/TripStatusChanger/TripStat
 
 const DetalleViaje = () => {
     const { id } = useParams()
-    const location = useLocation();
-    const esPropio = location.state?.esPropio === true || location.state.from === "/perfil/publicaiones"
-    const from = useLocation().state?.from ?? false
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const esPropio =
+        location.state?.esPropio === true ||
+        location.state?.from === "/perfil/publicaciones"
+    const from = location.state?.from ?? "/"
+
     const [viaje, setViaje] = useState(null)
     const [enSubasta, setEnSubasta] = useState(false)
     const isDesktop = useWindowResolution() < 1024
@@ -25,9 +30,11 @@ const DetalleViaje = () => {
     const fetchDetalleViaje = async () => {
         const response = await getDetalleViaje(id)
         
-        if (response.status === 200) {
+        if (response.status === 200 && response.data) {
             setViaje(response.data)
             setEnSubasta(response.data.state === "En subasta")
+        } else {
+            navigate("/viajes")
         }
     }
 

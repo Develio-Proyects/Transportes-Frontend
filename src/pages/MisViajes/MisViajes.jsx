@@ -52,10 +52,10 @@ const MisViajes = () => {
                     </div>
                     { isDesktop && <MenuButton theme="dark"/> }
                 </header>
-                <div className="filterSortControls">
+                {/* <div className="filterSortControls">
                     <IconButton Icon={FilterListIcon}>Ordenar por</IconButton>
                     <IconButton Icon={FilterAltIcon}>Filtrar</IconButton>
-                </div>
+                </div> */}
                 {viajes.length > 0 ? (
                     <div ref={containerRef} className="cards-container">
                         {Array.isArray(viajes) && 
