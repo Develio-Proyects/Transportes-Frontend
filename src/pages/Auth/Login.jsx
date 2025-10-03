@@ -36,11 +36,10 @@ const Login = () => {
             try {
                 const response = await loginProcess(values)
                 if(response.status !== 200){
-                    setStatus('Usuario o contraseña incorrecta')
+                    setStatus(response.data.message)
                 }
-                
             } catch (e) {
-                setStatus('Error en la autenticación -' + e.message)
+                setStatus('Error en la autenticación')
             } finally {
                 setSubmitting(false)
                 actions.resetForm()

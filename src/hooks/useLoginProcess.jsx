@@ -29,8 +29,8 @@ export const useLoginProcess = () => {
                 }
             }
             return response
-        } catch (e) {
-            return console.error(e)
+        } catch (error) {
+            return error
         }
     }
 
