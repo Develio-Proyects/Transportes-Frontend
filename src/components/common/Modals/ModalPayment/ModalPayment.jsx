@@ -16,7 +16,7 @@ const ModalPayment = ({idOffer}) => {
             setLoading(true)
             const response = await payTrip(idOffer)
             if(response.status === 200){
-                window.open(response.data.init_point)
+                window.open(response.data.init_point, "_self")
             }
         } catch (err) {
             console.error("Error en el pago:", err)
