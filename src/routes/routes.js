@@ -96,11 +96,11 @@ export const privateRoutes = [
                 Element: Pagos,
                 label: "Pagos" 
             },
-            { 
-                path: "/admin/configuracion", 
-                Element: Configuracion,
-                label: "Configuración" 
-            },
+            // { 
+            //     path: "/admin/configuracion", 
+            //     Element: Configuracion,
+            //     label: "Configuración" 
+            // },
         ],
     }
 ]

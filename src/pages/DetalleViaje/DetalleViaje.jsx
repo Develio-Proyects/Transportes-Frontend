@@ -20,8 +20,9 @@ const DetalleViaje = () => {
 
     const esPropio =
         location.state?.esPropio === true ||
-        location.state?.from === "/perfil/publicaciones"
-    const from = location.state?.from ?? "/"
+        location.state?.from === "/perfil/publicaciones" ||
+        location.state?.from === "/perfil/mis-viajes"
+    const from = location.state?.from ?? "/viajes"
 
     const [viaje, setViaje] = useState(null)
     const [enSubasta, setEnSubasta] = useState(false)
@@ -37,7 +38,7 @@ const DetalleViaje = () => {
             navigate("/viajes")
         }
     }
-
+    
     useEffect(() => {
         fetchDetalleViaje()
     }, [])
