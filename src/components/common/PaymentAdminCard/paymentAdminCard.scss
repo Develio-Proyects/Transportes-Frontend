@@ -1,0 +1,93 @@
+.payment-card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--color-light-gray);
+    border-radius: 5px;
+    background-color: #fff;
+
+    .payment-ppl{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: .5rem;
+        margin-bottom: .5rem;
+
+    }
+    .payment-info{
+        .payment-section{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: .5rem;
+    
+            .title{
+                font-size: 14px;
+                color: var(--color-gray);
+            }
+            .text{
+                display: -webkit-box;
+                font-size: 14px;
+                font-weight: 500;
+                -webkit-line-clamp: 1; 
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: normal;
+            }
+
+            .paymentId{
+                font-size: 16px;
+                color: var(--color-primary);
+            }
+            .paymentMount{
+                font-size: 16px;
+                font-weight: 500;
+                color: var(--color-gray);
+            }
+        }
+    }
+}
+
+@media (min-width: 425px){
+    .payment-card{
+        .payment-info{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+
+            .payment-section:first-child{
+                grid-column: 1/3;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px){
+    .payment-card{
+        padding: 8px 1rem;
+        .payment-info{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            row-gap: .5rem;
+
+            .payment-section:first-child{
+                grid-column: 1/5;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px){
+    .payment-card{
+        .payment-info{
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: 1fr;
+
+            .payment-section:first-child{
+                grid-column: 1/2;
+            }
+        }
+    }
+}

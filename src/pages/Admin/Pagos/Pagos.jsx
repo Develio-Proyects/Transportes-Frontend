@@ -36,7 +36,7 @@ const Pagos = () => {
                         gap: '1rem'
                     }}>
                         {Array.isArray(payments) && 
-                            payments.map((payment, k) => <PaymentAdminCard key={k} payment={payment}/>)
+                            payments.map((payment, k) => <PaymentAdminCard key={k} payment={payment} n={k}/>)
                         }
                     </div>
                     ):(
