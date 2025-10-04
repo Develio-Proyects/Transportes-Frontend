@@ -49,10 +49,8 @@ export const editDocument = async (id, values) => {
     const token = localStorage.getItem("token")
     try {
         const formData = new FormData()
-        formData.append(
-            "idUser", values.idUser,
-            "name", values.name,
-        )
+        formData.append("idUser", values.idUser)
+        formData.append("name", values.name)
         values.image && formData.append("image", values.image)
         
         return await axios.put(`${API_URL_DOCUMENT}/${id}`, formData, {
