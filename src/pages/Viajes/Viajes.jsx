@@ -7,6 +7,7 @@ import { getViajes } from '../../api/services/viajesService'
 import { Pagination } from '@mui/material'
 import { useWindowResolution } from '../../hooks/useWindowResolution'
 import MenuButton from '../../components/common/MenuButton/MenuButton'
+import { alerta } from '../../utils/alerts'
 
 const LIMIT = 9
 
@@ -24,14 +25,18 @@ const Viajes = () => {
             return
         }
         const response = await getViajes(pagina, LIMIT)
-        
-        setViajesPorPagina(prev => ({
-            ...prev,
-            [pagina]: response.data.content
-        }))
 
-        setViajes(response.data?.content)
-        setTotalViajes(response.data?.totalElements)
+        if(response.status === 200){
+            setViajesPorPagina(prev => ({
+                ...prev,
+                [pagina]: response.data.content
+            }))
+    
+            setViajes(response.data?.content)
+            setTotalViajes(response.data?.totalElements)
+        }else{
+            alerta("Ocurrió un error", response.data.message, "error")
+        }
     }
 
     const handleChange = (_, value) => {

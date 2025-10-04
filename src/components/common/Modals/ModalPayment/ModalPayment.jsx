@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { getOfferQuote } from '../../../../api/services/viajesService'
 import { payTrip } from '../../../../api/services/paymentService'
 import { useModal } from '../../../../context/ModalContext'
+import { alerta } from '../../../../utils/alerts'
 
 const ModalPayment = ({idOffer}) => {
     const {closeModal} = useModal()
@@ -12,17 +13,15 @@ const ModalPayment = ({idOffer}) => {
     const [loading, setLoading] = useState(false)
     
     const handlePay = async () => {
-        try {
-            setLoading(true)
-            const response = await payTrip(idOffer)
-            if(response.status === 200){
-                window.open(response.data.init_point, "_self")
-            }
-        } catch (err) {
-            console.error("Error en el pago:", err)
-        } finally {
-            setLoading(false)
-        }
+        setLoading(true)
+        const response = await payTrip(idOffer)
+        if(response.status === 200){
+            window.open(response.data.init_point, "_self")
+        }else{
+            alerta("Ocurrió un error", response.data.message, "error")
+            closeModal()
+        } 
+        setLoading(false)
     }
 
     useEffect(() => {

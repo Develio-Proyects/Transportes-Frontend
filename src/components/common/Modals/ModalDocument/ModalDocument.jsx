@@ -9,6 +9,7 @@ import { useModal } from '../../../../context/ModalContext'
 import { useEffect, useState } from 'react'
 import { DOCUMENTOS } from '../../../../api/models/documentos';
 import { createDocument, editDocument } from '../../../../api/services/documentService';
+import { alerta } from '../../../../utils/alerts';
 
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -46,12 +47,16 @@ const ModalDocument = ({ idUser, document, employees, refresh }) => {
         },
         validationSchema: Yup.object().shape(validationSchemaFields),
         onSubmit: async (values, actions) => {
+            let response
             if (document === undefined) {
-                await createDocument(values)
+                response = await createDocument(values)
             } else {
-                await editDocument(document.id, values)
+                response = await editDocument(document.id, values)
             }
-
+            
+            if(response.status === 200) alerta("Acción realizada", response.data.message, "success")
+            else alerta("Ocurrió un error", response.data.message, "error")
+         
             refresh()
             closeModal()
         }

@@ -6,6 +6,7 @@ import PrimaryButton from '../../PrimaryButton/PrimaryButton'
 import { useModal } from '../../../../context/ModalContext'
 import { createTruck, editTruck } from '../../../../api/services/truckService'
 import { useEffect } from 'react'
+import { alerta } from '../../../../utils/alerts'
 
 const ModalTruck = ({id, vehicles, refresh}) => {
     const {closeModal} = useModal()
@@ -27,12 +28,17 @@ const ModalTruck = ({id, vehicles, refresh}) => {
             .required("Patente requerida"),
         }),
         onSubmit: async (values, actions) => {
+            let response
             values.patent = values.patent.replace(/-/g, "")
             if(id !== undefined){
-                await editTruck(id, values)
+                response = await editTruck(id, values)
             }else{
-                await createTruck(values)
+                response = await createTruck(values)
             }
+            
+            if(response.status === 200) alerta("Acción realizada", response.data.message, "success")
+            else alerta("Ocurrió un error", response.data.message, "error")
+
             refresh()
             closeModal()
         }

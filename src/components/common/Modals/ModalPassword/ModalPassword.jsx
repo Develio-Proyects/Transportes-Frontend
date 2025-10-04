@@ -5,6 +5,7 @@ import * as Yup from 'yup'
 import PrimaryButton from '../../PrimaryButton/PrimaryButton'
 import { useModal } from '../../../../context/ModalContext'
 import { updatePassword } from '../../../../api/services/authService'
+import { alerta } from '../../../../utils/alerts'
 
 const ModalPassword = () => {
     const {closeModal} = useModal()
@@ -31,15 +32,12 @@ const ModalPassword = () => {
                 )
         }),
         onSubmit: async (values, actions) => {
-            try {
-                await updatePassword(values);
-                alert("Contraseña cambiada exitosamente");
-            } catch (error) {
-                alert(error.data.message)
-            }
-            finally{
-                closeModal()
-            }
+            const response = await updatePassword(values)
+            
+            if(response.status === 200) alerta("Acción realizada", response.data.message, "success")
+            else alerta("Ocurrió un error", response.data.message, "error")
+            
+            closeModal()
         }
     })
 

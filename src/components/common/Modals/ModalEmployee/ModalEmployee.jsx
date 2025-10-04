@@ -5,6 +5,7 @@ import * as Yup from 'yup'
 import PrimaryButton from '../../PrimaryButton/PrimaryButton'
 import { useModal } from '../../../../context/ModalContext'
 import { createEmployee } from '../../../../api/services/employeeService'
+import { alerta } from '../../../../utils/alerts'
 
 const ModalEmployee = ({refresh}) => {
     const {closeModal} = useModal()
@@ -19,16 +20,13 @@ const ModalEmployee = ({refresh}) => {
             lastname: Yup.string().required("Apellido requerido")
         }),
         onSubmit: async (values, actions) => {
-            try {
-                await createEmployee(values);
-                alert("Empleado agregado");
-            } catch (error) {
-                alert(error.data.message)
-            }
-            finally{
-                refresh()
-                closeModal()
-            }
+            const response = await createEmployee(values);
+                
+            if(response.status === 200) alerta("Acción realizada", response.data.message, "success")
+            else alerta("Ocurrió un error", response.data.message, "error")
+        
+            refresh()
+            closeModal()
         }
     })
 

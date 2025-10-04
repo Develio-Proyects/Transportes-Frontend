@@ -3,17 +3,16 @@ import ChangeCircleIcon from '@mui/icons-material/ChangeCircle'
 import { getNextState, getEstadoKeyFromText, getStateFromText, ESTADOS } from '../../../../api/models/estado'
 import { changeTripStatus } from '../../../../api/services/viajesService'
 import { Button } from '@mui/material'
+import { alerta } from '../../../../utils/alerts'
 
 const TripStatusChanger = ({id, viaje, refresh}) => {
 
     const changeState = async (state) => {
-        try{
-            let nextState = getEstadoKeyFromText(state || getNextState(viaje?.state))
-            await changeTripStatus(id, nextState)
-            refresh()
-        }catch(error){
-            alert("Error")
-        }
+        let nextState = getEstadoKeyFromText(state || getNextState(viaje?.state))
+        const response = await changeTripStatus(id, nextState)
+        if(response.status === 200) alerta("Estado actualizado", response.data.message, "success")
+        else alerta("Ocurrió un error", response.data.message, "error")
+        refresh()
     }
 
     const getColor = () => ESTADOS[getStateFromText(getNextState(viaje?.state))]?.color

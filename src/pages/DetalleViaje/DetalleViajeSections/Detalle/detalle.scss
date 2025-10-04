@@ -51,10 +51,18 @@
         gap: .5rem;
         .rate{
             display: flex;
+            align-items: center;
             gap: .5rem;
             font-size: clamp(16px, 5vw, 18px);
             font-weight: 800;
+
+            &.no-offer span{
+                font-size: 14px;
+                color: black;
+                font-weight: 400;
+            }
         }
+        
         .actual-rate{
             .subtitle{
                 margin-bottom: 0;

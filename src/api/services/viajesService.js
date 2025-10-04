@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "axios"
 
 const API_URL = import.meta.env.VITE_API_URL + '/api/trip'
 
@@ -10,12 +10,10 @@ export const getViajes = async (page, size) => {
                 headers: { Authorization: `Bearer ${token}` }
         })
     } catch (error) {
-        if (error.response) {
-            throw error.response
-        } else if (error.request) {
-            throw { status: 500, data: { message: 'Error de conexión' } }
-        } else {
-            throw { status: 500, data: { message: 'Error inesperado' } }
+        if (error.status >= 400 && error.status <= 499) {
+            return error.response
+        } else{
+            return { status: 500, data: { message: 'Error interno del sistema' } }
         }
     }
 }
@@ -42,12 +40,10 @@ export const createTrip = async (values) => {
                 headers: { Authorization: `Bearer ${token}` }
         })
     } catch (error) {
-        if (error.response) {
-            throw error.response;
-        } else if (error.request) {
-            throw { status: 500, data: { message: 'Error de conexión' } }
-        } else {
-            throw { status: 500, data: { message: 'Error inesperado' } }
+        if (error.status >= 400 && error.status <= 499) {
+            return error.response
+        } else{
+            return { status: 500, data: { message: 'Error interno del sistema' } }
         }
     }
 }
@@ -60,12 +56,10 @@ export const getDetalleViaje = async (id) => {
                 headers: { Authorization: `Bearer ${token}` }
         })
     } catch (error) {
-        if (error.response) {
-            return error.response;
-        } else if (error.request) {
-            return { status: 500, data: { message: 'Error de conexión' } }
-        } else {
-            return { status: 500, data: { message: 'Error inesperado' } }
+        if (error.status >= 400 && error.status <= 499) {
+            return error.response
+        } else{
+            return { status: 500, data: { message: 'Error interno del sistema' } }
         }
     }
 }
@@ -77,12 +71,10 @@ export const getMisViajes = async (page, size) => {
             headers: { Authorization: `Bearer ${token}`}
         })
     } catch (error) {
-        if (error.response) {
-            throw error.response;
-        } else if (error.request) {
-            throw { status: 500, data: { message: 'Error de conexión' } }
-        } else {
-            throw { status: 500, data: { message: 'Error inesperado' } }
+        if (error.status >= 400 && error.status <= 499) {
+            return error.response
+        } else{
+            return { status: 500, data: { message: 'Error interno del sistema' } }
         }
     }
 }
@@ -94,12 +86,10 @@ export const getMisPublicaciones = async (page, size) => {
             headers: { Authorization: `Bearer ${token}`}
         })
     } catch (error) {
-        if (error.response) {
-            throw error.response;
-        } else if (error.request) {
-            throw { status: 500, data: { message: 'Error de conexión' } }
-        } else {
-            throw { status: 500, data: { message: 'Error inesperado' } }
+        if (error.status >= 400 && error.status <= 499) {
+            return error.response
+        } else{
+            return { status: 500, data: { message: 'Error interno del sistema' } }
         }
     }
 }
@@ -112,12 +102,10 @@ export const getOfferQuote = async (offerId) => {
                 headers: { Authorization: `Bearer ${token}` }
         })
     } catch (error) {
-        if (error.response) {
-            throw error.response;
-        } else if (error.request) {
-            throw { status: 500, data: { message: 'Error de conexión' } }
-        } else {
-            throw { status: 500, data: { message: 'Error inesperado' } }
+        if (error.status >= 400 && error.status <= 499) {
+            return error.response
+        } else{
+            return { status: 500, data: { message: 'Error interno del sistema' } }
         }
     }
 }
@@ -131,12 +119,10 @@ export const sendOffer = async (idTrip, mount) => {
                 headers: { Authorization: `Bearer ${token}` }
         })
     } catch (error) {
-        if (error.response) {
-            throw error.response;
-        } else if (error.request) {
-            throw { status: 500, data: { message: 'Error de conexión' } }
-        } else {
-            throw { status: 500, data: { message: 'Error inesperado' } }
+        if (error.status >= 400 && error.status <= 499) {
+            return error.response
+        } else{
+            return { status: 500, data: { message: 'Error interno del sistema' } }
         }
     }
 }
@@ -150,12 +136,10 @@ export const changeTripStatus = async (id, state) => {
                 headers: { Authorization: `Bearer ${token}` }
         })
     } catch (error) {
-        if (error.response) {
-            throw error.response;
-        } else if (error.request) {
-            throw { status: 500, data: { message: 'Error de conexión' } }
-        } else {
-            throw { status: 500, data: { message: 'Error inesperado' } }
+        if (error.status >= 400 && error.status <= 499) {
+            return error.response
+        } else{
+            return { status: 500, data: { message: 'Error interno del sistema' } }
         }
     }
 }

@@ -34,9 +34,11 @@ const Detalle = ({viaje}) => {
                     <h3 className='subtitle'>Tarifa original:</h3> 
                     <span>${viaje?.initialPrice}</span>
                 </div>
-                <div className="actual-rate rate">
-                    <h3 className='subtitle'>Oferta más baja:</h3> 
-                    <span>${viaje?.lowerOffer}</span>
+                <div className={`actual-rate rate ${viaje?.lowerOffer === null ? 'no-offer' : ''}`}>
+                    <h3 className="subtitle">Oferta más baja:</h3>
+                    <span>
+                        {viaje?.lowerOffer !== null ? "$" + viaje?.lowerOffer : "Aún no hay ofertas"}
+                    </span>
                 </div>
             </div>
         </section>

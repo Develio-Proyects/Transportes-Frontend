@@ -4,6 +4,7 @@ import { Button, FormControl, FormHelperText, TextField } from "@mui/material"
 import { useFormik } from "formik"
 import * as Yup from 'yup'
 import { sendOffer } from '../../../../api/services/viajesService'
+import { alerta } from '../../../../utils/alerts'
 
 const HacerOferta = ({viaje, id, onOfertaHecha}) => {
     const { handleSubmit, handleChange, handleBlur, touched, values, errors, setSubmitting } = useFormik({
@@ -41,8 +42,10 @@ const HacerOferta = ({viaje, id, onOfertaHecha}) => {
         onSubmit: async (values, actions) => {
             const response = await sendOffer(id, values.oferta)
             if(response.status === 200){
+                alerta("Oferta realizada", response.data.message, "success")
                 onOfertaHecha()
-            }
+            } 
+            else alerta("Ocurrió un error", response.data.message, "error")
             actions.resetForm()
         }
 

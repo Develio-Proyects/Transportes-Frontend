@@ -6,6 +6,7 @@ import * as Yup from "yup"
 import PrimaryButton from '../../PrimaryButton/PrimaryButton'
 import { createTrip } from '../../../../api/services/viajesService'
 import { getBackName, TIPO_CARGA } from '../../../../api/models/tipoCarga'
+import { alerta } from '../../../../utils/alerts'
 
 const cargoTypes = Object.values(TIPO_CARGA).map(tipo => tipo.frontName)
 
@@ -63,8 +64,12 @@ const ModalTrip = ({ onTripCreated }) => {
                 observations: values.observations
             }
             const response = await createTrip(payload)
+
             if(response.status === 200){
+                alerta("Publicación creada", response.data.message, "success")
                 onTripCreated()
+            }else {
+                alerta("Ocurrió un error", response.data.message, "error")
             }
             closeModal()
         }

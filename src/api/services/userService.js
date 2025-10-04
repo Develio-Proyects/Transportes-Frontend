@@ -15,12 +15,10 @@ export const signup = async (credencials) => {
         }
         return response
     } catch (error) {
-        if (error.response) {
-            throw error.response;
-        } else if (error.request) {
-            throw { status: 500, data: { message: 'Error de conexión' } };
-        } else {
-            throw { status: 500, data: { message: 'Error inesperado' } };
+        if (error.status >= 400 && error.status <= 499) {
+            return error.response
+        } else{
+            return { status: 500, data: { message: 'Error interno del sistema' } }
         }
     }
 }
