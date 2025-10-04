@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom"
 import { getDetalleViaje } from "../../api/services/viajesService"
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
-import MenuButton from '../../components/common/SideBarButton/MenuButton'
+import MenuButton from '../../components/common/MenuButton/MenuButton'
 import { useWindowResolution } from '../../hooks/useWindowResolution'
 import Detalle from './DetalleViajeSections/Detalle/Detalle'
 import Ofertas from './DetalleViajeSections/Ofertas/Ofertas'

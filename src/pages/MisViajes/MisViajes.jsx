@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import { getMisViajes } from '../../api/services/viajesService'
 import { Pagination } from '@mui/material'
 import { useWindowResolution } from '../../hooks/useWindowResolution'
-import MenuButton from '../../components/common/SideBarButton/MenuButton'
+import MenuButton from '../../components/common/MenuButton/MenuButton'
 
 const LIMIT = 9
 

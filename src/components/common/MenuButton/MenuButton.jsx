@@ -1,5 +1,5 @@
-import { useSideBar } from '../../../context/SideBarContext'
 import './menuButton.scss'
+import { useSideBar } from '../../../context/SideBarContext'
 
 const MenuButton = ({onMouseDownProp, isOpenProp, theme}) => {
     const {toggleSideBar, isOpen} = useSideBar()

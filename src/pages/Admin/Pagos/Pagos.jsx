@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import MenuButton from '../../../components/common/SideBarButton/MenuButton'
+import MenuButton from '../../../components/common/MenuButton/MenuButton'
 import { useWindowResolution } from "../../../hooks/useWindowResolution"
 import { getPayments } from '../../../api/services/adminService'
 import PaymentAdminCard from '../../../components/common/PaymentAdminCard/PaymentAdminCard'

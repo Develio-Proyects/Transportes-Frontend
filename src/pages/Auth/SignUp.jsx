@@ -1,10 +1,13 @@
 import './auth.scss'
-import { Button, FilledInput, FormControl, FormControlLabel, FormHelperText, FormLabel, IconButton, InputAdornment, InputLabel, RadioGroup } from '@mui/material'
+import { 
+    Button, FilledInput, FormControl, FormControlLabel, FormHelperText, 
+    FormLabel, IconButton, InputAdornment, InputLabel, RadioGroup 
+} from '@mui/material'
 import { useFormik } from 'formik'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import Radio from '@mui/material/Radio';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
 import { ROLESSIGNIN } from '../../api/models/roles'
@@ -15,22 +18,17 @@ const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const [status, setStatus] = useState(null)
-    const {loginProcess} = useLoginProcess()
+    const { loginProcess } = useLoginProcess()
 
     const handleClickShowPassword = () => setShowPassword((show) => !show)
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault()
-    }
-
+    const handleMouseDownPassword = (event) => event.preventDefault()
     const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show)
-    const handleMouseDownConfirmPassword = (event) => {
-        event.preventDefault()
-    }
+    const handleMouseDownConfirmPassword = (event) => event.preventDefault()
 
-    const { handleSubmit, handleChange, handleBlur, touched, values, errors, setSubmitting } = 
+    const { handleSubmit, handleChange, handleBlur, touched, values, errors, setSubmitting, setFieldValue } = 
     useFormik({
         initialValues: {
-            role: '',
+            role: ROLESSIGNIN.UNIPERSONAL, 
             name: '',
             lastname: '',
             documentNumber: '',
@@ -40,8 +38,12 @@ const SignUp = () => {
         },
         validationSchema: Yup.object().shape({
             role: Yup.string().required('Debe seleccionar un tipo de perfil'),
-            name: Yup.string().required('Nombre obligatorio'),
-            lastname: Yup.string().required('Apellido obligatorio'),
+            name: Yup.string().required('Campo obligatorio'),
+            lastname: Yup.string().when('role', {
+                is: (tipo) => tipo === ROLESSIGNIN.FLOTA,
+                then: (schema) => schema.nullable().notRequired(),
+                otherwise: (schema) => schema.required('El apellido es obligatorio'),
+            }),
             email: Yup.string()
                 .email('El email no es válido')
                 .required('Email obligatorio'),
@@ -71,7 +73,7 @@ const SignUp = () => {
                     setStatus('Algún campo es incorrecto')
                 }
             } catch (e) {
-                setStatus('Error en la autenticación -' + e.message)
+                setStatus('Error en la autenticación - ' + e.message)
             } finally {
                 setSubmitting(false)
                 actions.resetForm()
@@ -79,11 +81,23 @@ const SignUp = () => {
         }
     })
 
+    const [isFlota, setIsFlota] = useState(values.role === ROLESSIGNIN.FLOTA)
+
+    useEffect(() => {
+        setIsFlota(values.role === ROLESSIGNIN.FLOTA)
+
+        if (values.role === ROLESSIGNIN.FLOTA) {
+            setFieldValue('lastname', '')
+        }
+    }, [values.role, setFieldValue])
+
     return (
         <div className="auth-wrapper">
             <div className="auth-container signin">
                 <h2 className="auth-form-title">Crear cuenta</h2>
                 <form className="auth-form" onSubmit={handleSubmit}>
+                    
+                    {/* Tipo de perfil */}
                     <FormControl fullWidth className='tipoPerfil' error={!!errors.role && touched.role}>
                         <FormLabel id="tipo-perfil-label">Tipo de perfíl</FormLabel>
                         <RadioGroup
@@ -102,13 +116,16 @@ const SignUp = () => {
                         </FormHelperText>
                     </FormControl>
 
+                    {/* Nombre / Razón social */}
                     <FormControl 
                         className='auth-input' 
                         fullWidth 
                         variant="filled" 
                         error={!!errors.name && touched.name}
                     >
-                        <InputLabel htmlFor="filled-adornment-name">Nombre</InputLabel>
+                        <InputLabel htmlFor="filled-adornment-name">
+                            {isFlota ? 'Razón social' : 'Nombre'}
+                        </InputLabel>
                         <FilledInput
                             type="text"
                             name="name"
@@ -125,6 +142,7 @@ const SignUp = () => {
                         </FormHelperText>
                     </FormControl>
 
+                    {/* Apellido */}
                     <FormControl 
                         className='auth-input' 
                         fullWidth 
@@ -140,6 +158,7 @@ const SignUp = () => {
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.lastname}
+                            disabled={isFlota} 
                             error={!!errors.lastname && touched.lastname}
                             aria-describedby="lastname-helper-text"
                         />
@@ -148,6 +167,7 @@ const SignUp = () => {
                         </FormHelperText>
                     </FormControl>
 
+                    {/* Documento */}
                     <FormControl 
                         className='auth-input' 
                         fullWidth 
@@ -171,6 +191,7 @@ const SignUp = () => {
                         </FormHelperText>
                     </FormControl>
 
+                    {/* Email */}
                     <FormControl 
                         className='auth-input' 
                         fullWidth 
@@ -194,6 +215,7 @@ const SignUp = () => {
                         </FormHelperText>
                     </FormControl>
 
+                    {/* Contraseña */}
                     <FormControl 
                         className='auth-input' 
                         fullWidth 
@@ -229,6 +251,7 @@ const SignUp = () => {
                         </FormHelperText>
                     </FormControl>
 
+                    {/* Confirmar contraseña */}
                     <FormControl
                         variant="filled"
                         className='auth-input' 
@@ -271,6 +294,7 @@ const SignUp = () => {
                     {status && (
                         <div style={{ color: 'var(--red)', margin: '.5rem 0 1rem' }}>{status}</div>
                     )}
+                    
                     <Button type="submit" className="auth-btn" size="large" variant="contained">
                         Registrarse
                     </Button>

@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import { getMisPublicaciones } from '../../api/services/viajesService'
 import { Button, Pagination } from '@mui/material'
 import { useWindowResolution } from '../../hooks/useWindowResolution'
-import MenuButton from '../../components/common/SideBarButton/MenuButton'
+import MenuButton from '../../components/common/MenuButton/MenuButton'
 import { useModal } from '../../context/ModalContext'
 import PrimaryButton from '../../components/common/PrimaryButton/PrimaryButton'
 

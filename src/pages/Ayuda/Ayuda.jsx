@@ -1,6 +1,6 @@
 import './ayuda.scss'
 import { useState } from 'react'
-import MenuButton from '../../components/common/SideBarButton/MenuButton'
+import MenuButton from '../../components/common/MenuButton/MenuButton'
 import { useWindowResolution } from '../../hooks/useWindowResolution'
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'

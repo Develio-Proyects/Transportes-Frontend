@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useWindowResolution } from '../../../hooks/useWindowResolution';
-import MenuButton from '../../common/SideBarButton/MenuButton';
+import MenuButton from '../../common/MenuButton/MenuButton';
 import PrimaryButton from '../../common/PrimaryButton/PrimaryButton';
 import PersonIcon from '@mui/icons-material/Person';
 import { useAuth } from '../../../context/AuthContext';

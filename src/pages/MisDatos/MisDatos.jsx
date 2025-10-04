@@ -1,5 +1,5 @@
 import './misDatos.scss'
-import MenuButton from '../../components/common/SideBarButton/MenuButton'
+import MenuButton from '../../components/common/MenuButton/MenuButton'
 import { useAuth } from '../../context/AuthContext'
 import { useWindowResolution } from '../../hooks/useWindowResolution'
 import DatosGenerales from './DatosSections/DatosGenerales'
