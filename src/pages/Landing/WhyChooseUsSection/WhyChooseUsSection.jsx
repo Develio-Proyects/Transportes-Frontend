@@ -8,7 +8,7 @@ const WhyChooseUsSection = () => {
                 <section className="whyChooseUs">
                     <section className="whyChooseUsSection">
                         <div className="whyChooseUsImg">
-                            <img src="/whyEmpresa.jpg" alt="" />
+                            <img src="/whyEmpresa.jpg" alt="Por qué elegirnos como flota" />
                         </div>
                         <div className="whyChooseUsText">
                             <h2>Por qué elegirnos como Flota</h2>
@@ -30,7 +30,7 @@ const WhyChooseUsSection = () => {
                     </section>
                     <section className="whyChooseUsSection">
                         <div className="whyChooseUsImg">
-                            <img src="/whyConductor.jpg" alt="" />
+                            <img src="/whyConductor.jpg" alt="Por qué elegirnos como transportista" />
                         </div>
                         <div className="whyChooseUsText">
                             <h2>Por qué elegirnos como Transportista</h2>

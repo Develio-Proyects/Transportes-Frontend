@@ -150,7 +150,7 @@ const ModalDocument = ({ idUser, document, employees, refresh }) => {
                             <Typography variant="body2">Vista previa</Typography>
                             <img
                                 src={preview}
-                                alt="preview"
+                                alt="documento"
                                 style={{ width: "100%", maxHeight: "200px", objectFit: "contain", marginTop: "8px" }}
                             />
                         </Box>
