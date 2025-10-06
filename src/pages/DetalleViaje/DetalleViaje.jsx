@@ -17,23 +17,21 @@ const DetalleViaje = () => {
     const { id } = useParams()
     const location = useLocation()
     const navigate = useNavigate()
-
-    const esPropio =
-        location.state?.esPropio === true ||
-        location.state?.from === "/perfil/publicaciones" ||
-        location.state?.from === "/perfil/mis-viajes"
+    
+    let esPropio
     const from = location.state?.from ?? "/viajes"
-
+    
     const [viaje, setViaje] = useState(null)
     const [enSubasta, setEnSubasta] = useState(false)
     const isDesktop = useWindowResolution() < 1024
-
+    
     const fetchDetalleViaje = async () => {
         const response = await getDetalleViaje(id)
         
         if (response.status === 200 && response.data) {
             setViaje(response.data)
             setEnSubasta(response.data.state === "En subasta")
+            esPropio = viaje?.myPost
         } else {
             navigate("/viajes")
         }
@@ -64,7 +62,7 @@ const DetalleViaje = () => {
                         </>
                     ) : (
                         <>
-                            <Ofertas viaje={viaje} esPropio={esPropio}/>
+                            <Ofertas viaje={viaje} />
                             {!esPropio && <HacerOferta viaje={viaje} id={id} onOfertaHecha={fetchDetalleViaje}/>}
                         </>
                     )}

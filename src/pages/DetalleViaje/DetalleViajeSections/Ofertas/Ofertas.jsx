@@ -2,8 +2,9 @@ import './ofertas.scss'
 import { useModal } from '../../../../context/ModalContext';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 
-const Ofertas = ({viaje, esPropio}) => {
+const Ofertas = ({viaje}) => {
     const {openModal} = useModal()
+    const esPropio = viaje?.myPost
     
     return (
         <section id="ofertas" className="dv-section">

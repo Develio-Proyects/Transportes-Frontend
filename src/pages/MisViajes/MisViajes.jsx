@@ -24,7 +24,7 @@ const MisViajes = () => {
             return
         }
         const response = await getMisViajes(pagina, LIMIT)
-        
+       
         setViajesPorPagina(prev => ({
             ...prev,
             [pagina]: response.data.content
