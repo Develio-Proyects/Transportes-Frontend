@@ -18,11 +18,11 @@ const DetalleViaje = () => {
     const location = useLocation()
     const navigate = useNavigate()
     
-    let esPropio
     const from = location.state?.from ?? "/viajes"
     
     const [viaje, setViaje] = useState(null)
     const [enSubasta, setEnSubasta] = useState(false)
+    const [esPropio, setEsPropio] = useState(false)
     const isDesktop = useWindowResolution() < 1024
     
     const fetchDetalleViaje = async () => {
@@ -31,7 +31,7 @@ const DetalleViaje = () => {
         if (response.status === 200 && response.data) {
             setViaje(response.data)
             setEnSubasta(response.data.state === "En subasta")
-            esPropio = viaje?.myPost
+            setEsPropio(response.data.myPost)
         } else {
             navigate("/viajes")
         }

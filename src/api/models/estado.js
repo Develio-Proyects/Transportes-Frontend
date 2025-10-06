@@ -1,9 +1,9 @@
 export const ESTADOS = {
-    OPEN:      { text: "En subasta",  color: "#ec83e4ff" },
+    OPEN:      { text: "En subasta",  color: "#82e9e0ff" },
     ASSIGNED:  { text: "Asignado",    color: "#10b981"   },
-    PROGRESS:  { text: "En progreso", color: "#3e94e4ff"   },
+    PROGRESS:  { text: "En progreso", color: "#3fb2ffff"   },
     CANCELED:  { text: "Cancelado",   color: "#EF4444"   },
-    FINALIZED: { text: "Finalizado",  color: "#2e7d32" }
+    FINALIZED: { text: "Finalizado",  color: "#0ec244" }
 }
 
 const TRANSICIONES = {
