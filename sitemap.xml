@@ -10,4 +10,12 @@
         <loc>https://www.transporta.com.ar/viajes</loc>
     </url>
 
+    <url>
+        <loc>https://www.transporta.com.ar/ayuda</loc>
+    </url>
+
+    <url>
+        <loc>https://www.transporta.com.ar/signup</loc>
+    </url>
+
 </urlset>

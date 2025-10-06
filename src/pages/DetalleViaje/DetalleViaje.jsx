@@ -12,6 +12,7 @@ import InformacionAdicional from './DetalleViajeSections/Informacion/Informacion
 import HacerOferta from './DetalleViajeSections/HacerOferta/HacerOferta'
 import Chat from './DetalleViajeSections/Chat/Chat'
 import TripStatusChanger from './DetalleViajeSections/TripStatusChanger/TripStatusChanger'
+import { alerta } from '../../utils/alerts'
 
 const DetalleViaje = () => {
     const { id } = useParams()
@@ -37,6 +38,29 @@ const DetalleViaje = () => {
         }
     }
     
+    useEffect(() => {
+        const query = new URLSearchParams(location.search)
+        const status = query.get("status")
+
+        if (status) {
+            const cleanUrl = location.pathname
+            navigate(cleanUrl, { replace: true })
+
+            switch (status) {
+                case "approved":
+                    alerta("Pago realizo", "", "success")
+                    break
+                case "pending":
+                    alerta("Pago en proceso", "", "warn")
+                    break
+                case "failure":
+                default:
+                    alerta("Ocurrió un error", "Vuelva a intetar mas tarde", "error")
+                    break
+            }
+        }
+    }, [])
+
     useEffect(() => {
         fetchDetalleViaje()
     }, [])
