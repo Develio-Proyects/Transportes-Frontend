@@ -84,9 +84,9 @@ const Ayuda = () => {
                     <section className="comunication">
                         <h2 className="ayuda-title">Canales de comunicación</h2>
                         <div className="comunication-data">
-                            <span className="data"><strong>Contacto:</strong> +54 1138554684</span>
+                            <span className="data"><strong>Atención al cliente:</strong> +54 1138554684</span>
                             <span className="data"><strong>Email:</strong> info@transporta.com</span>
-                            <span className="data"><strong>Instagram:</strong> @transportarg</span>
+                            {/* <span className="data"><strong>Instagram:</strong> @transportarg</span> */}
                         </div>
                     </section>
                     <section className="tutorials">
