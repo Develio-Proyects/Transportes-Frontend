@@ -12,7 +12,9 @@ import InformacionAdicional from './DetalleViajeSections/Informacion/Informacion
 import HacerOferta from './DetalleViajeSections/HacerOferta/HacerOferta'
 import Chat from './DetalleViajeSections/Chat/Chat'
 import TripStatusChanger from './DetalleViajeSections/TripStatusChanger/TripStatusChanger'
+import ReplayIcon from '@mui/icons-material/Replay';
 import { alerta } from '../../utils/alerts'
+import { IconButton } from '@mui/material'
 
 const DetalleViaje = () => {
     const { id } = useParams()
@@ -72,6 +74,13 @@ const DetalleViaje = () => {
                     <div className='page-title'>
                         <Link to={from}><KeyboardBackspaceIcon /></Link>
                         <h2>Detalle de viaje</h2>
+                        {/* <IconButton
+                            onClick={fetchDetalleViaje}
+                            aria-label="reload"
+                            size='small'
+                        >
+                            <ReplayIcon />
+                        </IconButton> */}
                     </div>
                     { isDesktop && <MenuButton theme="dark"/> }
                 </header>
