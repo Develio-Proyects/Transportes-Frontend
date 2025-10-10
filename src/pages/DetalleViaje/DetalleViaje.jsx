@@ -15,6 +15,7 @@ import TripStatusChanger from './DetalleViajeSections/TripStatusChanger/TripStat
 import ReplayIcon from '@mui/icons-material/Replay';
 import { alerta } from '../../utils/alerts'
 import { IconButton } from '@mui/material'
+import { validateToken } from '../../api/services/authService'
 
 const DetalleViaje = () => {
     const { id } = useParams()
@@ -35,6 +36,12 @@ const DetalleViaje = () => {
             setViaje(response.data)
             setEnSubasta(response.data.state === "En subasta")
             setEsPropio(response.data.myPost)
+
+            if(!enSubasta){
+                const token = localStorage.getItem("token")
+                const response = await validateToken(token)
+                if(!response.data.isValid) navigate("/login")
+            }
         } else {
             navigate("/viajes")
         }
@@ -95,7 +102,7 @@ const DetalleViaje = () => {
                         </>
                     ) : (
                         <>
-                            <Ofertas viaje={viaje} />
+                            <Ofertas viaje={viaje} refresh={fetchDetalleViaje}/>
                             {!esPropio && <HacerOferta viaje={viaje} id={id} onOfertaHecha={fetchDetalleViaje}/>}
                         </>
                     )}

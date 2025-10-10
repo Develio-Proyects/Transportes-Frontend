@@ -3,7 +3,7 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer'
 import { Button, FormControl, FormHelperText, TextField } from "@mui/material"
 import { useFormik } from "formik"
 import * as Yup from 'yup'
-import { sendOffer } from '../../../../api/services/viajesService'
+import { sendOffer } from '../../../../api/services/offerService'
 import { alerta } from '../../../../utils/alerts'
 
 const HacerOferta = ({viaje, id, onOfertaHecha}) => {
@@ -13,7 +13,7 @@ const HacerOferta = ({viaje, id, onOfertaHecha}) => {
         },
         validationSchema: Yup.object().shape({
             oferta: Yup.number()
-              .typeError('Debe ser un número')
+                .typeError('Debe ser un número')
                 .positive('El precio debe ser mayor a 0')
                 .required('El precio es obligatorio')
                 .test(
@@ -23,19 +23,32 @@ const HacerOferta = ({viaje, id, onOfertaHecha}) => {
                         if (!value) return true
 
                         let limite = null
+                        let minimoPermitido = null
 
                         if (viaje?.lowerOffer != null) {
                             limite = viaje.lowerOffer
+                            // Si existe lowerOffer, exigir al menos un 3% menor
+                            minimoPermitido = viaje.lowerOffer * 0.97
                         } else if (viaje?.initialPrice != null) {
                             limite = viaje.initialPrice
                         }
 
                         if (limite == null) return true
-                        if (value < limite) return true
 
-                        return this.createError({
-                            message: `El precio debe ser menor a ${limite}`
-                        })
+                        // Si existe lowerOffer, controlar que la nueva oferta sea 3% menor
+                        if (minimoPermitido != null) {
+                            if (value >= minimoPermitido) {
+                                return this.createError({
+                                    message: `La nueva oferta debe ser al menos un 3% menor que la actual (${minimoPermitido.toFixed(2)})`
+                                })
+                            }
+                        } else if (value >= limite) {
+                            return this.createError({
+                                message: `El precio debe ser menor a ${limite}`
+                            })
+                        }
+
+                        return true
                     }
                 )
         }),

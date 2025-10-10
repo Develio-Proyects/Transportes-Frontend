@@ -12,6 +12,7 @@ import Configuracion from "../pages/Admin/Configuracion/Configuracion"
 import { ROLES } from "../api/models/roles"
 import MisPublicaicones from "../pages/MisPublicaciones/MisPublicaicones"
 import Usuarios from "../pages/Admin/Usuarios/Usuarios"
+import DetalleUsuario from "../pages/MisDatos/DetalleUsuario"
 
 // públicas sin layout
 export const authRoutes = [
@@ -70,6 +71,10 @@ export const privateRoutes = [
                 path: "/perfil/mis-datos", 
                 Element: MisDatos,
                 label: "Mis datos" 
+            },
+            { 
+                path: "/perfil/detalle-transporte", 
+                Element: DetalleUsuario,
             }
         ]
     },

@@ -96,7 +96,7 @@ const SideBar = () => {
                 </ul>
                 
             </nav>
-            <div ref={userRef} className='user-control' onClick={handleUserOptions}>
+            <div ref={userRef} className='user-control'>
                 {
                     userOptions && 
                     <div className="user-options">
@@ -104,10 +104,10 @@ const SideBar = () => {
                         <span className='option' onClick={logout}>Cerrar sesión</span>
                     </div>
                 }
-                <div className="user-container">
-                    <div className="user-icon">
+                <div className="user-container" onClick={handleUserOptions}>
+                    <Link to="/login" className="user-icon">
                         <PersonIcon />
-                    </div>
+                    </Link>
                     <div className="user-info" >
                         {
                             isAuthenticated ? (
