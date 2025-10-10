@@ -11,7 +11,7 @@ import { alerta } from '../../../../utils/alerts'
 const ModalTruck = ({id, vehicles, refresh}) => {
     const {closeModal} = useModal()
     
-    const { handleSubmit, handleBlur, touched, values, errors, setFieldValue } = useFormik({
+    const { handleSubmit, handleBlur, handleChange, touched, values, errors, setFieldValue } = useFormik({
         initialValues: {
             brand: "",
             model: "",
@@ -20,63 +20,23 @@ const ModalTruck = ({id, vehicles, refresh}) => {
         validationSchema: Yup.object().shape({
             brand: Yup.string().required("Marca requerida"),
             model: Yup.string().required("Modelo requerido"),
-            patent: Yup.string()
-            .matches(
-                /^([A-Z]{3}-\d{3}|[A-Z]{2}-\d{3}-[A-Z]{2})$/,
-                "Formato inválido. Ej: ABC-123 o AB-123-CD"
-            )
-            .required("Patente requerida"),
+            patent: Yup.string().required("Patente requerida"),
         }),
         onSubmit: async (values, actions) => {
             let response
-            values.patent = values.patent.replace(/-/g, "")
             if(id !== undefined){
                 response = await editTruck(id, values)
             }else{
                 response = await createTruck(values)
             }
             
-            if(response.status === 200) alerta("Acción realizada", response.data.message, "success")
-            else alerta("Ocurrió un error", response.data.message, "error")
+            if(response.status === 200) alerta("Acción realizada", "", "success")
+            else alerta("Ocurrió un error", response.data?.message, "error")
 
             refresh()
             closeModal()
         }
     })
-
-    const handlePatentChange = (e) => {
-        let value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "")
-
-        if (value.length > 7) {
-            value = value.slice(0, 7)
-        }
-
-        if (/^[A-Z]{3}\d{0,3}$/.test(value)) {
-            if (value.length > 3) {
-                value = value.slice(0, 3) + "-" + value.slice(3)
-            }
-        }
-     
-        else if (/^[A-Z]{2}\d{0,3}[A-Z]{0,2}$/.test(value)) {
-            value =
-                value.slice(0, 2) +
-                (value.length > 2 ? "-" + value.slice(2, 5) : "") +
-                (value.length > 5 ? "-" + value.slice(5) : "")
-        }
-
-        setFieldValue("patent", value.trim());
-    }
-
-    const formatPatent = (patent) => {
-        if (!patent) return ""
-        patent = patent.toUpperCase()
-        if (/^[A-Z]{3}\d{3}$/.test(patent)) {
-          return `${patent.slice(0,3)}-${patent.slice(3)}`
-        } else if (/^[A-Z]{2}\d{3}[A-Z]{2}$/.test(patent)) {
-          return `${patent.slice(0,2)}-${patent.slice(2,5)}-${patent.slice(5)}`
-        }
-        return patent
-      }
 
     useEffect(()=>{
         if (id !== undefined) {
@@ -84,7 +44,7 @@ const ModalTruck = ({id, vehicles, refresh}) => {
             if (foundVehicle) {
                 setFieldValue("brand", foundVehicle.brand || "")
                 setFieldValue("model", foundVehicle.model || "")
-                setFieldValue("patent", formatPatent(foundVehicle.patent) || "")
+                setFieldValue("patent", foundVehicle.patent || "")
             }
         }
     }, [])
@@ -101,7 +61,7 @@ const ModalTruck = ({id, vehicles, refresh}) => {
                         label="Marca"
                         name="brand"
                         value={values.brand}
-                        onChange={(e) => setFieldValue("brand", e.target.value)}
+                        onChange={handleChange}
                         onBlur={handleBlur}
                         error={touched.brand && Boolean(errors.brand)}
                         helperText={touched.brand && errors.brand}
@@ -111,7 +71,7 @@ const ModalTruck = ({id, vehicles, refresh}) => {
                         label="Modelo"
                         name="model"
                         value={values.model}
-                        onChange={(e) => setFieldValue("model", e.target.value)}
+                        onChange={handleChange}
                         onBlur={handleBlur}
                         error={touched.model && Boolean(errors.model)}
                         helperText={touched.model && errors.model}
@@ -121,7 +81,7 @@ const ModalTruck = ({id, vehicles, refresh}) => {
                         label="Patente"
                         name="patent"
                         value={values.patent}
-                        onChange={handlePatentChange}
+                        onChange={handleChange}
                         onBlur={handleBlur}
                         error={touched.patent && Boolean(errors.patent)}
                         helperText={touched.patent && errors.patent}

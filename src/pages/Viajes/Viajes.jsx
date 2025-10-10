@@ -1,10 +1,11 @@
 import FilterListIcon from '@mui/icons-material/FilterList'
 import FilterAltIcon from '@mui/icons-material/FilterAlt'
 import IconButton from "../../components/common/IconButton/IconButton"
+import SearchIcon from '@mui/icons-material/Search';
 import ViajeCard from '../../components/common/ViajeCard/ViajeCard'
 import { useEffect, useRef, useState } from 'react'
 import { getViajes } from '../../api/services/viajesService'
-import { Pagination } from '@mui/material'
+import { InputAdornment, Pagination, TextField } from '@mui/material'
 import { useWindowResolution } from '../../hooks/useWindowResolution'
 import MenuButton from '../../components/common/MenuButton/MenuButton'
 import { alerta } from '../../utils/alerts'
@@ -60,6 +61,28 @@ const Viajes = () => {
                 {/* <div className="filterSortControls">
                     <IconButton Icon={FilterListIcon}>Ordenar por</IconButton>
                     <IconButton Icon={FilterAltIcon}>Filtrar</IconButton>
+                </div> */}
+                {/* <div className="search">
+                    <TextField
+                        variant="outlined"
+                        placeholder="Buscar destino"
+                        size="small"
+                        sx={{
+                            width: 250,
+                            "& .MuiOutlinedInput-root": {
+                                borderRadius: "5px",
+                            },
+                        }}
+                        slotProps={{
+                            input: {
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                    <SearchIcon color="action" />
+                                    </InputAdornment>
+                                ),
+                            },
+                        }}
+                    />
                 </div> */}
                 {viajes.length > 0 ? (
                     <div ref={containerRef} className="cards-container">

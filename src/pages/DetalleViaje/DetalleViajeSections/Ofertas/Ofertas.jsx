@@ -4,6 +4,7 @@ import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import { useAuth } from '../../../../context/AuthContext';
 import { deleteOffer } from '../../../../api/services/offerService';
 import { alerta } from '../../../../utils/alerts';
+import { Link } from 'react-router-dom';
 
 const Ofertas = ({viaje, refresh}) => {
     const {openModal} = useModal()
@@ -36,7 +37,17 @@ const Ofertas = ({viaje, refresh}) => {
                     viaje.offers.map((p, i) => (
                         <div className={offered ? "oferta own" : "oferta"} key={i}>
                             <div className="number">{i + 1}</div>
-                            <span className="user">{p.name}</span>
+                            {esPropio ? (
+                                    <span className="user">
+                                        <Link to={"/perfil/detalle-transporte/" + p.userId}>
+                                            {p.name}
+                                        </Link>
+                                    </span>
+                                ) : (
+                                    <span className="user">{p.name}</span>
+                                )
+                            }
+
                             {esPropio && <button className="oferta-btn" onClick={()=> openModal("modalPayment", {idOffer: p.id})}>Seleccionar</button>}
                             {userIdInOffer == p.userId && <button className="oferta-btn" onClick={()=>deleteOfferBtn(p.id)}>Eliminar</button>}
                         </div>

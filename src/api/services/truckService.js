@@ -22,7 +22,7 @@ export const createTruck = async (data) => {
     const token = localStorage.getItem("token");
   
     try {
-        const response = await axios.post(
+        return await axios.post(
 			`${API_URL}`,
 			{
 				brand: data.brand,
@@ -33,7 +33,6 @@ export const createTruck = async (data) => {
 				headers: token ? { Authorization: `Bearer ${token}` } : {},
 			}
 		)
-      	return response.data
     } catch (error) {
         if (error.status >= 400 && error.status <= 499) {
             return error.response
@@ -47,7 +46,7 @@ export const editTruck = async (id, data) => {
     const token = localStorage.getItem("token");
   
     try {
-        const response = await axios.put(
+        return await axios.put(
 			`${API_URL}/${id}`,
 			{
 				brand: data.brand,
@@ -58,7 +57,6 @@ export const editTruck = async (id, data) => {
 				headers: token ? { Authorization: `Bearer ${token}` } : {},
 			}
 		)
-      	return response.data
     } catch (error) {
         if (error.status >= 400 && error.status <= 499) {
             return error.response
