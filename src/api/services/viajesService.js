@@ -110,3 +110,19 @@ export const changeTripStatus = async (id, state) => {
         }
     }
 }
+
+export const cancelTrip = async (idTrip) => {
+    const token = localStorage.getItem("token")
+
+    try {
+        return await axios.delete(`${API_URL}/${idTrip}`, {
+            headers: token ? { Authorization: `Bearer ${token}` } : {}
+        })
+    } catch (error) {
+        if (error.response?.status >= 400 && error.response?.status <= 499) {
+            return error.response
+        } else {
+            return { status: 500, data: { message: 'Error interno del sistema' } }
+        }
+    }
+}

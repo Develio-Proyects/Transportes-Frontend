@@ -1,7 +1,10 @@
 export const TIPO_CARGA = {
     FROZEN: { backName: "FROZEN", frontName: "Congelado" },
     DRY: { backName: "DRY", frontName: "Seco" },
-    PERISHABLE: { backName: "PERISHABLE", frontName: "Perecedero" }
+    PERISHABLE: { backName: "PERISHABLE", frontName: "Perecedero" },
+    DANGEROUS: { backName: "DANGEROUS", frontName: "Peligroso"},
+    BULK: { backName: "BULK", frontName: "Granel"},
+    SPECIAL: { backName: "SPECIAL", frontName: "Especial"}
 }
 
 export const getBackName = (frontName) => {

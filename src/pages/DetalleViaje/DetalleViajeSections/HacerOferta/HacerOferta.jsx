@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 import { sendOffer } from '../../../../api/services/offerService'
 import { alerta } from '../../../../utils/alerts'
 
-const HacerOferta = ({viaje, id, onOfertaHecha}) => {
+const HacerOferta = ({viaje, id, refresh}) => {
     const { handleSubmit, handleChange, handleBlur, touched, values, errors, setSubmitting } = useFormik({
         initialValues: {
             oferta: ""
@@ -56,7 +56,7 @@ const HacerOferta = ({viaje, id, onOfertaHecha}) => {
             const response = await sendOffer(id, values.oferta)
             if(response.status === 200){
                 alerta("Oferta realizada", response.data.message, "success")
-                onOfertaHecha()
+                refresh()
             } 
             else alerta("Ocurrió un error", response.data.message, "error")
             actions.resetForm()

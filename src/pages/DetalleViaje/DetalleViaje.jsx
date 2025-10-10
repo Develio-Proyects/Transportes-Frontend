@@ -102,8 +102,9 @@ const DetalleViaje = () => {
                         </>
                     ) : (
                         <>
+                            {esPropio && <TripStatusChanger id={id} viaje={viaje} refresh={() => fetchDetalleViaje()}/>}
                             <Ofertas viaje={viaje} refresh={fetchDetalleViaje}/>
-                            {!esPropio && <HacerOferta viaje={viaje} id={id} onOfertaHecha={fetchDetalleViaje}/>}
+                            {!esPropio && <HacerOferta viaje={viaje} id={id} refresh={fetchDetalleViaje}/>}
                         </>
                     )}
                     

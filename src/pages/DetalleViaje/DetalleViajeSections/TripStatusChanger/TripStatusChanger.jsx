@@ -1,18 +1,36 @@
 import './tripStatusChanger.scss'
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle'
 import { getNextState, getEstadoKeyFromText, getStateFromText, ESTADOS } from '../../../../api/models/estado'
-import { changeTripStatus } from '../../../../api/services/viajesService'
+import { cancelTrip, changeTripStatus } from '../../../../api/services/viajesService'
 import { Button } from '@mui/material'
 import { alerta } from '../../../../utils/alerts'
+import { confirmAlerta } from '../../../../utils/confirmAlert'
+import { useNavigate } from 'react-router-dom'
 
 const TripStatusChanger = ({id, viaje, refresh}) => {
+    const navigate = useNavigate()
+    const esSubasta = viaje?.state === "En subasta"
 
     const changeState = async (state) => {
-        let nextState = getEstadoKeyFromText(state || getNextState(viaje?.state))
-        const response = await changeTripStatus(id, nextState)
-        if(response.status === 200) alerta("Estado actualizado", response.data.message, "success")
-        else alerta("Ocurrió un error", response.data.message, "error")
-        refresh()
+        if(esSubasta){
+            const isConfirmed = await confirmAlerta("Eliminar viaje", "¿Esta seguro que desea Eliminar el viaje?")
+            
+            if(isConfirmed){
+                const response = await cancelTrip(id)
+                if(response.status === 200) {
+                    alerta("Estado actualizado", response.data.message, "success")
+                    navigate("/viajes")
+                }else {
+                    alerta("Ocurrió un error", response.data.message, "error")
+                }
+            }
+        }else{
+            let nextState = getEstadoKeyFromText(state || getNextState(viaje?.state))
+            const response = await changeTripStatus(id, nextState)
+            if(response.status === 200) alerta("Estado actualizado", response.data.message, "success")
+            else alerta("Ocurrió un error", response.data.message, "error")
+            refresh()
+        }
     }
 
     const getColor = () => ESTADOS[getStateFromText(getNextState(viaje?.state))]?.color
@@ -29,13 +47,19 @@ const TripStatusChanger = ({id, viaje, refresh}) => {
             <div className="statusAction">
                 {!isFinished ? (
                     <>
-                        <Button variant='contained' className='state' onClick={() => changeState()} style={{backgroundColor: getColor()}}>
-                            <span className='state'>{getNextState(viaje?.state)}</span>
+                        {!esSubasta &&
+                            <Button variant='contained' className='state' onClick={() => changeState()} style={{backgroundColor: getColor()}}>
+                                <span className='state'>{getNextState(viaje?.state)}</span>
+                            </Button>
+                        }
+                        <Button variant='contained' sx={{fontWeight: 600}} color='error' onClick={() => changeState("Cancelado")}>
+                            {esSubasta ? "Eliminar" : "Cancelar"}
                         </Button>
-                        <Button variant='contained' sx={{fontWeight: 600}} color='error' onClick={() => changeState("Cancelado")}>Cancelar</Button>
                     </>
                 ) : (
-                    <p style={{fontWeight: 500, marginLeft: '2rem'}}>El viaje fue <span style={{textTransform: 'uppercase', fontWeight: 500}}>{viaje?.state}</span></p>
+                    <p style={{fontWeight: 500, marginLeft: '2rem'}}>
+                        El viaje fue <span style={{textTransform: 'uppercase', fontWeight: 500}}>{viaje?.state}</span>
+                    </p>
                 )
                 }
             </div>
