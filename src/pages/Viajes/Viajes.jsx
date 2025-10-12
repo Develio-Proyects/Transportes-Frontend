@@ -1,7 +1,3 @@
-import FilterListIcon from '@mui/icons-material/FilterList'
-import FilterAltIcon from '@mui/icons-material/FilterAlt'
-import IconButton from "../../components/common/IconButton/IconButton"
-import SearchIcon from '@mui/icons-material/Search';
 import ViajeCard from '../../components/common/ViajeCard/ViajeCard'
 import { useEffect, useRef, useState } from 'react'
 import { getViajes } from '../../api/services/viajesService'
@@ -9,6 +5,7 @@ import { InputAdornment, Pagination, TextField } from '@mui/material'
 import { useWindowResolution } from '../../hooks/useWindowResolution'
 import MenuButton from '../../components/common/MenuButton/MenuButton'
 import { alerta } from '../../utils/alerts'
+import SearchBar from '../../components/common/SearchBar/SearchBar';
 
 const LIMIT = 9
 
@@ -45,6 +42,10 @@ const Viajes = () => {
         containerRef.current?.scrollTo({ top: 0 })
     }
 
+    const handleSearch = async () => {
+
+    }
+
     useEffect(() => {
         fetchViajes(page)
     }, [page])
@@ -58,32 +59,9 @@ const Viajes = () => {
                     </div>
                     { isDesktop && <MenuButton theme="dark"/> }
                 </header>
-                {/* <div className="filterSortControls">
-                    <IconButton Icon={FilterListIcon}>Ordenar por</IconButton>
-                    <IconButton Icon={FilterAltIcon}>Filtrar</IconButton>
-                </div> */}
-                {/* <div className="search">
-                    <TextField
-                        variant="outlined"
-                        placeholder="Buscar destino"
-                        size="small"
-                        sx={{
-                            width: 250,
-                            "& .MuiOutlinedInput-root": {
-                                borderRadius: "5px",
-                            },
-                        }}
-                        slotProps={{
-                            input: {
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                    <SearchIcon color="action" />
-                                    </InputAdornment>
-                                ),
-                            },
-                        }}
-                    />
-                </div> */}
+
+                <SearchBar onSearch={handleSearch} />
+
                 {viajes.length > 0 ? (
                     <div ref={containerRef} className="cards-container">
                         {Array.isArray(viajes) && 
