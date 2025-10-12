@@ -46,8 +46,8 @@ const DetalleTransporte = () => {
 
                     <section id='transport-info' className='data-section'>
                         <AccountCircleIcon className='icon'/>
-                        <span className="t-fullname">{infoUser.name}</span>
-                        <span className='t-role'>{infoUser.rol}</span>
+                        <span className="t-fullname">{infoUser?.name}</span>
+                        <span className='t-role'>{infoUser?.rol}</span>
                     </section>
 
                     <section id='transport-documents' className='data-section'>
