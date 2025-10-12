@@ -16,13 +16,14 @@ const Viajes = () => {
     const [totalViajes, setTotalViajes] = useState(0)
     const containerRef = useRef()
     const isDesktop = useWindowResolution() < 1024
+    const [filters, setFilters] = useState({ origin: '', destination: '', departureDate: '' })
 
     const fetchViajes = async (pagina) => {
-        if (viajesPorPagina[pagina]) {
-            setViajes(viajesPorPagina[pagina])
-            return
-        }
-        const response = await getViajes(pagina, LIMIT)
+        // if (viajesPorPagina[pagina]) {
+        //     setViajes(viajesPorPagina[pagina])
+        //     return
+        // }
+        const response = await getViajes(pagina, LIMIT, filters)
 
         if(response.status === 200){
             setViajesPorPagina(prev => ({
@@ -42,13 +43,9 @@ const Viajes = () => {
         containerRef.current?.scrollTo({ top: 0 })
     }
 
-    const handleSearch = async () => {
-
-    }
-
     useEffect(() => {
         fetchViajes(page)
-    }, [page])
+    }, [page, filters])
     
     return (
         <main id='viajes' className="main expandedContainer">
@@ -60,7 +57,7 @@ const Viajes = () => {
                     { isDesktop && <MenuButton theme="dark"/> }
                 </header>
 
-                <SearchBar onSearch={handleSearch} />
+                <SearchBar setFilters={setFilters} />
 
                 {viajes.length > 0 ? (
                     <div ref={containerRef} className="cards-container">

@@ -5,17 +5,17 @@ import { useFormik } from 'formik'
 import PrimaryButton from '../PrimaryButton/PrimaryButton'
 import { useWindowResolution } from '../../../hooks/useWindowResolution'
 
-const SearchBarAccordion = ({ onSearch }) => {
+const SearchBarAccordion = ({ setFilters }) => {
     const isMobile = useWindowResolution() < 1200
 
     const formik = useFormik({
             initialValues: {
-                origen: '',
-                destino: '',
-                fecha: '',
+                origin: '',
+                destination: '',
+                departureDate: '',
             },
             onSubmit: (values) => {
-                onSearch(values)
+                setFilters(values)
             }
     })
 
@@ -25,40 +25,40 @@ const SearchBarAccordion = ({ onSearch }) => {
             component="form"
             onSubmit={formik.handleSubmit}
         >
-        <FormControl className='search-input' error={formik.touched.origen && Boolean(formik.errors.origen)}>
+        <FormControl className='search-input' error={formik.touched.origin && Boolean(formik.errors.origin)}>
             <TextField
                 label="Origen"
-                name="origen"
-                value={formik.values.origen}
+                name="origin"
+                value={formik.values.origin}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 size="small"
             />
-            {formik.touched.origen && formik.errors.origen && (
-                <FormHelperText>{formik.errors.origen}</FormHelperText>
+            {formik.touched.origin && formik.errors.origin && (
+                <FormHelperText>{formik.errors.origin}</FormHelperText>
             )}
         </FormControl>
 
-        <FormControl className='search-input' error={formik.touched.destino && Boolean(formik.errors.destino)}>
+        <FormControl className='search-input' error={formik.touched.destination && Boolean(formik.errors.destination)}>
             <TextField
                 label="Destino"
-                name="destino"
-                value={formik.values.destino}
+                name="destination"
+                value={formik.values.destination}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 size="small"
             />
-            {formik.touched.destino && formik.errors.destino && (
-                <FormHelperText>{formik.errors.destino}</FormHelperText>
+            {formik.touched.destination && formik.errors.destination && (
+                <FormHelperText>{formik.errors.destination}</FormHelperText>
             )}
         </FormControl>
 
-        <FormControl className='search-input' error={formik.touched.fecha && Boolean(formik.errors.fecha)}>
+        <FormControl className='search-input' error={formik.touched.departureDate && Boolean(formik.errors.departureDate)}>
             <TextField
                 label="Fecha"
                 type="date"
-                name="fecha"
-                value={formik.values.fecha}
+                name="departureDate"
+                value={formik.values.departureDate}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 slotProps={{
@@ -66,8 +66,8 @@ const SearchBarAccordion = ({ onSearch }) => {
                 }}
                 size="small"
             />
-            {formik.touched.fecha && formik.errors.fecha && (
-                <FormHelperText>{formik.errors.fecha}</FormHelperText>
+            {formik.touched.departureDate && formik.errors.departureDate && (
+                <FormHelperText>{formik.errors.departureDate}</FormHelperText>
             )}
         </FormControl>
 

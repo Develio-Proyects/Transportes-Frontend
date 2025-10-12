@@ -2,17 +2,30 @@ import axios from "axios"
 
 const API_URL = import.meta.env.VITE_API_URL + '/api/trip'
 
-export const getViajes = async (page, size) => {
+export const getViajes = async (page, size, filters) => {
     const token = localStorage.getItem("token")
+    const toLocalDateTime = (dateStr) => dateStr ? `${dateStr}T00:00:00` : ''
+
+    const config = {
+        params: {
+            page,
+            size,
+            origin: filters.origin || '',
+            destination: filters.destination || '',
+            departureDate: toLocalDateTime(filters.departureDate)
+        }
+    }
+
+    if (token) {
+        config.headers = { Authorization: `Bearer ${token}` }
+    }
+
     try {
-        return await axios.get(`${API_URL}/posted-trips?page=${page}&size=${size}`, 
-            token && {
-                headers: { Authorization: `Bearer ${token}` }
-        })
+        return await axios.get(`${API_URL}/posted-trips`, config)
     } catch (error) {
-        if (error.status >= 400 && error.status <= 499) {
+        if (error.response?.status >= 400 && error.response?.status <= 499) {
             return error.response
-        } else{
+        } else {
             return { status: 500, data: { message: 'Error interno del sistema' } }
         }
     }
