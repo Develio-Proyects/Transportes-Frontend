@@ -15,7 +15,7 @@ const WhyChooseUsSection = () => {
                             <ul>
                                 <li>
                                     <span className='lineMark'></span>
-                                    Gestiona vehículos y conductores en un solo lugar.
+                                    Publica tus viajes sobrantes y recibí respuesta inmediata.
                                 </li>
                                 <li>
                                     <span className='lineMark'></span>
