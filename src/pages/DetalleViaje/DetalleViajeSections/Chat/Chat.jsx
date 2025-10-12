@@ -81,6 +81,7 @@ const Chat = ({ id }) => {
                     <ChatIcon className='icon'/>
                     <h2>Chat</h2>
                 </div>
+                <span className='warn-text'>Toda información de contacto será sensurada</span>
             </div>
             <div className="msg-container" ref={msgContainerRef}>
                 {mensajes.map((m, i) => (
