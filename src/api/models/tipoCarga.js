@@ -12,7 +12,7 @@ export const getBackName = (frontName) => {
       (tipo) => tipo.frontName.toLowerCase() === frontName.toLowerCase()
     )
     return entry ? entry.backName : null
-  }
+}
   
 export const getFrontName = (backName) => {
     const entry = Object.values(TIPO_CARGA).find(

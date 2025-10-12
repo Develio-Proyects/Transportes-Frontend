@@ -17,23 +17,22 @@
     }
 }
 
-@media (min-width: 1200px){
+@media (min-width: 1440px){
     .searchBar{
         width: 100%;
-        max-width: 730px;
+        max-width: calc(1050px + 4rem);
         flex-direction: row;
         justify-content: space-between;
+        gap: 2rem;
         padding-bottom: 1rem;
         border-bottom: 1px solid var(--color-light-gray);
 
-        .search-input input{
-            background-color: #fff;
+        .search-input{
+            width: 100%;
+            min-width: 350px;
+            input{
+                background-color: #fff;
+            }
         }
-    }
-}
-
-@media (min-width: 1442px){
-    .searchBar{
-        max-width: 1115px;
     }
 }

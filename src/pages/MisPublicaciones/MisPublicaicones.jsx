@@ -61,7 +61,7 @@ const [viajesPorPagina, setViajesPorPagina] = useState({})
                 
                 <PrimaryButton 
                     style={{marginBottom: "1rem"}}
-                    onClick={()=>openModal("modalTrip", {onTripCreated: () => setReloadFlag(f => !f)})}>
+                    onClick={()=>openModal("modalTrip", {refresh: () => setReloadFlag(f => !f)})}>
                     Crear publicación
                 </PrimaryButton>
 

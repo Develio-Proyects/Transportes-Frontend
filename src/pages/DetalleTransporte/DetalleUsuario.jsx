@@ -1,11 +1,12 @@
 import './detalleTransporte.scss'
 import MenuButton from '../../components/common/MenuButton/MenuButton'
 import { useWindowResolution } from '../../hooks/useWindowResolution'
-import { useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getAllInfoUserById } from '../../api/services/userService'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import { Button } from '@mui/material'
@@ -14,9 +15,11 @@ import { useModal } from '../../context/ModalContext'
 
 const DetalleTransporte = () => {
     const { id } = useParams()
+    const location = useLocation()
     const isDesktop = useWindowResolution() < 1024
     const [infoUser, setInfoUser] = useState()
     const {openModal} = useModal()
+    const from = location.state?.from ?? "/viajes"
     
     const fetchInfo = async () => {
         const response = await getAllInfoUserById(id)
@@ -34,6 +37,7 @@ const DetalleTransporte = () => {
             <div className="container">
                 <header className="page-header">
                     <div className="page-title">
+                        <Link to={from}><KeyboardBackspaceIcon /></Link>
                         <h2>Detalle transporte</h2>
                     </div>
                     { isDesktop && <MenuButton theme="dark"/> }
@@ -42,8 +46,8 @@ const DetalleTransporte = () => {
 
                     <section id='transport-info' className='data-section'>
                         <AccountCircleIcon className='icon'/>
-                        <span className="t-fullname">Tobias Riccone</span>
-                        <span className='t-role'>FLOTA</span>
+                        <span className="t-fullname">{infoUser.name}</span>
+                        <span className='t-role'>{infoUser.rol}</span>
                     </section>
 
                     <section id='transport-documents' className='data-section'>

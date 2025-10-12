@@ -3,8 +3,11 @@ import { Button } from '@mui/material'
 const IconButton = ({ children, Icon, onClick }) => {
     
     return (
-        <Button variant="outlined" startIcon={<Icon />}
+        <Button 
+            variant="outlined" 
+            startIcon={<Icon />}
             onClick={onClick}
+            tabIndex={-1}
             sx={{
                 border: 'none',
                 color: 'var(--color-dark)',

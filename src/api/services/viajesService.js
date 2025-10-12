@@ -61,6 +61,35 @@ export const createTrip = async (values) => {
     }
 }
 
+export const updateTrip = async (id, values) => {
+    const token = localStorage.getItem("token")
+    try {
+        return await axios.put(`${API_URL}/${id}`, 
+            {
+                origin: values.origin,
+                destination: values.destination,
+                departureDate: values.departureDate,
+                cargoType: values.cargoType,
+                weight: values.weight,
+                dimensions: {
+                    width: values.dimensions.width,
+                    high: values.dimensions.high,
+                    long: values.dimensions.long
+                },
+                observations: values.observations
+            },
+            token && {
+                headers: { Authorization: `Bearer ${token}` }
+        })
+    } catch (error) {
+        if (error.status >= 400 && error.status <= 499) {
+            return error.response
+        } else{
+            return { status: 500, data: { message: 'Error interno del sistema' } }
+        }
+    }
+}
+
 export const getDetalleViaje = async (id) => {
     const token = localStorage.getItem("token")
     try {

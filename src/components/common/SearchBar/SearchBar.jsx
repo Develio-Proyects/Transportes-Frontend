@@ -6,7 +6,7 @@ import PrimaryButton from '../PrimaryButton/PrimaryButton'
 import { useWindowResolution } from '../../../hooks/useWindowResolution'
 
 const SearchBarAccordion = ({ setFilters }) => {
-    const isMobile = useWindowResolution() < 1200
+    const isMobile = useWindowResolution() < 1440
 
     const formik = useFormik({
             initialValues: {
@@ -53,7 +53,7 @@ const SearchBarAccordion = ({ setFilters }) => {
             )}
         </FormControl>
 
-        <FormControl className='search-input' error={formik.touched.departureDate && Boolean(formik.errors.departureDate)}>
+        {/* <FormControl className='search-input' error={formik.touched.departureDate && Boolean(formik.errors.departureDate)}>
             <TextField
                 label="Fecha"
                 type="date"
@@ -69,7 +69,7 @@ const SearchBarAccordion = ({ setFilters }) => {
             {formik.touched.departureDate && formik.errors.departureDate && (
                 <FormHelperText>{formik.errors.departureDate}</FormHelperText>
             )}
-        </FormControl>
+        </FormControl> */}
 
         <PrimaryButton type="submit" className="search-btn">
             Buscar

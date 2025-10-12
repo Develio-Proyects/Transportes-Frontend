@@ -5,8 +5,9 @@ import { useAuth } from '../../../../context/AuthContext';
 import { deleteOffer } from '../../../../api/services/offerService';
 import { alerta } from '../../../../utils/alerts';
 import { Link } from 'react-router-dom';
+import { Tooltip } from '@mui/material';
 
-const Ofertas = ({viaje, refresh}) => {
+const Ofertas = ({viaje, refresh, id}) => {
     const {openModal} = useModal()
     const esPropio = viaje?.myPost
     const {user} = useAuth()
@@ -23,7 +24,7 @@ const Ofertas = ({viaje, refresh}) => {
             alerta("Ocurrió un error", response.data.message, "error")
         }
     }
-
+    
     return (
         <section id="ofertas" className="dv-section">
             <div className="dv-s-header">
@@ -39,9 +40,11 @@ const Ofertas = ({viaje, refresh}) => {
                             <div className="number">{i + 1}</div>
                             {esPropio ? (
                                     <span className="user">
-                                        <Link to={"/perfil/detalle-transporte/" + p.userId}>
-                                            {p.name}
-                                        </Link>
+                                        <Tooltip title="Ver postulante">
+                                            <Link to={"/perfil/detalle-transporte/" + p.userId} state={{ from: '/viajes/'+ id }} >
+                                                {p.name}
+                                            </Link>
+                                        </Tooltip>
                                     </span>
                                 ) : (
                                     <span className="user">{p.name}</span>

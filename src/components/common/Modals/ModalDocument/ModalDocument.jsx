@@ -1,5 +1,5 @@
 import './modalDocument.scss'
-import { Button, MenuItem, TextField, Box, Typography } from '@mui/material'
+import { Button, MenuItem, TextField, Box, Typography, Checkbox, FormControlLabel } from '@mui/material'
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useFormik } from 'formik'
@@ -28,7 +28,8 @@ const ModalDocument = ({ idUser, document, employees, refresh }) => {
     const [preview, setPreview] = useState(null)
 
     const validationSchemaFields = {
-        name: Yup.string().required("Tipo documento requerido")
+        name: Yup.string().required("Tipo documento requerido"),
+        consent: Yup.bool().oneOf([true], "Debes dar tu consentimiento para subir el documento")
     }
 
     if (employees != null) {
@@ -43,7 +44,8 @@ const ModalDocument = ({ idUser, document, employees, refresh }) => {
         initialValues: {
             idUser: employees != null ? "" : idUser,
             name: "",
-            image: ""
+            image: "",
+            consent: false
         },
         validationSchema: Yup.object().shape(validationSchemaFields),
         onSubmit: async (values, actions) => {
@@ -82,7 +84,6 @@ const ModalDocument = ({ idUser, document, employees, refresh }) => {
         }
     }, [])
 
-
     return (
         <div className="modalDocument">
             <header className="modal-header">
@@ -107,6 +108,7 @@ const ModalDocument = ({ idUser, document, employees, refresh }) => {
                             ))}
                         </TextField>
                     }
+
                     <TextField
                         select
                         label="Tipo documento"
@@ -155,6 +157,29 @@ const ModalDocument = ({ idUser, document, employees, refresh }) => {
                             />
                         </Box>
                     )}
+
+                    <Box>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    name="consent"
+                                    checked={values.consent}
+                                    onChange={handleChange}
+                                    className='checkbox'
+                                />
+                            }
+                            label={
+                                <Typography variant="body2" sx={{ fontSize: '0.8rem', color: '#555' }}>
+                                    Autorizo compartir mis documentos con la flota con la que conecte
+                                </Typography>
+                            }
+                            />
+                            {touched.consent && errors.consent && (
+                                <Typography color="error" variant="caption" display="block" sx={{margin: '0 14px 0'}}>
+                                    {errors.consent}
+                                </Typography>
+                            )}
+                    </Box>
                 </form>
             </div>
             <div className="modal-controls">

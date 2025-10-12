@@ -4,16 +4,17 @@ import { Box, MenuItem, TextField } from "@mui/material"
 import { useFormik } from 'formik'
 import * as Yup from "yup"
 import PrimaryButton from '../../PrimaryButton/PrimaryButton'
-import { createTrip } from '../../../../api/services/viajesService'
+import { createTrip, updateTrip } from '../../../../api/services/viajesService'
 import { getBackName, TIPO_CARGA } from '../../../../api/models/tipoCarga'
 import { alerta } from '../../../../utils/alerts'
+import { useEffect } from 'react'
 
 const cargoTypes = Object.values(TIPO_CARGA).map(tipo => tipo.frontName)
 
-const ModalTrip = ({ onTripCreated }) => {
+const ModalTrip = ({ refresh, id, viaje, edit }) => {
     const { closeModal } = useModal()
 
-    const { handleSubmit, handleChange, handleBlur, touched, values, errors, setSubmitting } = useFormik({
+    const { handleSubmit, handleChange, handleBlur, touched, values, errors, setSubmitting, setFieldValue } = useFormik({
         initialValues: {
             origin: "",
             destination: "",
@@ -38,7 +39,9 @@ const ModalTrip = ({ onTripCreated }) => {
                     new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
                     "La fecha no puede superar 1 año desde hoy"
                 ),
-            basePrice: Yup.number().min(0).required("Precio requerido"),
+            basePrice: edit
+                ? Yup.number().min(0) 
+                : Yup.number().min(0).required("Precio requerido"),
             cargoType: Yup.string().required("Tipo requerido"),
             weight: Yup.number().min(0).required("Peso requerido"),
             dimensions: Yup.object({
@@ -48,36 +51,57 @@ const ModalTrip = ({ onTripCreated }) => {
             }),
             observations: Yup.string()
         }),
-        onSubmit: async (values, actions) => {
+        onSubmit: async (values) => {
             const payload = {
                 origin: values.origin,
                 destination: values.destination,
                 departureDate: new Date(values.departureDate).toISOString(),
-                basePrice: Number(values.basePrice),
                 cargoType: getBackName(values.cargoType),
                 weight: Number(values.weight),
                 dimensions: {
-                  width: Number(values.dimensions.width),
-                  high: Number(values.dimensions.high),
-                  long: Number(values.dimensions.long)
+                    width: Number(values.dimensions.width),
+                    high: Number(values.dimensions.high),
+                    long: Number(values.dimensions.long)
                 },
                 observations: values.observations
             }
-            const response = await createTrip(payload)
 
-            if(response.status === 200){
-                alerta("Publicación creada", response.data.message, "success")
-                onTripCreated()
-            }else {
+            if (!edit || values.basePrice) {
+                payload.basePrice = Number(values.basePrice)
+            }
+            
+            const response = edit
+                ? await updateTrip(id, payload)
+                : await createTrip(payload)
+
+            if (response.status === 200) {
+                alerta(edit ? "Publicación actualizada" : "Publicación creada", response.data.message, "success")
+                refresh()
+            } else {
                 alerta("Ocurrió un error", response.data.message, "error")
             }
             closeModal()
         }
     })
 
+    useEffect(() => {
+        if (edit && viaje) {
+            setFieldValue("origin", viaje.origin || "")
+            setFieldValue("destination", viaje.destination || "")
+            setFieldValue("departureDate", viaje.departureDate.substring(0,10) || "")
+            setFieldValue("cargoType", viaje.cargoType || "")
+            setFieldValue("weight", viaje.weight || "")
+            setFieldValue("dimensions", viaje.dimensions || { width: '', high: '', long: '' })
+            setFieldValue("observations", viaje.observations || "")
+        }
+    }, [])
+
+    const disabledFields = edit ? ["basePrice"] : []
+    const isDisabled = (field) => disabledFields.includes(field)
+
     return (
         <div className="modalTrip">
-            <h2 className='modal-title'>Crear publición</h2>
+            <h2 className='modal-title'>{edit ? "Editar publición" : "Crear publición"}</h2>
             <form onSubmit={handleSubmit} className="modal-form">
                 <TextField
                     label="Origen"
@@ -122,6 +146,7 @@ const ModalTrip = ({ onTripCreated }) => {
                     error={touched.basePrice && errors.basePrice}
                     helperText={touched.basePrice && errors.basePrice}
                     fullWidth
+                    disabled={isDisabled("basePrice")}
                 />
                 <TextField
                     select
@@ -192,7 +217,7 @@ const ModalTrip = ({ onTripCreated }) => {
                     maxRows={4}
                 />
                 <PrimaryButton type="submit">
-                    Publicar viaje
+                    {edit ? "Guardar cambios" : "Publicar viaje"}
                 </PrimaryButton>
             </form>
         </div>

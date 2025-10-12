@@ -12,15 +12,17 @@ import InformacionAdicional from './DetalleViajeSections/Informacion/Informacion
 import HacerOferta from './DetalleViajeSections/HacerOferta/HacerOferta'
 import Chat from './DetalleViajeSections/Chat/Chat'
 import TripStatusChanger from './DetalleViajeSections/TripStatusChanger/TripStatusChanger'
-import ReplayIcon from '@mui/icons-material/Replay';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { alerta } from '../../utils/alerts'
-import { IconButton } from '@mui/material'
+import { IconButton, Tooltip } from '@mui/material'
 import { validateToken } from '../../api/services/authService'
+import { useModal } from '../../context/ModalContext'
 
 const DetalleViaje = () => {
     const { id } = useParams()
     const location = useLocation()
     const navigate = useNavigate()
+    const { openModal } = useModal()
     
     const from = location.state?.from ?? "/viajes"
     
@@ -81,13 +83,17 @@ const DetalleViaje = () => {
                     <div className='page-title'>
                         <Link to={from}><KeyboardBackspaceIcon /></Link>
                         <h2>Detalle de viaje</h2>
-                        {/* <IconButton
-                            onClick={fetchDetalleViaje}
-                            aria-label="reload"
-                            size='small'
-                        >
-                            <ReplayIcon />
-                        </IconButton> */}
+                        {esPropio && enSubasta &&
+                            <Tooltip title="Editar">
+                                <IconButton
+                                    onClick={()=>openModal("modalTrip", {refresh: ()=>fetchDetalleViaje(), id: id, viaje: viaje, edit: true})}
+                                    aria-label="edit"
+                                    size='small'
+                                >
+                                    <MoreVertIcon />
+                                </IconButton>
+                            </Tooltip>
+                        }
                     </div>
                     { isDesktop && <MenuButton theme="dark"/> }
                 </header>
@@ -103,7 +109,7 @@ const DetalleViaje = () => {
                     ) : (
                         <>
                             {esPropio && <TripStatusChanger id={id} viaje={viaje} refresh={() => fetchDetalleViaje()}/>}
-                            <Ofertas viaje={viaje} refresh={fetchDetalleViaje}/>
+                            <Ofertas id={id} viaje={viaje} refresh={fetchDetalleViaje}/>
                             {!esPropio && <HacerOferta viaje={viaje} id={id} refresh={fetchDetalleViaje}/>}
                         </>
                     )}

@@ -29,6 +29,7 @@ export const ModalContainer = () => {
             onClose={closeModal}
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
+            disableEnforceFocus={true}
         >
             <Box
                 sx={{

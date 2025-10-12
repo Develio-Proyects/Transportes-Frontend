@@ -27,19 +27,6 @@
                 }
             }
 
-            //Clases de MUI
-            // .css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
-            //     border-color: var(--color-primary);
-            // }
-            // .css-113d811-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
-            //     color: var(--color-secondary);
-            // }
-            // .css-zsp0bh-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
-            //     border-color: var(--color-primary);
-            // }
-            // .css-1k9hkw1-MuiButtonBase-root-MuiButton-root{
-            //     background-color: var(--color-primary);
-            // }
             .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
                 border-color: var(--color-primary);
             }
@@ -48,6 +35,11 @@
             }
             .MuiButton-root {
                 background-color: var(--color-primary);
+            }
+            .checkbox{
+                .MuiSvgIcon-fontSizeMedium{
+                    color: var(--color-primary);
+                }
             }
         }
     }
