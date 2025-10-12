@@ -8,7 +8,7 @@ const ActionCardsSection = () => {
             <section id='action-cards' className="container">
                 <div className="action-card action-card-1">
                     <h2>Publicá tu carga</h2>
-                    <p>Publica tus necesidades y recibí postulaciones de transportistas confiables en minutos.</p>
+                    <p>Publica tus necesidades y recibí postulaciones de transportistas verificados en minutos.</p>
                     <Link to="/signup" className="action-button">
                         Publicar
                         <ArrowRightAltIcon className='arrow' />
@@ -17,7 +17,7 @@ const ActionCardsSection = () => {
 
                 <div className="action-card action-card-2">
                     <h2>Encontrá viajes ideales</h2>
-                    <p>Buscar viajes que se ajusten a tu tipo de camión y disponibilidad. Oportunidades al alcance de un click.</p>
+                    <p>Busca viajes que se ajusten a tu tipo unidad y disponibilidad. Oportunidades al alcance de un click.</p>
                     <Link to="/viajes" className="action-button">
                         Buscar
                         <ArrowRightAltIcon className='arrow' />
