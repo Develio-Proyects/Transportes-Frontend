@@ -14,8 +14,15 @@
             font-weight: 600;
         }
 
-        .cancel{
-            font-weight: 600;
+        .final-msg{
+            font-weight: 500;
+            margin-left: 2rem;
+            background-color: var(--color-terciary);
+            padding: 8px 1rem;
+            border-radius: 5px;
+            span{
+                text-transform: uppercase;
+            }
         }
     }
 }

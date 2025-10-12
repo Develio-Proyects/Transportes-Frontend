@@ -26,13 +26,17 @@ const TripStatusChanger = ({id, viaje, refresh}) => {
             }
         }else{
             let nextState = getEstadoKeyFromText(state || getNextState(viaje?.state))
-            const response = await changeTripStatus(id, nextState)
-            if(response.status === 200) alerta("Estado actualizado", response.data.message, "success")
-            else alerta("Ocurrió un error", response.data.message, "error")
-            refresh()
+            const isConfirmed = await confirmAlerta("Modificar estado", `¿Deseás cambiar el estado a ${getNextState(viaje?.state)}?`)
+
+            if(isConfirmed){
+                const response = await changeTripStatus(id, nextState)
+                if(response.status === 200) alerta("Estado actualizado", response.data.message, "success")
+                else alerta("Ocurrió un error", response.data.message, "error")
+                refresh()
+            }
         }
     }
-
+    
     const getColor = () => ESTADOS[getStateFromText(getNextState(viaje?.state))]?.color
     const isFinished = ["Finalizado", "Cancelado"].includes(viaje?.state)
 
@@ -57,8 +61,8 @@ const TripStatusChanger = ({id, viaje, refresh}) => {
                         </Button>
                     </>
                 ) : (
-                    <p style={{fontWeight: 500, marginLeft: '2rem'}}>
-                        El viaje fue <span style={{textTransform: 'uppercase', fontWeight: 500}}>{viaje?.state}</span>
+                    <p className='final-msg'>
+                        El viaje fue <span>{viaje?.state}</span>
                     </p>
                 )
                 }
