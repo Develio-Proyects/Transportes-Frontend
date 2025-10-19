@@ -39,10 +39,10 @@ const DetalleViaje = () => {
             setEnSubasta(response.data.state === "En subasta")
             setEsPropio(response.data.myPost)
 
-            if(!enSubasta){
+            if(!response.data.state === "En subasta"){
                 const token = localStorage.getItem("token")
                 const response = await validateToken(token)
-                if(!response.data.isValid) navigate("/login")
+                if(!response.data.isValid) navigate("/login") 
             }
         } else {
             navigate("/viajes")
