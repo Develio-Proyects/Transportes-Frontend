@@ -26,20 +26,20 @@ const Footer = () => {
                     </li>
                 </ul>
             </div>
-            {/* <div className="footer-media">
+            <div className="footer-media">
                 <ul>
                     <li className="media-item">
-                        <a href="https://www.facebook.com/" target="_blank" className='media-link'>
+                        <a href="https://www.instagram.com/transporta.argentina?utm_source=ig_web_button_share_sheet&igsh=a200NmIzam5raW5q" target="_blank" className='media-link'>
                             <InstagramIcon className='media-icon'/>
                         </a>
                     </li>
                     <li className="media-item">
-                        <a href="https://www.instagram.com/" target="_blank" className='media-link'>
+                        <a href="mailto:transporta.ayuda@gmail.com" className='media-link'>
                             <MailOutlineIcon className='media-icon'/>
                         </a>
                     </li>
                 </ul>
-            </div> */}
+            </div>
             <span className="develio">Desarrollado por&nbsp;<a href='https://develio.dev' target='_blank'>Develio</a></span>
         </footer>
     </div>

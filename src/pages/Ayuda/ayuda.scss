@@ -35,6 +35,8 @@
                 background-color: #fff;
 
                 .data{
+                    display: flex;
+                    flex-wrap: wrap;
                     strong{
                         color: var(--color-secondary);
                     }

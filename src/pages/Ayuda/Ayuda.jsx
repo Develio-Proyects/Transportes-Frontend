@@ -86,9 +86,17 @@ const Ayuda = () => {
                     <section className="comunication">
                         <h2 className="ayuda-title">Canales de comunicación</h2>
                         <div className="comunication-data">
-                            <span className="data"><strong>Atención al cliente:</strong> +54 9 11 5737-8358</span>
-                            <span className="data"><strong>Email:</strong> info@transporta.com.ar</span>
-                            {/* <span className="data"><strong>Instagram:</strong> @transportarg</span> */}
+                            <span className="data">
+                                <strong>Atención al cliente: </strong> 
+                                <span>+54 9 11 5737-8358</span>
+                            </span>
+                            <span className="data"><strong>Email: </strong>
+                                <a href="mailto:transporta.ayuda@gmail.com">transporta.ayuda@gmail.com</a>
+                            </span>
+                            <span className="data">
+                                <strong>Instagram: </strong>
+                                <a href='https://www.instagram.com/transporta.argentina?utm_source=ig_web_button_share_sheet&igsh=a200NmIzam5raW5q' target='_blank'>@transporta.argentina</a>
+                            </span>
                         </div>
                     </section>
                     <section className="tutorials">

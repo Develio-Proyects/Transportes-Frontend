@@ -47,9 +47,13 @@ const SignUp = () => {
             email: Yup.string()
                 .email('El email no es válido')
                 .required('Email obligatorio'),
-            documentNumber: Yup.string()
+           documentNumber: Yup.string()
                 .required("Documento requerido")
-                .matches(/^\d{8}$/, "Documento inválido"),
+                .when('role', {
+                    is: ROLESSIGNIN.FLOTA,
+                    then: (schema) => schema.matches(/^\d{11}$/, "CUIT inválido"),
+                    otherwise: (schema) => schema.matches(/^\d{8}$/, "Documento inválido")
+                }),
             password: Yup.string().required('Contraseña es obligatoria'),
             confirmPassword: Yup.string()
                 .oneOf([Yup.ref('password'), null], 'Las contraseñas deben coincidir')
@@ -167,14 +171,14 @@ const SignUp = () => {
                         </FormHelperText>
                     </FormControl>
 
-                    {/* Documento */}
+                    {/* Documento / Cuit */}
                     <FormControl 
                         className='auth-input' 
                         fullWidth 
                         variant="filled" 
                         error={!!errors.documentNumber && touched.documentNumber}
                     >
-                        <InputLabel htmlFor="filled-adornment-documentNumber">Documento</InputLabel>
+                        <InputLabel htmlFor="filled-adornment-documentNumber">{isFlota ? 'CUIT' : 'Documento'}</InputLabel>
                         <FilledInput
                             type="text"
                             name="documentNumber"

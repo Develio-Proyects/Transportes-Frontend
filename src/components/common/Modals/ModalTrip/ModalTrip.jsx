@@ -21,8 +21,9 @@ const ModalTrip = ({ refresh, id, viaje, edit }) => {
             departureDate: "",
             basePrice: "",
             cargoType: cargoTypes[0],
+            unitType: "",
             weight: "",
-              dimensions: {
+            dimensions: {
                 width: 0,
                 high: 0,
                 long: 0
@@ -125,7 +126,7 @@ const ModalTrip = ({ refresh, id, viaje, edit }) => {
                 />
                 <TextField
                     type='date'
-                    label="Fecha de salida"
+                    label="Fecha de carga"
                     name="departureDate"
                     value={values.departureDate}
                     onChange={handleChange}
