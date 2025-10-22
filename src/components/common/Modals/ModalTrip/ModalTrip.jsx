@@ -8,19 +8,21 @@ import { createTrip, updateTrip } from '../../../../api/services/viajesService'
 import { getBackName, TIPO_CARGA } from '../../../../api/models/tipoCarga'
 import { alerta } from '../../../../utils/alerts'
 import { useEffect } from 'react'
+import { TIPO_UNIDAD } from '../../../../api/models/tipoUnidad'
 
 const cargoTypes = Object.values(TIPO_CARGA).map(tipo => tipo.frontName)
+const unitTypes = Object.values(TIPO_UNIDAD)
 
 const ModalTrip = ({ refresh, id, viaje, edit }) => {
     const { closeModal } = useModal()
 
-    const { handleSubmit, handleChange, handleBlur, touched, values, errors, setSubmitting, setFieldValue } = useFormik({
+    const { handleSubmit, handleChange, handleBlur, touched, values, errors, setFieldValue } = useFormik({
         initialValues: {
             origin: "",
             destination: "",
             departureDate: "",
             basePrice: "",
-            cargoType: cargoTypes[0],
+            cargoType: "",
             unitType: "",
             weight: "",
             dimensions: {
@@ -44,6 +46,7 @@ const ModalTrip = ({ refresh, id, viaje, edit }) => {
                 ? Yup.number().min(0) 
                 : Yup.number().min(0).required("Precio requerido"),
             cargoType: Yup.string().required("Tipo requerido"),
+            unitType: Yup.string().required("Tipo de unidad requerido"),
             weight: Yup.number().min(0).required("Peso requerido"),
             dimensions: Yup.object({
                 width: Yup.number().min(0, "Debe ser mayor o igual a 0").required("Ancho requerido"),
@@ -58,6 +61,7 @@ const ModalTrip = ({ refresh, id, viaje, edit }) => {
                 destination: values.destination,
                 departureDate: new Date(values.departureDate).toISOString(),
                 cargoType: getBackName(values.cargoType),
+                unitType: values.unitType,
                 weight: Number(values.weight),
                 dimensions: {
                     width: Number(values.dimensions.width),
@@ -91,6 +95,7 @@ const ModalTrip = ({ refresh, id, viaje, edit }) => {
             setFieldValue("destination", viaje.destination || "")
             setFieldValue("departureDate", viaje.departureDate.substring(0,10) || "")
             setFieldValue("cargoType", viaje.cargoType || "")
+            setFieldValue("unitType", viaje.unitType || "");
             setFieldValue("weight", viaje.weight || "")
             setFieldValue("dimensions", viaje.dimensions || { width: '', high: '', long: '' })
             setFieldValue("observations", viaje.observations || "")
@@ -161,6 +166,21 @@ const ModalTrip = ({ refresh, id, viaje, edit }) => {
                     fullWidth
                 >
                     {cargoTypes.map(type => (
+                        <MenuItem key={type} value={type}>{type}</MenuItem>
+                    ))}
+                </TextField>
+                <TextField
+                    select
+                    label="Tipo de unidad"
+                    name="unitType"
+                    value={values.unitType}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.unitType && errors.unitType}
+                    helperText={touched.unitType && errors.unitType}
+                    fullWidth
+                >
+                    {unitTypes.map(type => (
                         <MenuItem key={type} value={type}>{type}</MenuItem>
                     ))}
                 </TextField>

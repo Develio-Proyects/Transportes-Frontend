@@ -8,7 +8,6 @@ import { ESTADOS, getStateFromText } from '../../../api/models/estado'
 import PrimaryButton from '../PrimaryButton/PrimaryButton'
 
 const ViajeCard = ({ viaje, from = "/viajes" }) => {
-    console.log(viaje);
     
     const formatedDate = (fechaStr) => {
         const fecha = new Date(fechaStr.replace('hs', '').trim().replace(' ', 'T'))

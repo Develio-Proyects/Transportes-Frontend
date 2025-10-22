@@ -15,6 +15,10 @@ const InformacionAdicional = ({viaje}) => {
                 <span>{viaje?.cargoType}</span>
             </div>
             <div className="i-type">
+                <h3 className='subtitle'>Tipo de unidad:</h3>
+                <span>{viaje?.unitType}</span>
+            </div>
+            <div className="i-type">
                 <h3 className='subtitle'>Peso:</h3>
                 <span>{viaje?.weight}kg</span>
             </div>

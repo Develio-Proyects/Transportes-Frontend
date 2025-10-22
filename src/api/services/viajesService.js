@@ -41,6 +41,7 @@ export const createTrip = async (values) => {
                 departureDate: values.departureDate,
                 basePrice: values.basePrice,
                 cargoType: values.cargoType,
+                unitType: values.unitType,
                 weight: values.weight,
                 dimensions: {
                     width: values.dimensions.width,
@@ -70,6 +71,7 @@ export const updateTrip = async (id, values) => {
                 destination: values.destination,
                 departureDate: values.departureDate,
                 cargoType: values.cargoType,
+                unitType: values.unitType,
                 weight: values.weight,
                 dimensions: {
                     width: values.dimensions.width,
