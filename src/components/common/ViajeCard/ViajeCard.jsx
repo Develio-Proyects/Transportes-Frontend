@@ -8,6 +8,7 @@ import { ESTADOS, getStateFromText } from '../../../api/models/estado'
 import PrimaryButton from '../PrimaryButton/PrimaryButton'
 
 const ViajeCard = ({ viaje, from = "/viajes" }) => {
+    console.log(viaje);
     
     const formatedDate = (fechaStr) => {
         const fecha = new Date(fechaStr.replace('hs', '').trim().replace(' ', 'T'))
@@ -30,13 +31,13 @@ const ViajeCard = ({ viaje, from = "/viajes" }) => {
     return (
         <article className="viaje-card">
             <header className="viaje-card-header">
-                <span className="viaje-published">{viaje.postedSince}</span>
+                <div className="viaje-published">
+                    <span>{viaje.postedSince}</span>
+                    <span>Por: {viaje.companyName}</span>
+                </div>
                 {viaje.myPost && <span className="mine">Mi publicación</span>}
                 {estadoData && (
-                    <span
-                        className="state"
-                        style={{ backgroundColor: estadoData.color }}
-                    >
+                    <span className="state" style={{ backgroundColor: estadoData.color }}>
                         {estadoData.text}
                     </span>
                 )}
