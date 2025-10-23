@@ -7,7 +7,7 @@ const Detalle = ({viaje}) => {
     const formatearFecha = fecha => {
         const d = new Date(fecha);
         const [dia, mes, año] = d.toLocaleDateString('es-AR', { day: '2-digit', month: 'long', year: 'numeric' }).split(' de ');
-        return `${dia} de ${mes[0].toUpperCase() + mes.slice(1)}, ${año} - ${d.toTimeString().slice(0,5)}hs`;
+        return `${dia} de ${mes[0].toUpperCase() + mes.slice(1)} - ${año}`;
     }
 
     return (
