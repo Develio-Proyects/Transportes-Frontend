@@ -25,7 +25,7 @@ const Chat = ({ id }) => {
     }
 
     useEffect(() => {
-        const socket = new SockJS(import.meta.env.VITE_API_URL + "/ws-chat", null, {
+        const socket = new SockJS((import.meta.env.VITE_API_URL?.trim() || '') + "/ws-chat", null, {
             withCredentials: true,
         })
 

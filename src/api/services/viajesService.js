@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_URL = import.meta.env.VITE_API_URL + '/api/trip'
+const API_URL = (import.meta.env.VITE_API_URL?.trim() || '') + '/api/trip'
 
 export const getViajes = async (page, size, filters) => {
     const token = localStorage.getItem("token")

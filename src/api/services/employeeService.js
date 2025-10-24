@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_URL_DOCUMENT = import.meta.env.VITE_API_URL + '/api/employee'
+const API_URL_DOCUMENT = (import.meta.env.VITE_API_URL?.trim() || '') + '/api/employee'
 
 export const getEmployees = async () => {
     const token = localStorage.getItem("token")

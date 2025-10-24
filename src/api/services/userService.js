@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { ROLESSIGNIN } from '../models/roles'
 
-const API_URL = import.meta.env.VITE_API_URL + '/api/users'
+const API_URL = (import.meta.env.VITE_API_URL?.trim() || '') + '/api/users'
 
 
 export const signup = async (credencials) => {
