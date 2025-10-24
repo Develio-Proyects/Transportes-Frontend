@@ -5,7 +5,8 @@ Frontend desarrollado en **React** usando **Vite** y **Material UI**.
 
 ## Environment
 
-VITE_API_URL
+VITE_API_URL: URL del backend (ejemplo: http://localhost:8080)  
+Solo setear en dev, ya que en produccion se usa la URL del mismo dominio y NGINX se encarga de la redirección.
 
 # Docker
 Comandos para generar la imagen que utiliza el server
@@ -13,6 +14,8 @@ Comandos para generar la imagen que utiliza el server
 - npm run build
 - docker build -t tobiasriccone/frontend-transportes:latest .
 - docker push tobiasriccone/frontend-transportes:latest
+
+Tambien se puede ejecutar el deploy.bat para hacer todo el proceso automaticamente.
 
 # TIP
 Para que el proceso siempre ocupe el mismo puerto, matarlo con q + enter. Si no se hace de esta manera el proceso ocupara el puerto hasta reiniciar la PC. Se necesita ocupar siempre el mismo puerto ya que el backend solo le da permiso a lo que viene de localhost:5173.
