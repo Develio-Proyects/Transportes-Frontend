@@ -74,7 +74,7 @@ const SignUp = () => {
                         password: values.password
                     })
                 } else {
-                    setStatus('Algún campo es incorrecto')
+                    setStatus(response.data.message)
                 }
             } catch (e) {
                 setStatus('Error en la autenticación - ' + e.message)
@@ -295,15 +295,13 @@ const SignUp = () => {
                         </FormHelperText>
                     </FormControl>
 
-                    {status && (
-                        <div style={{ color: 'var(--red)', margin: '.5rem 0 1rem' }}>{status}</div>
-                    )}
+                    {status && <span className='error'>{status}</span>}
                     
                     <Button type="submit" className="auth-btn" size="large" variant="contained">
                         Registrarse
                     </Button>
                 </form>
-
+                
                 <span className="auth-link">
                     ¿Ya tienes una cuenta?&nbsp;
                     <Link to="/login" className="auth-link">
