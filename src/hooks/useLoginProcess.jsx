@@ -7,7 +7,7 @@ export const useLoginProcess = () => {
     const { setUser } = useAuth()
     const navigate = useNavigate()
 
-    const loginProcess = async (credencial) => {
+    const loginProcess = async (credencial, from = null) => {
         try {
             const response = await login(credencial)
             if (response.status === 200) {
@@ -17,6 +17,11 @@ export const useLoginProcess = () => {
                     name: response.data.name,
                     email: response.data.email,
                 })
+
+                if(from) {
+                    navigate(from, { replace: true })
+                    return response
+                }
 
                 switch (response.data.role) {
                     case 'ADMINISTRADOR':

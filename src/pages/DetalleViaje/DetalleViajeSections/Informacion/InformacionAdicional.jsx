@@ -30,6 +30,12 @@ const InformacionAdicional = ({viaje}) => {
                     Ancho: {viaje?.dimensions.long}m
                 </div>
             </div>
+            {viaje?.observations &&
+                <div className="i-type">
+                    <h3 className='subtitle'>Observaciones:</h3>
+                    <span>{viaje?.observations}</span>
+                </div>
+            }
         </section>
     )
 }

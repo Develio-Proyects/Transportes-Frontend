@@ -53,7 +53,7 @@ const ModalTrip = ({ refresh, id, viaje, edit }) => {
                 high: Yup.number().min(0, "Debe ser mayor o igual a 0").required("Alto requerido"),
                 long: Yup.number().min(0, "Debe ser mayor o igual a 0").required("Largo requerido")
             }),
-            observations: Yup.string()
+            observations: Yup.string().max(255, "Máximo 255 caracteres")
         }),
         onSubmit: async (values) => {
             const payload = {

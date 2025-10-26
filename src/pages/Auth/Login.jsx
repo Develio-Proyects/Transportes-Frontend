@@ -4,7 +4,7 @@ import { useFormik } from 'formik'
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import * as Yup from 'yup'
 import { useLoginProcess } from '../../hooks/useLoginProcess';
 
@@ -12,6 +12,9 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [status, setStatus] = useState(null)
     const { loginProcess } = useLoginProcess()
+
+    const location = useLocation()
+    const from = location.state?.from || null
 
     const handleClickShowPassword = () => setShowPassword((show) => !show)
     const handleMouseDownPassword = (event) => {
@@ -34,7 +37,7 @@ const Login = () => {
             setSubmitting(true)
             setStatus(null)
             try {
-                const response = await loginProcess(values)
+                const response = await loginProcess(values, from)
                 if(response.status !== 200){
                     setStatus(response.data.message)
                 }

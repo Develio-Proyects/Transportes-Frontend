@@ -5,8 +5,14 @@ import { useFormik } from "formik"
 import * as Yup from 'yup'
 import { sendOffer } from '../../../../api/services/offerService'
 import { alerta } from '../../../../utils/alerts'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../../../context/AuthContext'
 
 const HacerOferta = ({viaje, id, refresh}) => {
+    const navigate = useNavigate()
+    const location = useLocation()
+    const {user} = useAuth()
+
     const { handleSubmit, handleChange, handleBlur, touched, values, errors, setSubmitting } = useFormik({
         initialValues: {
             oferta: ""
@@ -53,6 +59,11 @@ const HacerOferta = ({viaje, id, refresh}) => {
                 )
         }),
         onSubmit: async (values, actions) => {
+            if(!user) {
+                navigate('/login', { state: { from: location.pathname } })
+                return
+            }
+
             const response = await sendOffer(id, values.oferta)
             if(response.status === 200){
                 alerta("Oferta realizada", response.data.message, "success")
@@ -61,7 +72,6 @@ const HacerOferta = ({viaje, id, refresh}) => {
             else alerta("Ocurrió un error", response.data.message, "error")
             actions.resetForm()
         }
-
     })
 
     return (
